@@ -1,9 +1,9 @@
 {
   "name": "frappe",
   "scripts": {
-    "build": "node rollup/build.js",
-    "production": "FRAPPE_ENV=production node rollup/build.js",
-    "watch": "node rollup/watch.js"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
   },
   "repository": {
     "type": "git",
@@ -18,6 +18,7 @@
   "dependencies": {
     "ace-builds": "^1.4.1",
     "awesomplete": "^1.1.2",
+    "bootstrap": "^4.1.3",
     "cookie": "^0.3.1",
     "express": "^4.16.2",
     "frappe-datatable": "^1.5.3",
@@ -33,11 +34,19 @@
     "socket.io": "^2.0.4",
     "superagent": "^3.8.2",
     "touch": "^3.1.0",
-    "vue": "^2.5.17"
+    "vue": "^2.5.17",
+    "vue-feather-icons": "^4.7.1",
+    "vue-router": "^3.0.2"
   },
   "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.0.5",
+    "@vue/cli-plugin-eslint": "^3.0.5",
+    "@vue/cli-service": "^3.0.5",
+    "babel-eslint": "^10.0.1",
     "babel-runtime": "^6.26.0",
     "chalk": "^2.3.2",
+    "eslint": "^5.8.0",
+    "eslint-plugin-vue": "^5.0.0-0",
     "less": "^3.0.4",
     "node-sass": "^4.9.0",
     "rollup": "^0.65.0",
@@ -49,5 +58,29 @@
     "rollup-plugin-uglify": "^3.0.0",
     "rollup-plugin-vue": "^4.3.2",
     "vue-template-compiler": "^2.5.17"
-  }
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }
