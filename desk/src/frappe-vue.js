@@ -15,3 +15,5 @@ async function call(method, data) {
 }
 
 Vue.prototype.call = call
+
+window.call = call;

@@ -1,5 +1,5 @@
 import VueRouter from 'vue-router'
-import Desktop from './pages/Desktop/index';
+import Desktop from './pages/Desktop';
 
 const routes = [
   {

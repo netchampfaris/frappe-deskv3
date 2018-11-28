@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Navbar />
+    <TheNavbar />
     <PageContainer>
       <router-view></router-view>
     </PageContainer>
@@ -8,13 +8,13 @@
 </template>
 
 <script>
-import Navbar from './components/Navbar.vue'
+import TheNavbar from './components/TheNavbar.vue'
 import PageContainer from './components/PageContainer'
 
 export default {
   name: 'app',
   components: {
-    Navbar,
+    TheNavbar,
     PageContainer
   }
 }
@@ -22,4 +22,8 @@ export default {
 
 <style>
 @import "~bootstrap/dist/css/bootstrap.css";
+
+html, body {
+  font-size: 14px;
+}
 </style>

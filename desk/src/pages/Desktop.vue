@@ -1,14 +1,14 @@
 <template>
   <div class="desktop h-100">
     <div class="container">
-      <div class="icons">
-       <Icon v-for="icon in icons" :icon="icon" :key="icon.label" />
+      <div class="desktop-icons" v-if="icons.length">
+        <Icon class="desktop-icon" v-for="icon in icons" :icon="icon" :key="icon.label" />
       </div>
     </div>
   </div>
 </template>
 <script>
-import Icon from './Icon';
+import Icon from './DesktopIcon';
 
 export default {
   name: 'Desktop',
@@ -21,7 +21,10 @@ export default {
     }
   },
   async created() {
-    this.icons = (await this.fetchUserIcons()).icons;
+    const userIcons = await this.fetchUserIcons();
+    if (userIcons) {
+      this.icons = userIcons.icons;
+    }
   },
   methods: {
     async fetchUserIcons() {
@@ -34,5 +37,18 @@ export default {
 <style scoped>
 .desktop {
   background-color: #4B4C9D;
+}
+.desktop-icons {
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  /* justify-content: space-between; */
+}
+
+.desktop-icon {
+  padding: 2rem;
 }
 </style>
