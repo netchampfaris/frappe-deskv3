@@ -1,5 +1,5 @@
 <template>
-  <div class="app-icon">
+  <div class="app-icon" @click="navigate">
     <div class="app-icon-background" :style="{'background-color': icon.color}">
       <octicon v-if="iconName" :class="{'text-white': !icon.reverse}" :name="iconName" scale=2 />
     </div>
@@ -17,6 +17,14 @@ export default {
         return null;
       }
       return className.slice('octicon octicon-'.length);
+    }
+  },
+  methods: {
+    navigate() {
+      if (this.icon.link) {
+        const parts = this.icon.link.split('/');
+        this.$router.push(parts.slice(0, 2).join('/'));
+      }
     }
   }
 }

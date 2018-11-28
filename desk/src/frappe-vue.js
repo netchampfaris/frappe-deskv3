@@ -1,12 +1,21 @@
 import Vue from 'vue'
+import PageHeader from './components/PageHeader'
 
-async function call(method, data) {
-  const queryString = new URLSearchParams();
-  for (let key in data) {
-    queryString.append(key, data[key])
+Vue.prototype.call = async function call(method, data) {
+  if (!data) {
+    data = {}
   }
 
-  const res = await fetch(`/api/method/${method}?${queryString}`)
+  data.cmd = method;
+
+  const res = await fetch('/', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json; charset=utf-8'
+    },
+    body: JSON.stringify(data)
+  })
 
   if (res.ok) {
     const data = await res.json();
@@ -14,6 +23,4 @@ async function call(method, data) {
   }
 }
 
-Vue.prototype.call = call
-
-window.call = call;
+Vue.component('PageHeader', PageHeader)

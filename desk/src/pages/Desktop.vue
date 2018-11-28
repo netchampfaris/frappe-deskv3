@@ -1,5 +1,5 @@
 <template>
-  <div class="desktop h-100">
+  <div class="desktop">
     <div class="container">
       <div class="desktop-icons" v-if="icons.length">
         <Icon class="desktop-icon" v-for="icon in icons" :icon="icon" :key="icon.label" />
@@ -23,7 +23,7 @@ export default {
   async created() {
     const userIcons = await this.fetchUserIcons();
     if (userIcons) {
-      this.icons = userIcons.icons;
+      this.icons = userIcons.icons.filter(icon => !icon.hidden);
     }
   },
   methods: {
@@ -37,6 +37,7 @@ export default {
 <style scoped>
 .desktop {
   background-color: #4B4C9D;
+  height: calc(100vh - 3.6rem);
 }
 .desktop-icons {
   width: 80%;
@@ -45,7 +46,6 @@ export default {
   padding-bottom: 2rem;
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: space-between; */
 }
 
 .desktop-icon {

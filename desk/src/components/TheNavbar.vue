@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom sticky-top">
     <div class="container">
       <a class="navbar-brand" href="#">Frappe</a>
       <ul class="navbar-nav">
