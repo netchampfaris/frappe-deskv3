@@ -1,5 +1,5 @@
 <template>
-    <li class="nav-item" >
+    <li class="nav-item font-weight-bold">
         <a class="nav-link" href="#" role="button" v-if="!userInfo" @click="login()">Login</a>
         <a class="nav-link" href="#" role="button" v-else>
             {{ userInfo.first_name }}
