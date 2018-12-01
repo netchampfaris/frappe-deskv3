@@ -1,10 +1,10 @@
 <template>
-    <li class="nav-item font-weight-bold">
-        <a class="nav-link" href="#" role="button" v-if="!userInfo" @click="login()">Login</a>
-        <a class="nav-link" href="#" role="button" v-else>
+    <div class="font-semibold">
+        <a class="no-underline text-grey-dark hover:text-grey-darker" href="#" role="button" v-if="!userInfo" @click="login()">Login</a>
+        <a class="no-underline text-grey-dark hover:text-grey-darker" href="#" role="button" v-else>
             {{ userInfo.first_name }}
         </a>
-    </li>
+    </div>
 </template>
 <script>
 export default {

@@ -1,9 +1,9 @@
 <template>
-  <div class="app-icon" @click="navigate">
-    <div class="app-icon-background" :style="{'background-color': icon.color}">
+  <div class="flex flex-col items-center cursor-pointer" @click="navigate">
+    <div class="w-24 h-24 rounded-3 flex items-center justify-center shadow" :style="{'background-color': icon.color}">
       <octicon v-if="iconName" :class="{'text-white': !icon.reverse}" :name="iconName" scale=2 />
     </div>
-    <span class="app-icon-label text-truncate">{{ icon.label }}</span>
+    <span class="text-white font-bold tracking-wide mt-4 text-shadow">{{ icon.label }}</span>
   </div>
 </template>
 <script>
@@ -29,25 +29,3 @@ export default {
   }
 }
 </script>
-<style scoped>
-.app-icon {
-  text-align: center;
-  width: 10rem;
-}
-.app-icon-background {
-  width: 5rem;
-  height: 5rem;
-  padding: 1.25rem;
-  border-radius: 1rem;
-  cursor: pointer;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.15);
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-}
-.app-icon-label {
-  color: #fff;
-  font-weight: bold;
-  font-size: 0.85rem;
-}
-</style>

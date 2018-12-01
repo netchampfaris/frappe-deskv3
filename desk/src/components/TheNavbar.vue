@@ -1,22 +1,24 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light  sticky-top f1 py-1">
-    <div class="container">
-      <a class="navbar-brand f1 font-weight-bold" href="#/">Frappe</a>
-      <ul class="navbar-nav">
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control form-control-sm mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        </form>
+  <nav class="border-b border-grey-lighter bg-white py-2">
+    <div class="container flex items-center justify-between">
+      <a class="font-semibold text-grey-dark hover:text-grey-darker no-underline" href="#/">
+        Home
+      </a>
+      <div class="flex items-center">
+        <TheAwesomeBar class="mr-8" />
         <TheNavbarLogin />
-      </ul>
+      </div>
     </div>
   </nav>
 </template>
 <script>
+import TheAwesomeBar from './TheAwesomeBar';
 import TheNavbarLogin from './TheNavbarLogin';
 
 export default {
   name: 'TheNavbar',
   components: {
+    TheAwesomeBar,
     TheNavbarLogin
   }
 }

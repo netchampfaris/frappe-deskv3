@@ -1,8 +1,8 @@
 <template>
-  <div class="desktop">
+  <div class="desktop pt-8 bg-indigo-dark">
     <div class="container">
-      <div class="desktop-icons" v-if="icons.length">
-        <Icon class="desktop-icon" v-for="icon in icons" :icon="icon" :key="icon.label" />
+      <div class="w-4/5 mx-auto flex flex-wrap" v-if="icons.length">
+        <Icon class="m-10" v-for="icon in icons" :icon="icon" :key="icon.label" />
       </div>
     </div>
   </div>
@@ -36,19 +36,6 @@ export default {
 
 <style scoped>
 .desktop {
-  background-color: #4B4C9D;
-  height: calc(100vh - 3.6rem);
-}
-.desktop-icons {
-  width: 80%;
-  margin: 0 auto;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.desktop-icon {
-  padding: 2rem;
+  height: calc(100vh - 3.8rem);
 }
 </style>

@@ -1,11 +1,12 @@
 <template>
-  <div id="app">
+  <div id="app" class="font-sans">
     <TheNavbar />
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import './style.css'
 import TheNavbar from './components/TheNavbar.vue'
 
 export default {
@@ -15,25 +16,8 @@ export default {
   }
 }
 </script>
-
 <style>
-@import "~bootstrap/dist/css/bootstrap.css";
-
 html, body {
-  font-size: 14px;
-}
-
-h1 {
-  font-size: 1.7rem;
-}
-
-.f1 {
-  font-size: 0.85rem;
-}
-.f2 {
-  font-size: 1rem;
-}
-.f3 {
-  font-size: 1.2rem;
+  font-size: 12px;
 }
 </style>
