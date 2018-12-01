@@ -1,5 +1,5 @@
 <template>
-    <div class="list-main f1" v-if="meta">
+    <div v-if="meta">
         <ListMainRowHead
             :doctype="doctype"
             :meta="meta"

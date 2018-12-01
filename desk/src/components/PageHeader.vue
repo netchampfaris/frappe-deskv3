@@ -1,7 +1,7 @@
 <template>
-  <div class="page-header border-bottom py-3">
+  <div class="border-b py-6">
     <div class="container">
-      <h1 class="m-0">{{ title }}</h1>
+      <h1 class="font-medium">{{ title }}</h1>
     </div>
   </div>
 </template>

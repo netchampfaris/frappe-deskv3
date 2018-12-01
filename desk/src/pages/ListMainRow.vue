@@ -1,10 +1,10 @@
 <template>
-    <div class="list-row py-2 px-3">
-        <div class="row">
-            <div class="col-3">
+    <div class="p-4 hover:bg-grey-lightest cursor-pointer">
+        <div class="flex">
+            <div class="w-2/5">
                 {{ doc[titleField] | stripHTML }}
             </div>
-            <div class="col" v-for="fieldname in otherFields" :key="fieldname">
+            <div class="w-1/5" v-for="fieldname in otherFields" :key="fieldname">
                 {{ doc[fieldname] | stripHTML }}
             </div>
         </div>
@@ -30,11 +30,3 @@ export default {
     }
 }
 </script>
-<style scoped>
-.list-row {
-    cursor: pointer;
-}
-.list-row:hover {
-    background-color: var(--light);
-}
-</style>

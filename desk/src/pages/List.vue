@@ -2,11 +2,11 @@
     <div class="list">
         <PageHeader :title="doctype" />
         <div class="container">
-            <div class="row no-gutters">
-                <div class="col-2 border-right">
+            <div class="flex">
+                <div class="w-1/6 border-r">
                     <ListSidebar :doctype="doctype" />
                 </div>
-                <div class="col-10">
+                <div class="w-5/6 border-r">
                     <ListMain :doctype="doctype" />
                 </div>
             </div>

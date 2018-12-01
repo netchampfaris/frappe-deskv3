@@ -1,10 +1,10 @@
 <template>
-    <div class="list-row-head bg-light py-2 px-3 border-bottom">
-        <div class="row text-muted">
-            <div class="col-3">
+    <div class="p-4 border-b bg-grey-lighter">
+        <div class="flex text-grey-darker">
+            <div class="w-2/5">
                 {{ titleColumn }}
             </div>
-            <div class="col" v-for="col in columns" :key="col">
+            <div class="w-1/5" v-for="col in columns" :key="col">
                 {{ col }}
             </div>
         </div>
