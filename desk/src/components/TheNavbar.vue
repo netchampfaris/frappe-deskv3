@@ -1,5 +1,5 @@
 <template>
-  <nav class="border-b border-grey-lighter bg-white py-2 sticky">
+  <nav class="border-b border-grey-light bg-white py-2 sticky">
     <div class="container flex items-center justify-between">
       <a class="font-semibold text-grey-dark hover:text-grey-darker no-underline" href="#/">
         Home

@@ -1,11 +1,16 @@
 <template>
-    <div class="p-4 border-b bg-grey-lighter">
-        <div class="flex text-grey-darker">
-            <div class="w-2/5">
-                {{ titleColumn }}
+    <div class="p-4 border-b bg-grey-lighter text-grey-darker">
+        <div class="flex">
+            <div class="w-4/5 flex">
+                <div class="w-2/5">
+                    {{ titleColumn }}
+                </div>
+                <div class="w-1/5" v-for="col in columns" :key="col">
+                    {{ col }}
+                </div>
             </div>
-            <div class="w-1/5" v-for="col in columns" :key="col">
-                {{ col }}
+            <div class="w-1/5 text-right">
+                3 of 3
             </div>
         </div>
     </div>
@@ -13,25 +18,13 @@
 <script>
 export default {
     name: 'ListMainRowHead',
-    props: ['doctype', 'meta'],
+    props: ['doctype', 'meta', 'fieldsToShow'],
     computed: {
         titleColumn() {
-            if (this.meta.title_field) {
-                const titleFieldLabel = this.meta.fields
-                    .find(df => df.fieldname === this.meta.title_field)
-                    .label;
-                return titleFieldLabel;
-            }
-
-            return 'Name';
+            return this.fieldsToShow[0].label;
         },
         columns() {
-            let cols = [];
-
-            let fieldsInListView = this.meta.fields.filter(df => df.in_list_view);
-            cols.push(...fieldsInListView.map(df => df.label));
-
-            return cols;
+            return this.fieldsToShow.slice(1).map(df => df.label);
         }
     }
 }
