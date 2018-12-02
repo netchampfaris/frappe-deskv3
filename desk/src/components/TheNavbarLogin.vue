@@ -1,9 +1,13 @@
 <template>
     <div class="font-semibold">
-        <a class="no-underline text-grey-dark hover:text-grey-darker" href="#" role="button" v-if="!userInfo" @click="login()">Login</a>
-        <a class="no-underline text-grey-dark hover:text-grey-darker" href="#" role="button" v-else>
-            {{ userInfo.first_name }}
-        </a>
+        <a class="no-underline text-grey-dark hover:text-grey-darker" href="#" role="button" v-if="!userInfo"
+            @click="login('faris@erpnext.com', 'qwe')">Login</a>
+        <div class="flex items-center" v-else>
+            <UserAvatar class="mr-2" :user="userInfo.email" />
+            <a class="no-underline text-grey-dark hover:text-grey-darker" href="#" role="button">
+                {{ userInfo.first_name }}
+            </a>
+        </div>
     </div>
 </template>
 <script>
