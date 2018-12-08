@@ -1,9 +1,6 @@
-import Vue from 'vue'
-import PageHeader from './components/PageHeader'
-import Button from './components/Button'
-import UserAvatar from './components/UserAvatar'
+import Vue from 'vue';
 
-Vue.prototype.call = async function call(method, data) {
+Vue.prototype.$call = async function call(method, data) {
   if (!data) {
     data = {}
   }
@@ -30,7 +27,3 @@ Vue.prototype.call = async function call(method, data) {
     }
   }
 }
-
-Vue.component('PageHeader', PageHeader)
-Vue.component('Button', Button)
-Vue.component('UserAvatar', UserAvatar)

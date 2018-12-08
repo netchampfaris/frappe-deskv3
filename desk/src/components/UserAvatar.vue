@@ -20,7 +20,7 @@ export default {
         async fetchUserImage() {
             if (!this.user) return;
 
-            const data = await this.call('frappe.client.get_value', {
+            const data = await this.$call('frappe.client.get_value', {
                 doctype: 'User',
                 filters: this.user,
                 fieldname: 'user_image'

@@ -23,11 +23,11 @@ export default {
     },
     methods: {
         async login(email='Administrator', password='qwe') {
-            await this.call('login', { usr: email, pwd: password })
+            await this.$call('login', { usr: email, pwd: password })
             this.fetchUserInfo()
         },
         async fetchUserInfo() {
-            this.userInfo = await this.call('frappe.utils.user.get_user_info')
+            this.userInfo = await this.$call('frappe.utils.user.get_user_info')
         }
     }
 }

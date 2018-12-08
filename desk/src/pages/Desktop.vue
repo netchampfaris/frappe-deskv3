@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     async fetchUserIcons() {
-      return await this.call('frappe.desk.doctype.desktop_icon.desktop_icon.get_module_icons', { user: 'Administrator' })
+      return await this.$call('frappe.desk.doctype.desktop_icon.desktop_icon.get_module_icons', { user: 'Administrator' })
     }
   }
 }

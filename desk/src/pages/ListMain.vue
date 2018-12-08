@@ -38,7 +38,7 @@ export default {
     },
     methods: {
         async fetchData() {
-            const data = await this.call('frappe.desk.reportview.get', {
+            const data = await this.$call('frappe.desk.reportview.get', {
                 doctype: this.doctype,
                 fields: this.getFieldsToFetch(),
                 filters: {},
@@ -51,7 +51,7 @@ export default {
             }
         },
         async fetchMeta() {
-            this.meta = await this.call('frappe.client.get', {
+            this.meta = await this.$call('frappe.client.get', {
                 doctype: 'DocType',
                 name: this.doctype
             });
