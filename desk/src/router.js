@@ -1,7 +1,10 @@
+import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Desktop from './pages/Desktop';
-import List from './pages/List';
-import Form from './pages/Form';
+import Desktop from './pages/Desktop'
+import List from './pages/List'
+import Form from './pages/Form'
+
+Vue.use(VueRouter)
 
 const routes = [
   {
