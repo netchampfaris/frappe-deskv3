@@ -1,36 +1,32 @@
 <template>
   <div class="desktop pt-8 bg-indigo-dark">
     <div class="container">
-      <div class="w-4/5 mx-auto flex flex-wrap" v-if="icons.length">
-        <Icon class="m-10" v-for="icon in icons" :icon="icon" :key="icon.label" />
+      <div class="w-4/5 mx-auto flex flex-wrap" v-if="visibleIcons.length">
+        <Icon class="m-10" v-for="icon in visibleIcons" :icon="icon" :key="icon.label" />
       </div>
     </div>
   </div>
 </template>
 <script>
-import Icon from './DesktopIcon';
+import { createNamespacedHelpers } from 'vuex'
+import Icon from './DesktopIcon'
+
+const { mapState, mapActions, mapGetters } = createNamespacedHelpers('Desktop')
 
 export default {
   name: 'Desktop',
   components: {
     Icon
   },
-  data() {
-    return {
-      icons: []
-    }
-  },
   async created() {
-    const userIcons = await this.fetchUserIcons();
-    if (userIcons) {
-      this.icons = userIcons.icons.filter(icon => !icon.hidden);
-    }
+    this.fetchUserIcons();
   },
-  methods: {
-    async fetchUserIcons() {
-      return await this.$call('frappe.desk.doctype.desktop_icon.desktop_icon.get_module_icons', { user: 'Administrator' })
-    }
-  }
+  methods: mapActions([
+    'fetchUserIcons'
+  ]),
+  computed: mapGetters([
+    'visibleIcons'
+  ])
 }
 </script>
 
