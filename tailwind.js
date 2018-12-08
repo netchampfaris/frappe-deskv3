@@ -24,7 +24,7 @@ View the full documentation at https://tailwindcss.com.
 |
 */
 
-let defaultConfig = require('tailwindcss/defaultConfig')()
+// let defaultConfig = require('tailwindcss/defaultConfig')()
 
 
 /*
@@ -51,9 +51,9 @@ let colors = {
   'grey-darker': '#606f7b',
   'grey-dark': '#8795a1',
   'grey': '#b8c2cc',
-  'grey-light': '#dae1e7',
-  'grey-lighter': '#f1f5f8',
-  'grey-lightest': '#f8fafc',
+  'grey-light': '#CFDCE5',
+  'grey-lighter': '#F0F4F7',
+  'grey-lightest': '#FAFBFC',
   'white': '#ffffff',
 
   'red-darkest': '#3b0d0c',
@@ -96,13 +96,13 @@ let colors = {
   'teal-lighter': '#a0f0ed',
   'teal-lightest': '#e8fffe',
 
-  'blue-darkest': '#12283a',
-  'blue-darker': '#1c3d5a',
-  'blue-dark': '#2779bd',
-  'blue': '#3490dc',
-  'blue-light': '#6cb2eb',
-  'blue-lighter': '#bcdefa',
-  'blue-lightest': '#eff8ff',
+  'blue-darkest': '#000699',
+  'blue-darker': '#0007BF',
+  'blue-dark': '#2B33FF',
+  'blue': '#5e64ff',
+  'blue-light': '#9195FF',
+  'blue-lighter': '#C4C7FF',
+  'blue-lightest': '#F7F8FF',
 
   'indigo-darkest': '#191e38',
   'indigo-darker': '#2f365f',
@@ -341,7 +341,12 @@ module.exports = {
   |
   */
 
-  textColors: colors,
+  textColors: Object.assign(colors, {
+    'dark': '#36414c',
+    'light': '#6C7680',
+    'muted': '#8D99A6',
+    'extra-muted': '#D1D8DD'
+  }),
 
 
   /*
@@ -419,7 +424,10 @@ module.exports = {
   |
   */
 
-  borderColors: global.Object.assign({ default: colors['grey-light'] }, colors),
+  borderColors: Object.assign(colors, {
+    default: '#D1D8DD',
+    light: '#EBEFF2'
+  }),
 
 
   /*
@@ -755,7 +763,7 @@ module.exports = {
     'md': '0 4px 8px 0 rgba(0,0,0,0.12), 0 2px 4px 0 rgba(0,0,0,0.08)',
     'lg': '0 15px 30px 0 rgba(0,0,0,0.11), 0 5px 15px 0 rgba(0,0,0,0.08)',
     'inner': 'inset 0 2px 4px 0 rgba(0,0,0,0.06)',
-    'outline': '0 0 0 3px rgba(52,144,220,0.5)',
+    'outline': '0 0 0 3px rgba(196, 199, 255, 1)',
     'none': 'none',
   },
 

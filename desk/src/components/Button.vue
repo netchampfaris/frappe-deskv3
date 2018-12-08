@@ -10,7 +10,7 @@ export default {
     computed: {
         typeClass() {
             return {
-                'bg-indigo-light hover:bg-indigo text-white': this.type === 'primary',
+                'bg-blue hover:bg-blue-dark text-white': this.type === 'primary',
                 'bg-grey-lighter hover:bg-grey-light': this.type !== 'primary'
             }
         }
