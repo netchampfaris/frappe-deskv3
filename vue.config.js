@@ -7,7 +7,7 @@ module.exports = {
         config.entry.app = ['./desk/src/main.js']
     },
     devServer: {
-        allowedHosts: ['frappe.local'],
-        proxy: 'http://frappe.local:8000'
+        allowedHosts: ['frappe.deskv3'],
+        proxy: 'http://frappe.deskv3:8001/'
     }
 }
