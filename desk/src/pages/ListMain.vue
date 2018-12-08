@@ -46,8 +46,9 @@ export default {
                 page_length: 20,
                 order_by: 'modified desc'
             });
-
-            this.data = this.convertToKeyValue(data.keys, data.values);
+            if (data.values && data.values.length > 0) {
+                this.data = this.convertToKeyValue(data.keys, data.values);
+            }
         },
         async fetchMeta() {
             this.meta = await this.call('frappe.client.get', {
