@@ -22,7 +22,7 @@
 <script>
 export default {
     name: 'ListMainRow',
-    props: ['doc', 'doctype', 'meta', 'fieldsToShow'],
+    props: ['doc', 'doctype', 'fieldsToShow'],
     computed: {
         titleField() {
             return this.fieldsToShow[0].fieldname;

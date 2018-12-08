@@ -1,5 +1,5 @@
 <template>
-    <div class="list">
+    <div class="list" v-if="meta">
         <PageHeader :title="doctype">
             <div slot="page-actions">
                 <Button class="mr-1">Menu</Button>
@@ -29,6 +29,14 @@ export default {
     components: {
         ListSidebar,
         ListMain
+    },
+    created() {
+        this.$store.dispatch('Meta/fetchMeta', { doctype: this.doctype })
+    },
+    computed: {
+        meta() {
+            return this.$store.getters['Meta/getMeta'](this.doctype)
+        }
     }
 }
 </script>

@@ -2,15 +2,13 @@
     <div v-if="meta">
         <ListMainRowHead
             :doctype="doctype"
-            :meta="meta"
             :fieldsToShow="getFieldsToShow()"
         />
         <ListMainRow
-            v-for="doc in data"
+            v-for="doc in listData"
             :key="doc.name"
             :doc="doc"
             :doctype="doctype"
-            :meta="meta"
             :fieldsToShow="getFieldsToShow()"
         />
     </div>
@@ -26,35 +24,27 @@ export default {
         ListMainRowHead,
         ListMainRow
     },
-    data() {
-        return {
-            meta: null,
-            data: []
+    computed: {
+        meta() {
+            return this.$store.getters['Meta/getMeta'](this.doctype)
+        },
+        listData() {
+            return this.$store.getters['List/getData'](this.doctype)
         }
     },
-    async created() {
-        await this.fetchMeta();
-        await this.fetchData();
+    created() {
+        this.fetchData();
     },
     methods: {
         async fetchData() {
-            const data = await this.$call('frappe.desk.reportview.get', {
+            this.$store.dispatch('List/fetchData', {
                 doctype: this.doctype,
                 fields: this.getFieldsToFetch(),
                 filters: {},
-                with_comment_count: true,
-                page_length: 20,
-                order_by: 'modified desc'
-            });
-            if (data.values && data.values.length > 0) {
-                this.data = this.convertToKeyValue(data.keys, data.values);
-            }
-        },
-        async fetchMeta() {
-            this.meta = await this.$call('frappe.client.get', {
-                doctype: 'DocType',
-                name: this.doctype
-            });
+                start: 0,
+                pageLength: 20,
+                orderBy: 'modified desc'
+            })
         },
         getFieldsToFetch() {
             let fields = ['name', '_comments', '_assign', '_seen'];
@@ -83,14 +73,6 @@ export default {
             fields.push(...fieldsInListView);
 
             return fields.slice(0, 4);
-        },
-        convertToKeyValue(keys, values) {
-            return values.map((row) => {
-                return row.reduce((acc, cell, i) => {
-                    acc[keys[i]] = cell;
-                    return acc;
-                }, {});
-            });
         }
     }
 }

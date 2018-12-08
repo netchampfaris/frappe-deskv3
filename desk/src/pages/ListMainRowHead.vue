@@ -18,7 +18,7 @@
 <script>
 export default {
     name: 'ListMainRowHead',
-    props: ['doctype', 'meta', 'fieldsToShow'],
+    props: ['doctype', 'fieldsToShow'],
     computed: {
         titleColumn() {
             return this.fieldsToShow[0].label;
