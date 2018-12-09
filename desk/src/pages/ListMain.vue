@@ -10,6 +10,7 @@
             :doc="doc"
             :doctype="doctype"
             :fieldsToShow="getFieldsToShow()"
+            @click.native="routeToForm(doc.name)"
         />
     </div>
 </template>
@@ -45,6 +46,9 @@ export default {
                 pageLength: 20,
                 orderBy: 'modified desc'
             })
+        },
+        routeToForm(name) {
+            this.$router.push(`/Form/${this.doctype}/${name}`)
         },
         getFieldsToFetch() {
             let fields = ['name', '_comments', '_assign', '_seen'];
