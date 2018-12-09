@@ -1,9 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import frappe from '../frappe'
-import Meta from './Meta'
+import CurrentPage from './CurrentPage'
 import Desktop from '../pages/Desktop.store'
 import List from '../pages/List.store'
+import Meta from './Meta'
 
 Vue.use(Vuex);
 
@@ -27,9 +28,10 @@ const store = new Vuex.Store({
         }
     },
     modules: {
-        Meta,
+        CurrentPage,
         Desktop,
-        List
+        List,
+        Meta,
     }
 })
 

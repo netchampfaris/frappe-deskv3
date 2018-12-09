@@ -1,12 +1,5 @@
 <template>
     <div class="list" v-if="meta">
-        <PageHeader :title="doctype">
-            <div slot="page-actions">
-                <Button class="mr-1">Menu</Button>
-                <Button class="mr-1">Refresh</Button>
-                <Button type="primary">New</Button>
-            </div>
-        </PageHeader>
         <div class="container">
             <div class="flex">
                 <div class="w-1/6 border-r">
@@ -32,6 +25,16 @@ export default {
     },
     created() {
         this.$store.dispatch('Meta/fetchMeta', { doctype: this.doctype })
+        this.$store.commit('CurrentPage/setPageHeaderSettings', {
+            title: this.doctype,
+            primaryActionLabel: 'New',
+            primaryAction: console.log,
+            secondaryActionLabel: 'Refresh',
+            secondaryAction: console.log,
+            menuItems: [
+                'Test'
+            ]
+        })
     },
     computed: {
         meta() {

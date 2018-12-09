@@ -1,6 +1,5 @@
 <template>
     <div class="form">
-        <PageHeader :title="doctype" />
         <div class="container">
             <div class="flex">
                 <div class="w-1/6 border-r">

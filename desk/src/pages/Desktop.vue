@@ -19,6 +19,7 @@ export default {
     Icon
   },
   async created() {
+    this.$store.commit('CurrentPage/hidePageHeader')
     this.fetchUserIcons();
   },
   methods: mapActions([
