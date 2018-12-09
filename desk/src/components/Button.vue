@@ -1,17 +1,26 @@
 <template>
-    <button class="focus:outline-none focus:shadow-outline px-4 py-3 rounded transition" :class="typeClass">
+    <button
+        class="focus:outline-none focus:shadow-outline px-4 py-3 transition"
+        :class="typeClass"
+        v-bind="$attrs"
+        v-on="$listeners"
+        type="button"
+    >
         <slot></slot>
     </button>
 </template>
 <script>
 export default {
     name: 'Button',
-    props: ['type'],
+    props: ['type', 'rounded'],
     computed: {
         typeClass() {
             return {
                 'bg-blue hover:bg-blue-dark text-white': this.type === 'primary',
-                'bg-grey-lighter hover:bg-grey-light': this.type !== 'primary'
+                'bg-grey-lighter hover:bg-grey-light': this.type !== 'primary',
+                'rounded': !this.rounded,
+                'rounded-l': this.rounded === 'left',
+                'rounded-r': this.rounded === 'right'
             }
         }
     }

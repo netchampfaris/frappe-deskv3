@@ -11,6 +11,15 @@
     <Control
       class="mt-5"
       :docfield="{
+        fieldtype: 'TextEditor',
+        fieldname: 'itemDescription',
+        label: 'Item Description'
+      }"
+      :value="'<i>Hey there</i>'"
+    />
+    <Control
+      class="mt-5"
+      :docfield="{
         fieldtype: 'Text',
         fieldname: 'description',
         label: 'Description'
