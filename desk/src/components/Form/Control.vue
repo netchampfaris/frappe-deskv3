@@ -33,6 +33,7 @@ export default {
   props: ['docfield', 'value', 'onlyInput', 'doc', 'autofocus'],
   computed: {
     component() {
+      const fieldtype = this.docfield.fieldtype.replace(/ /g, '');
       return {
         // Autocomplete,
         // Check,
@@ -51,7 +52,7 @@ export default {
         Text,
         TextEditor,
         // Time
-      }[this.docfield.fieldtype];
+      }[fieldtype] || Data;
     },
     isDisabled() {
       let disabled = this.docfield.disabled;

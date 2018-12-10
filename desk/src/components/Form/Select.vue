@@ -30,7 +30,11 @@ export default {
   },
   computed: {
       selectOptions() {
-          return this.docfield.options.map(option => {
+          let options = this.docfield.options
+          if (typeof options === 'string') {
+              options = options.split('\n').filter(Boolean)
+          }
+          return options.map(option => {
               if (typeof option === 'string') {
                   return {
                       label: option,

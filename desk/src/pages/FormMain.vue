@@ -1,6 +1,8 @@
 <template>
     <div v-if="meta">
-        <FormLayout />
+        <FormLayout
+            :fields="meta.fields"
+        />
     </div>
 </template>
 <script>
