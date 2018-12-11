@@ -22,7 +22,16 @@ export default {
   },
   computed: mapState([
     'loggedIn'
-  ])
+  ]),
+  created() {
+    document.addEventListener('keydown', (e) => {
+      let ctrlKey = e.ctrlKey || e.metaKey
+      if (ctrlKey && e.keyCode === 71) {
+        e.preventDefault();
+        this.$store.commit('TheAwesomeBar/setFocus', { isFocused: true })
+      }
+    })
+  }
 }
 </script>
 <style>

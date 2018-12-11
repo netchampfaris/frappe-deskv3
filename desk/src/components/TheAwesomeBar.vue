@@ -4,10 +4,28 @@
         type="search"
         placeholder="Search or type a command (Ctrl + G)"
         aria-label="Search"
+        @blur="deFocus"
     >
 </template>
 <script>
 export default {
-    name: 'TheAwesomeBar'
+    name: 'TheAwesomeBar',
+    watch: {
+        isFocused(newValue, oldValue) {
+            if (newValue) {
+                this.$el.focus()
+            }
+        }
+    },
+    methods: {
+        deFocus() {
+            this.$store.commit('TheAwesomeBar/setFocus', { isFocused: false })
+        }
+    },
+    computed: {
+        isFocused() {
+            return this.$store.state['TheAwesomeBar'].isFocused
+        }
+    }
 }
 </script>
