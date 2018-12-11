@@ -3,6 +3,8 @@ export default {
     state: {
         showPageHeader: true,
         title: '',
+        indicatorColor: '',
+        indicatorText: '',
         primaryActionLabel: '',
         primaryAction: null,
         secondaryActionLabel: '',
@@ -19,6 +21,10 @@ export default {
                 }
             }
             state.showPageHeader = true
+        },
+        setIndicator(state, { color, text }) {
+            state.indicatorColor = color
+            state.indicatorText = text
         },
         hidePageHeader(state) {
             state.showPageHeader = false

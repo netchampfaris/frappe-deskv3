@@ -1,6 +1,6 @@
 <template>
     <button
-        class="focus:outline-none focus:shadow-outline px-4 py-3 transition"
+        class="focus:outline-none px-4 py-3 transition"
         :class="typeClass"
         v-bind="$attrs"
         v-on="$listeners"
@@ -16,8 +16,8 @@ export default {
     computed: {
         typeClass() {
             return {
-                'bg-blue hover:bg-blue-dark text-white': this.type === 'primary',
-                'bg-grey-lighter hover:bg-grey-light': this.type !== 'primary',
+                'bg-blue hover:bg-blue-dark text-white focus:shadow-outline': this.type === 'primary',
+                'bg-grey-lighter hover:bg-grey-light focus:shadow-outline-grey': this.type !== 'primary',
                 'rounded': !this.rounded,
                 'rounded-l': this.rounded === 'left',
                 'rounded-r': this.rounded === 'right'

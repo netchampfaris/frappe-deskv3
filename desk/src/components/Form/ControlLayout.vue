@@ -19,3 +19,12 @@ export default {
   props: ["docfield"]
 };
 </script>
+<style>
+.form-control {
+ @apply outline-none border rounded text-lg px-4 py-3 w-full text-grey bg-white;
+}
+
+.form-control:focus {
+  @apply shadow-outline-grey;
+}
+</style>

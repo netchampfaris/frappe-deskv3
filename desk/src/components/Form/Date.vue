@@ -4,8 +4,9 @@
         class="text-lg"
         mode="single"
         :value="value"
-        :input-props='{ class: "outline-none border rounded text-lg px-4 py-3 w-full" }'>
-      >
+        :input-props='{ class: "form-control", placeholder: "" }'
+        @input="value => $emit('change', value)"
+        >
       </DatePicker>
   </ControlLayout>
 </template>

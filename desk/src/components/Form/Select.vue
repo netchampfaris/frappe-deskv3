@@ -1,9 +1,7 @@
 <template>
   <ControlLayout :docfield="docfield">
       <div class="relative">
-        <select
-        class="block bg-white appearance-none outline-none border rounded text-lg px-4 py-3 w-full"
-        >
+        <select class="block appearance-none form-control" @change="e => $emit('change', e.target.value)">
             <option
                 :key="option.value"
                 v-for="option in selectOptions"

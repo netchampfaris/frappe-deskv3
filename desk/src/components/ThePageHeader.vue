@@ -1,11 +1,17 @@
 <template>
   <div class="border-b bg-white py-6" v-if="showPageHeader">
     <div class="container flex justify-between">
-      <h1 class="font-medium">{{ title }}</h1>
+      <div class="flex items-center">
+        <h1 class="font-medium">{{ title }}</h1>
+        <Indicator class="ml-4" :color="indicatorColor" v-if="indicatorColor" />
+        <span class="font-bold text-muted" v-if="indicatorText">{{ indicatorText }}</span>
+      </div>
       <div>
           <Button v-if="menuItems.length" class="mr-1">Menu</Button>
           <Button v-if="secondaryAction" class="mr-1">{{ secondaryActionLabel }}</Button>
-          <Button v-if="primaryAction" type="primary">{{ primaryActionLabel }}</Button>
+          <Button v-if="primaryAction" type="primary" @click="primaryAction">
+            {{ primaryActionLabel }}
+          </Button>
       </div>
     </div>
   </div>
@@ -24,7 +30,9 @@ export default {
     'primaryAction',
     'secondaryActionLabel',
     'secondaryAction',
-    'menuItems'
+    'menuItems',
+    'indicatorColor',
+    'indicatorText'
   ])
 }
 </script>

@@ -124,6 +124,7 @@
     <EditorContent
       class="editor-content mt-1"
       :editor="editor"
+      @change="e => $emit('change', value)"
     />
   </ControlLayout>
 </template>
@@ -195,6 +196,6 @@ export default {
   outline: none;
   min-height: 12rem;
   max-height: 24rem;
-  @apply .outline-none .border .rounded .text-lg .px-4 .py-3 .w-full;
+  @apply .outline-none .border .rounded .text-lg .px-4 .py-3 .w-full .text-grey;
 }
 </style>

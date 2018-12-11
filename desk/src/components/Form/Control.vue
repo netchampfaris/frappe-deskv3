@@ -6,7 +6,7 @@
     :onlyInput="onlyInput"
     :disabled="isDisabled"
     :autofocus="autofocus"
-    @change="$emit('change', $event)"
+    @change="value => $emit('change', value)"
   />
 </template>
 <script>

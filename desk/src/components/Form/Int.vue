@@ -1,9 +1,10 @@
 <template>
   <ControlLayout :docfield="docfield">
       <input
-        class="outline-none border rounded text-lg px-4 py-3 w-full"
+        class="form-control"
         type="text"
         :value="value"
+        @change="e => $emit('change', e.target.value)"
       >
   </ControlLayout>
 </template>

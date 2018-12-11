@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form class="mb-8">
     <section class="border-b p-8" v-for="section in layout" :key="section.config.fieldname">
       <div class="uppercase text-muted tracking-wide pl-2 mb-6" v-if="section.config.label">
         {{ section.config.label }}
@@ -15,7 +15,8 @@
             v-for="field in column"
             :key="field.fieldname"
             :docfield="field"
-            :value="''"
+            :value="doc[field.fieldname]"
+            @change="value => $emit('valueChange', field, value)"
           />
         </div>
       </div>
@@ -27,7 +28,7 @@ import Control from './Control'
 
 export default {
   name: 'FormLayout',
-  props: ['fields'],
+  props: ['fields', 'doc'],
   components: {
     Control
   },

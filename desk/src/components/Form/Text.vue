@@ -1,8 +1,9 @@
 <template>
   <ControlLayout :docfield="docfield">
       <textarea
-        class="outline-none border rounded text-lg px-4 py-3 w-full h-48"
+        class="form-control h-48"
         :value="value"
+        @change="e => $emit('change', e.target.value)"
       >
       </textarea>
   </ControlLayout>

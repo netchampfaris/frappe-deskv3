@@ -343,6 +343,7 @@ module.exports = {
 
   textColors: Object.assign(colors, {
     'dark': '#36414c',
+    'grey': '#505B66',
     'light': '#6C7680',
     'muted': '#8D99A6',
     'extra-muted': '#D1D8DD'
@@ -455,6 +456,7 @@ module.exports = {
     '3': '1.25rem',
     '4': '1.5rem',
     'full': '9999px',
+    'circle': '50%'
   },
 
 
@@ -764,6 +766,7 @@ module.exports = {
     'lg': '0 15px 30px 0 rgba(0,0,0,0.11), 0 5px 15px 0 rgba(0,0,0,0.08)',
     'inner': 'inset 0 2px 4px 0 rgba(0,0,0,0.06)',
     'outline': '0 0 0 3px rgba(196, 199, 255, 1)',
+    'outline-grey': '0 0 0 3px #EBEFF2',
     'none': 'none',
   },
 
