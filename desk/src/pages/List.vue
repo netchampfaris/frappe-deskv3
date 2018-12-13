@@ -6,7 +6,8 @@
                     <ListSidebar :doctype="doctype" />
                 </div>
                 <div class="w-5/6 border-r">
-                    <ListMain :doctype="doctype" />
+                    <FilterArea :doctype="doctype" />
+                    <ListMain class="border-t" :doctype="doctype" />
                 </div>
             </div>
         </div>
@@ -15,13 +16,15 @@
 <script>
 import ListSidebar from './ListSidebar'
 import ListMain from './ListMain'
+import FilterArea from '../components/FilterArea'
 
 export default {
     name: 'List',
     props: ['doctype'],
     components: {
         ListSidebar,
-        ListMain
+        ListMain,
+        FilterArea
     },
     created() {
         this.$store.dispatch('Meta/fetchMeta', { doctype: this.doctype })

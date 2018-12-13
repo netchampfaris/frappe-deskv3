@@ -11,6 +11,7 @@ import FormLayout from '../components/Form/FormLayout'
 import FeatherIcon from '../components/FeatherIcon'
 import Indicator from '../components/Indicator'
 import Dropdown from '../components/Dropdown'
+import Popover from '../components/Popover'
 
 Vue.component('octicon', Octicon)
 Vue.component('Button', Button)
@@ -19,3 +20,4 @@ Vue.component('FormLayout', FormLayout)
 Vue.component('FeatherIcon', FeatherIcon)
 Vue.component('Indicator', Indicator)
 Vue.component('Dropdown', Dropdown)
+Vue.component('Popover', Popover)
