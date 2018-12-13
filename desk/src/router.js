@@ -1,24 +1,21 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Desktop from './pages/Desktop'
-import List from './pages/List'
-import Form from './pages/Form'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    component: Desktop
+    component: () => import('./pages/Desktop')
   },
   {
     path: '/List/:doctype',
-    component: List,
+    component: () => import('./pages/List'),
     props: true
   },
   {
     path: '/Form/:doctype/:name',
-    component: Form,
+    component: () => import('./pages/Form'),
     props: true
   },
 ]
