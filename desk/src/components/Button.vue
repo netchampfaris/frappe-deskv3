@@ -1,18 +1,19 @@
 <template>
     <button
-        class="focus:outline-none px-4 py-3 transition"
+        class="focus:outline-none px-4 py-3 transition inline-flex items-center"
         :class="typeClass"
         v-bind="$attrs"
         v-on="$listeners"
         type="button"
     >
         <slot></slot>
+        <FeatherIcon class="ml-2" :name="iconRight" v-if="iconRight" :size="12" />
     </button>
 </template>
 <script>
 export default {
     name: 'Button',
-    props: ['type', 'rounded'],
+    props: ['type', 'rounded', 'iconRight'],
     computed: {
         typeClass() {
             return {

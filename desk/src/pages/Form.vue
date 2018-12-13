@@ -35,7 +35,14 @@ export default {
                 })
             },
             menuItems: [
-                'Test'
+                'Print',
+                'Email',
+                'Links',
+                'Duplicate',
+                'Reload',
+                'Delete',
+                'Customize',
+                `New ${this.doctype} (Ctrl + B)`,
             ]
         })
 
