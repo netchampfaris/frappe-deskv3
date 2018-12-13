@@ -8,7 +8,7 @@
       </div>
       <div>
 
-          <Dropdown v-if="menuItems.length" class="mr-2" :items="menuItems">Menu</Dropdown>
+          <Dropdown v-if="menuItems && menuItems.length" class="mr-2" :items="menuItems">Menu</Dropdown>
           <Button v-if="secondaryAction" class="mr-1">{{ secondaryActionLabel }}</Button>
           <Button v-if="primaryAction" type="primary" @click="primaryAction">
             {{ primaryActionLabel }}

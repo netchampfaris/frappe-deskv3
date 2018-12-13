@@ -11,7 +11,7 @@
 export default {
     name: 'TheAwesomeBar',
     watch: {
-        isFocused(newValue, oldValue) {
+        isFocused(newValue) {
             if (newValue) {
                 this.$el.focus()
             }

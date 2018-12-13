@@ -49,7 +49,7 @@ export default {
         this.$store.dispatch('Form/fetchDoc', { doctype: this.doctype, name: this.name })
     },
     watch: {
-        isDocDirty(newValue, oldValue) {
+        isDocDirty(newValue) {
             if (newValue) {
                 this.$store.commit('CurrentPage/setIndicator', { color: 'orange', text: 'Not Saved' })
             } else {
