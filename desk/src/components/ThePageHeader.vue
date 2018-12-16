@@ -1,18 +1,15 @@
 <template>
-  <div class="border-b bg-white py-6" v-if="showPageHeader">
+  <div class="page-header border-b bg-white py-6 sticky z-50" v-if="showPageHeader">
     <div class="container flex justify-between">
       <div class="flex items-center">
         <h1 class="font-medium">{{ title }}</h1>
-        <Indicator class="ml-4" :color="indicatorColor" v-if="indicatorColor" />
+        <Indicator class="ml-4" :color="indicatorColor" v-if="indicatorColor"/>
         <span class="font-bold text-muted" v-if="indicatorText">{{ indicatorText }}</span>
       </div>
       <div>
-
-          <Dropdown v-if="menuItems && menuItems.length" class="mr-2" :items="menuItems">Menu</Dropdown>
-          <Button v-if="secondaryAction" class="mr-1">{{ secondaryActionLabel }}</Button>
-          <Button v-if="primaryAction" type="primary" @click="primaryAction">
-            {{ primaryActionLabel }}
-          </Button>
+        <Dropdown v-if="menuItems && menuItems.length" class="mr-1" :items="menuItems">Menu</Dropdown>
+        <Button v-if="secondaryAction" class="mr-1">{{ secondaryActionLabel }}</Button>
+        <Button v-if="primaryAction" type="primary" @click="primaryAction">{{ primaryActionLabel }}</Button>
       </div>
     </div>
   </div>
@@ -29,7 +26,12 @@ export default {
     'secondaryAction',
     'menuItems',
     'indicatorColor',
-    'indicatorText'
-  ]
+    'indicatorText',
+  ],
 }
 </script>
+<style>
+.page-header {
+  top: 46px;
+}
+</style>
