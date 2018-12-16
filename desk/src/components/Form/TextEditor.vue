@@ -1,5 +1,5 @@
 <template>
-  <ControlLayout :docfield="docfield">
+  <ControlLayout :docfield="docfield" :onlyInput="onlyInput">
     <EditorMenuBar :editor="editor">
       <div class="flex items-center" slot-scope="{ commands, isActive }">
         <Button
@@ -8,7 +8,7 @@
           @click="commands.bold"
           rounded="left"
         >
-          <FeatherIcon name="bold" />
+          <FeatherIcon name="bold"/>
         </Button>
 
         <Button
@@ -17,7 +17,7 @@
           @click="commands.italic"
           rounded="none"
         >
-          <FeatherIcon name="italic" />
+          <FeatherIcon name="italic"/>
         </Button>
 
         <Button
@@ -26,7 +26,7 @@
           @click="commands.strike"
           rounded="none"
         >
-          <FeatherIcon name="git-commit" />
+          <FeatherIcon name="git-commit"/>
         </Button>
 
         <Button
@@ -35,7 +35,7 @@
           @click="commands.underline"
           rounded="none"
         >
-          <FeatherIcon name="underline" />
+          <FeatherIcon name="underline"/>
         </Button>
 
         <Button
@@ -44,7 +44,7 @@
           @click="commands.code"
           rounded="none"
         >
-          <FeatherIcon name="code" />
+          <FeatherIcon name="code"/>
         </Button>
 
         <Button
@@ -52,36 +52,28 @@
           :class="{ 'is-active': isActive.paragraph() }"
           @click="commands.paragraph"
           rounded="none"
-        >
-          P
-        </Button>
+        >P</Button>
 
         <Button
           class="h-12"
           :class="{ 'is-active': isActive.heading({ level: 1 }) }"
           @click="commands.heading({ level: 1 })"
           rounded="none"
-        >
-          H1
-        </Button>
+        >H1</Button>
 
         <Button
           class="h-12"
           :class="{ 'is-active': isActive.heading({ level: 2 }) }"
           @click="commands.heading({ level: 2 })"
           rounded="none"
-        >
-          H2
-        </Button>
+        >H2</Button>
 
         <Button
           class="h-12"
           :class="{ 'is-active': isActive.heading({ level: 3 }) }"
           @click="commands.heading({ level: 3 })"
           rounded="none"
-        >
-          H3
-        </Button>
+        >H3</Button>
 
         <Button
           class="h-12"
@@ -89,7 +81,7 @@
           @click="commands.bullet_list"
           rounded="none"
         >
-          <FeatherIcon name="list" />
+          <FeatherIcon name="list"/>
         </Button>
 
         <Button
@@ -97,9 +89,7 @@
           :class="{ 'is-active': isActive.ordered_list() }"
           @click="commands.ordered_list"
           rounded="none"
-        >
-          1.
-        </Button>
+        >1.</Button>
 
         <Button
           class="h-12"
@@ -107,7 +97,7 @@
           @click="commands.blockquote"
           rounded="none"
         >
-          <FeatherIcon name="chevrons-left" />
+          <FeatherIcon name="chevrons-left"/>
         </Button>
 
         <Button
@@ -116,9 +106,8 @@
           @click="commands.code_block"
           rounded="right"
         >
-          <FeatherIcon name="terminal" />
+          <FeatherIcon name="terminal"/>
         </Button>
-
       </div>
     </EditorMenuBar>
     <EditorContent
@@ -129,8 +118,8 @@
   </ControlLayout>
 </template>
 <script>
-import ControlLayout from './ControlLayout';
-import { Editor, EditorContent, EditorMenuBar } from 'tiptap';
+import ControlLayout from './ControlLayout'
+import { Editor, EditorContent, EditorMenuBar } from 'tiptap'
 import {
   Blockquote,
   CodeBlock,
@@ -147,21 +136,21 @@ import {
   Link,
   Strike,
   Underline,
-  History
-} from 'tiptap-extensions';
+  History,
+} from 'tiptap-extensions'
 
 export default {
   name: 'ControlTextEditor',
-  props: ['docfield', 'value'],
+  props: ['docfield', 'value', 'onlyInput', 'disabled'],
   components: {
     ControlLayout,
     EditorContent,
-    EditorMenuBar
+    EditorMenuBar,
   },
   data() {
     return {
-      editor: null
-    };
+      editor: null,
+    }
   },
   mounted() {
     this.editor = new Editor({
@@ -182,14 +171,14 @@ export default {
         new Link(),
         new Strike(),
         new Underline(),
-        new History()
-      ]
-    });
+        new History(),
+      ],
+    })
   },
   beforeDestroy() {
-    this.editor.destroy();
-  }
-};
+    this.editor.destroy()
+  },
+}
 </script>
 <style scoped>
 .editor-content >>> .ProseMirror {

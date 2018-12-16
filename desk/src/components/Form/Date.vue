@@ -1,31 +1,36 @@
 <template>
-  <ControlLayout :docfield="docfield">
-      <DatePicker
-        class="text-lg"
-        mode="single"
-        :value="value"
-        :input-props='{ class: "form-control", placeholder: "" }'
-        @input="value => $emit('change', value)"
-        >
-      </DatePicker>
+  <ControlLayout :docfield="docfield" :onlyInput="onlyInput">
+    <DatePicker
+      class="text-lg"
+      mode="single"
+      :value="value"
+      :input-props="dateInputProps"
+      @input="value => $emit('change', value)"
+      :disabled="disabled"
+    ></DatePicker>
   </ControlLayout>
 </template>
 <script>
 import ControlLayout from './ControlLayout'
 import { setupCalendar, DatePicker } from 'v-calendar'
-import 'v-calendar/lib/v-calendar.min.css';
+import 'v-calendar/lib/v-calendar.min.css'
 
 setupCalendar({
-  firstDayOfWeek: 2,  // Monday
-  popoverVisibility: 'focus'
-});
+  firstDayOfWeek: 2, // Monday
+  popoverVisibility: 'focus',
+})
 
 export default {
-  name: "ControlDate",
-  props: ["docfield", "value"],
+  name: 'ControlDate',
+  props: ['docfield', 'value', 'onlyInput', 'disabled'],
+  computed: {
+    dateInputProps() {
+      return { class: 'form-control', placeholder: '' }
+    },
+  },
   components: {
     ControlLayout,
-    DatePicker
-  }
-};
+    DatePicker,
+  },
+}
 </script>
