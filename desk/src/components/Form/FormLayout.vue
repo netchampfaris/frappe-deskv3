@@ -1,9 +1,10 @@
 <template>
   <form class="mb-8">
     <section class="border-b p-8" v-for="section in layout" :key="section.config.fieldname">
-      <div class="uppercase text-muted tracking-wide pl-2 mb-6" v-if="section.config.label">
-        {{ section.config.label }}
-      </div>
+      <div
+        class="uppercase text-muted tracking-wide pl-2 mb-6"
+        v-if="section.config.label"
+      >{{ section.config.label }}</div>
       <div class="flex -mx-2">
         <div
           class="flex-1"
@@ -30,18 +31,18 @@ export default {
   name: 'FormLayout',
   props: ['fields', 'doc'],
   components: {
-    Control
+    Control,
   },
   computed: {
     layout() {
-      let sections = [];
-      let currentSection = null;
-      let currentColumn = null;
+      let sections = []
+      let currentSection = null
+      let currentColumn = null
 
       function resetCurrentSection(config = null) {
         currentSection = {
           config,
-          columns: []
+          columns: [],
         }
       }
 
@@ -75,11 +76,11 @@ export default {
       }
       if (currentSection.columns.length) {
         sections.push(currentSection)
-        resetCurrentSection();
+        resetCurrentSection()
       }
 
       return sections.filter(section => section.columns.length)
-    }
-  }
-};
+    },
+  },
+}
 </script>
