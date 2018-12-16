@@ -17,9 +17,11 @@
   },
   "homepage": "https://frappe.io",
   "dependencies": {
+    "@vue/eslint-config-prettier": "^4.0.1",
     "ace-builds": "^1.4.1",
     "awesomplete": "^1.1.2",
     "cookie": "^0.3.1",
+    "eslint-plugin-prettier": "^3.0.0",
     "express": "^4.16.2",
     "feather-icons": "^4.9.0",
     "frappe-datatable": "^1.5.3",
