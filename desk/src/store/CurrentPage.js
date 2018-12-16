@@ -16,8 +16,6 @@ export default {
             for (let key in state) {
                 if (payload[key]) {
                     state[key] = payload[key]
-                } else {
-                    state[key] = null
                 }
             }
             state.showPageHeader = true

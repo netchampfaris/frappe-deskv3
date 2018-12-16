@@ -2,7 +2,6 @@
   <div id="app" class="font-sans text-black">
     <header class="sticky pin-t z-50">
       <TheNavbar />
-      <ThePageHeader />
     </header>
     <router-view v-if="loggedIn"></router-view>
   </div>

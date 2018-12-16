@@ -1,7 +1,8 @@
 <template>
-    <div class="form">
+    <div class="form" v-if="doc && meta">
+        <ThePageHeader v-bind="pageHeaderSettings" />
         <div class="container">
-            <div class="flex" v-if="doc">
+            <div class="flex">
                 <div class="w-1/6 border-r">
                     <FormSidebar />
                 </div>
@@ -25,36 +26,14 @@ export default {
     },
     created() {
         this.$store.dispatch('Meta/fetchMeta', { doctype: this.doctype })
-        this.$store.commit('CurrentPage/setPageHeaderSettings', {
-            title: this.formTitle,
-            primaryActionLabel: 'Save',
-            primaryAction: () => {
-                this.$store.dispatch('Form/saveDoc', {
-                    doctype: this.doctype,
-                    name: this.name
-                })
-            },
-            menuItems: [
-                'Print',
-                'Email',
-                'Links',
-                'Duplicate',
-                'Reload',
-                'Delete',
-                'Customize',
-                `New ${this.doctype} (Ctrl + B)`,
-            ]
-        })
-
         this.$store.dispatch('Form/fetchDoc', { doctype: this.doctype, name: this.name })
     },
-    watch: {
-        isDocDirty(newValue) {
-            if (newValue) {
-                this.$store.commit('CurrentPage/setIndicator', { color: 'orange', text: 'Not Saved' })
-            } else {
-                this.$store.commit('CurrentPage/setIndicator', { color: '', text: '' })
-            }
+    methods: {
+        saveDoc() {
+            this.$store.dispatch('Form/saveDoc', {
+                doctype: this.doctype,
+                name: this.name
+            })
         }
     },
     computed: {
@@ -67,11 +46,43 @@ export default {
         isDocDirty() {
             return this.doc && this.doc.__dirty
         },
+        pageHeaderSettings() {
+            return {
+                showPageHeader: true,
+                title: this.formTitle,
+                indicatorColor: this.indicatorColor,
+                indicatorText: this.indicatorText,
+                menuItems: this.menuItems,
+                primaryAction: this.saveDoc,
+                primaryActionLabel: 'Save'
+            }
+        },
         formTitle() {
-            if (!this.doc) return ''
-
+            if (!(this.doc && this.meta)) return ''
             const title_field = this.meta.title_field || 'name'
             return this.doc[title_field]
+        },
+        indicatorColor() {
+            if (this.isDocDirty) {
+                return 'orange'
+            }
+        },
+        indicatorText() {
+            if (this.isDocDirty) {
+                return 'Not Saved'
+            }
+        },
+        menuItems() {
+            return [
+                'Print',
+                'Email',
+                'Links',
+                'Duplicate',
+                'Reload',
+                'Delete',
+                'Customize',
+                `New ${this.doctype} (Ctrl + B)`,
+            ]
         }
     }
 }

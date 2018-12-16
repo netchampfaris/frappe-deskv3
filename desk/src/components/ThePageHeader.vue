@@ -18,13 +18,9 @@
   </div>
 </template>
 <script>
-import { createNamespacedHelpers } from 'vuex'
-
-const { mapGetters, mapState } = createNamespacedHelpers('CurrentPage')
-
 export default {
   name: 'ThePageHeader',
-  computed: mapState([
+  props: [
     'showPageHeader',
     'title',
     'primaryActionLabel',
@@ -34,6 +30,6 @@ export default {
     'menuItems',
     'indicatorColor',
     'indicatorText'
-  ])
+  ]
 }
 </script>
