@@ -1,7 +1,9 @@
 <template>
-    <div class="inline-block relative">
-        <slot ref="toggle" :togglePopover="togglePopover" :closePopover="closePopover"></slot>
-        <div v-show="isOpen" class="bg-white absolute mt-px border shadow-md">
+    <div class="inline-block relative" v-on-outside-click="closePopover">
+        <div @click="togglePopover">
+            <slot ref="toggle" :togglePopover="togglePopover" :closePopover="closePopover"></slot>
+        </div>
+        <div v-show="isOpen" class="absolute mt-px" :class="alignClass">
             <slot name="popover-content"></slot>
         </div>
     </div>
@@ -9,27 +11,23 @@
 <script>
 export default {
     name: 'Popover',
-    props: ['items'],
+    props: ['align'],
     data() {
         return {
             isOpen: false
         }
     },
-    created() {
-        // document.addEventListener('click', this.closePopover)
-    },
-    beforeDestroy() {
-        document.removeEventListener('click', this.closePopover)
+    computed: {
+        alignClass() {
+            return [this.align === 'right' ? 'pin-r' : 'pin-l']
+        }
     },
     methods: {
         togglePopover() {
             this.isOpen = !this.isOpen
         },
-        closePopover(e) {
-            if (e.target === this.$refs.toggle) return;
-            if (this.isOpen) {
-                this.isOpen = false
-            }
+        closePopover() {
+            this.isOpen = false
         }
     }
 }

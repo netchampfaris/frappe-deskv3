@@ -4,27 +4,24 @@
             {{ filter.field.label }} = {{ filter.value }}
         </Button>
         <Popover>
-            <Button
-                slot-scope="{ togglePopover, closePopover }"
-                size="small"
-                class="text-muted"
-                @click="togglePopover"
-            >
+            <Button size="small" class="text-muted">
                 Add filter
             </Button>
-            <div slot="popover-content" class="w-64">
+            <div slot="popover-content" class="w-64 bg-white border shadow-md rounded-b">
                 <FilterSelector :doctype="doctype" @addFilter="filter => appliedFilters.push(filter)"/>
             </div>
         </Popover>
     </div>
 </template>
 <script>
+import Control from './Form/Control'
 import FilterSelector from './FilterSelector'
 
 export default {
     name: 'FilterArea',
     props: ['doctype'],
     components: {
+        Control,
         FilterSelector
     },
     data() {

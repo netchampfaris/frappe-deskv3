@@ -4,6 +4,7 @@ import router from './router'
 import store from './store'
 import './plugins/call'
 import './plugins/globalComponents'
+import './plugins/outsideClickDirective'
 
 Vue.config.productionTip = false
 
