@@ -33,6 +33,7 @@ export default {
       if (typeof options === 'string') {
         options = options.split('\n').filter(Boolean)
       }
+      options = ['', ...options];
       return options.map(option => {
         if (typeof option === 'string') {
           return {

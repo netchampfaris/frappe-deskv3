@@ -5,7 +5,7 @@
             :fieldsToShow="getFieldsToShow()"
         />
         <ListMainRow
-            v-for="doc in listData"
+            v-for="doc in listData.data"
             :key="doc.name"
             :doc="doc"
             :doctype="doctype"
@@ -30,13 +30,17 @@ export default {
             return this.$store.getters['Meta/getMeta'](this.doctype)
         },
         listData() {
-            return this.$store.getters['List/getData'](this.doctype)
+            return this.$store.getters['List/getListData'](this.doctype)
         }
     },
     created() {
+        this.setListData();
         this.fetchData();
     },
     methods: {
+        setListData() {
+            this.$store.commit('List/setListData', { doctype: this.doctype });
+        },
         async fetchData() {
             this.$store.dispatch('List/fetchData', {
                 doctype: this.doctype,

@@ -8,7 +8,7 @@
           v-for="field of filterableFields"
           :key="field.fieldname"
           :fieldname="field.fieldname"
-          @click="selectedField = field"
+          @click="$emit('selectField', field)"
         >{{ field.label }}</li>
       </ul>
     </div>
@@ -17,7 +17,7 @@
         <FeatherIcon
           name="chevron-left"
           class="mr-2 cursor-pointer hover:text-muted"
-          @click="goBack"
+          @click="reset"
         />
         <span>{{ selectedField.label }}</span>
       </div>
@@ -26,13 +26,13 @@
           class="mb-2"
           :docfield="operatorField"
           :value="operator"
-          @change="value => operator = value"
+          @change="value => $emit('selectOperator', value)"
           :onlyInput="true"
         />
         <Control
-          :docfield="selectedField"
+          :docfield="valueField"
           :value="filterValue"
-          @change="value => filterValue = value"
+          @change="value => $emit('selectValue', value)"
           :onlyInput="true"
         />
         <div class="flex justify-end">
@@ -47,14 +47,7 @@ import Control from './Form/Control'
 
 export default {
   name: 'FilterSelector',
-  props: ['doctype'],
-  data() {
-    return {
-      selectedField: null,
-      operator: null,
-      filterValue: null,
-    }
-  },
+  props: ['doctype', 'selectedField', 'operator', 'filterValue'],
   components: {
     Control,
   },
@@ -86,23 +79,27 @@ export default {
         ],
       }
     },
+    valueField() {
+      if (this.operator.includes('=')) {
+        return this.selectedField
+      }
+      if (['like', 'not like'].includes(this.operator)) {
+        return {
+          fieldtype: 'Data',
+        }
+      }
+      return this.selectedField
+    },
     meta() {
       return this.$store.getters['Meta/getMeta'](this.doctype)
     },
   },
   methods: {
-    goBack() {
-      this.selectedField = null
-      this.filterValue = null
-      this.operator = null
+    reset() {
+      this.$emit('reset')
     },
     applyFilter() {
-      this.$emit('addFilter', {
-        field: this.selectedField,
-        operator: this.operator,
-        value: this.filterValue,
-      })
-      this.goBack()
+      this.$emit('addFilter')
     },
   },
 }
