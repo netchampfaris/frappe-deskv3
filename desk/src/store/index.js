@@ -2,11 +2,11 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import CurrentPage from './CurrentPage'
 import CurrentUser from './CurrentUser'
-import Desktop from '../pages/Desktop.store'
-import Form from '../pages/Form.store'
-import List from '../pages/List.store'
+import Desktop from './Desktop'
+import Form from './Form'
+import List from './List'
 import Meta from './Meta'
-import TheAwesomeBar from '../components/TheAwesomeBar.store'
+import TheAwesomeBar from './TheAwesomeBar'
 
 Vue.use(Vuex);
 
