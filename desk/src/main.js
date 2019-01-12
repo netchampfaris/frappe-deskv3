@@ -5,6 +5,7 @@ import store from './store'
 import './plugins/call'
 import './plugins/globalComponents'
 import './plugins/outsideClickDirective'
+import './store/frappeStore'
 
 Vue.config.productionTip = false
 

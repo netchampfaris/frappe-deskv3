@@ -4,16 +4,16 @@
       class="no-underline text-grey-dark hover:text-grey-darker"
       href="#"
       role="button"
-      v-if="!user"
+      v-if="!session.user"
       @click="login('faris@erpnext.com', 'qwe')"
-    >Login</a>
+    >{{ __('Login') }}</a>
     <div class="flex items-center" v-else>
-      <UserAvatar class="mr-2" :user="user.email"/>
+      <UserAvatar class="mr-2" :user="session.user"/>
       <a
         class="no-underline text-grey-dark hover:text-grey-darker"
         href="#"
         role="button"
-      >{{ user.first_name }} {{ user.last_name }}</a>
+      >{{ session.userInfo.first_name }} {{ session.userInfo.last_name }}</a>
     </div>
   </div>
 </template>
@@ -21,16 +21,16 @@
 export default {
   name: 'TheNavbarLogin',
   computed: {
-    user() {
-      return this.$store.state.CurrentUser.user
+    session() {
+      return this.frappe.session
     },
   },
   created() {
-    this.$store.dispatch('CurrentUser/fetchUserInfo')
+    this.frappe.fetchUserInfo()
   },
   methods: {
     async login(email = 'Administrator', password = 'qwe') {
-      this.$store.dispatch('CurrentUser/login', { email, password })
+      this.frappe.login(email, password)
     },
   },
 }

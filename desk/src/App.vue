@@ -1,7 +1,7 @@
 <template>
   <div id="app" class="font-sans text-black">
     <header class="sticky pin-t z-50">
-      <TheNavbar />
+      <TheNavbar/>
     </header>
     <router-view v-if="loggedIn"></router-view>
   </div>
@@ -17,7 +17,11 @@ export default {
   components: {
     TheNavbar,
   },
-  computed: mapState(['loggedIn']),
+  computed: {
+    loggedIn() {
+      return this.frappe.session.user
+    },
+  },
   created() {
     document.addEventListener('keydown', e => {
       let ctrlKey = e.ctrlKey || e.metaKey
