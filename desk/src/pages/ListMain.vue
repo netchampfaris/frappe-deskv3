@@ -1,18 +1,15 @@
 <template>
-    <div v-if="meta">
-        <ListMainRowHead
-            :doctype="doctype"
-            :fieldsToShow="getFieldsToShow()"
-        />
-        <ListMainRow
-            v-for="doc in listData.data"
-            :key="doc.name"
-            :doc="doc"
-            :doctype="doctype"
-            :fieldsToShow="getFieldsToShow()"
-            @click.native="routeToForm(doc.name)"
-        />
-    </div>
+  <div v-if="meta">
+    <ListMainRowHead :doctype="doctype" :fieldsToShow="getFieldsToShow()"/>
+    <ListMainRow
+      v-for="doc in listData"
+      :key="doc.name"
+      :doc="doc"
+      :doctype="doctype"
+      :fieldsToShow="getFieldsToShow()"
+      @click.native="routeToForm(doc.name)"
+    />
+  </div>
 </template>
 <script>
 import ListMainRowHead from './ListMainRowHead'
@@ -27,41 +24,19 @@ export default {
   },
   computed: {
     meta() {
-      return this.$store.getters['Meta/getMeta'](this.doctype)
+      return this.frappe.getMeta(this.doctype)
     },
     listData() {
-      return this.$store.getters['List/getListData'](this.doctype)
+      return this.frappe.getListData(this.doctype)
     },
   },
   created() {
-    this.setListData()
-    this.fetchData()
+    this.frappe.setListSettings(this.doctype)
+    this.frappe.fetchListData(this.doctype)
   },
   methods: {
-    setListData() {
-      this.$store.commit('List/setListData', { doctype: this.doctype })
-    },
-    async fetchData() {
-      this.$store.dispatch('List/fetchData', {
-        doctype: this.doctype,
-        fields: this.getFieldsToFetch(),
-        filters: {},
-        start: 0,
-        pageLength: 20,
-        orderBy: 'modified desc',
-      })
-    },
     routeToForm(name) {
       this.$router.push(`/Form/${this.doctype}/${name}`)
-    },
-    getFieldsToFetch() {
-      let fields = ['name', '_comments', '_assign', '_seen']
-      fields.push(this.meta.title_field)
-
-      let fieldsInListView = this.meta.fields.filter(df => df.in_list_view)
-      fields.push(...fieldsInListView.map(df => df.fieldname))
-
-      return fields.filter(Boolean)
     },
     getFieldsToShow() {
       let fields = []

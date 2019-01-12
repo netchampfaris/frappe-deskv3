@@ -88,7 +88,7 @@ export default {
       return this.selectedField
     },
     meta() {
-      return this.$store.getters['Meta/getMeta'](this.doctype)
+      return this.frappe.getMeta(this.doctype)
     },
   },
   methods: {

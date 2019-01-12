@@ -10,7 +10,6 @@
 <script>
 import './style.css'
 import TheNavbar from './components/TheNavbar'
-import { mapState } from 'vuex'
 
 export default {
   name: 'app',

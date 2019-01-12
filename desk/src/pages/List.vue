@@ -28,19 +28,11 @@ export default {
     FilterArea,
   },
   created() {
-    this.$store.dispatch('Meta/fetchMeta', { doctype: this.doctype })
-    this.$store.commit('CurrentPage/setPageHeaderSettings', {
-      title: this.doctype,
-      primaryActionLabel: 'New',
-      primaryAction: console.log,
-      secondaryActionLabel: 'Refresh',
-      secondaryAction: console.log,
-      menuItems: ['Test'],
-    })
+    this.frappe.fetchMeta(this.doctype)
   },
   computed: {
     meta() {
-      return this.$store.getters['Meta/getMeta'](this.doctype)
+      return this.frappe.getMeta(this.doctype)
     },
     pageHeaderSettings() {
       return {

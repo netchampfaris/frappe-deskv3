@@ -7,8 +7,11 @@
         :key="getFilterId(filter)"
       >
         <div class="flex">
-          <Button size="small" rounded="left">{{ filter.field.label }} {{ filter.operator }} {{ filter.value }}</Button>
-          <Button size="small" icon="x" rounded="right" @click="removeFilter(index)" />
+          <Button
+            size="small"
+            rounded="left"
+          >{{ filter.field.label }} {{ filter.operator }} {{ filter.value }}</Button>
+          <Button size="small" icon="x" rounded="right" @click="removeFilter(index)"/>
         </div>
         <div slot="popover-content" class="w-64 bg-white border shadow-md rounded-b">
           <FilterSelector
@@ -46,9 +49,7 @@
       size="small"
       type="primary"
       @click="applyFilters"
-    >
-      Apply Filter
-    </Button>
+    >Apply Filter</Button>
   </div>
 </template>
 <script>
@@ -73,15 +74,12 @@ export default {
   },
   computed: {
     meta() {
-      return this.$store.getters['Meta/getMeta'](this.doctype)
+      return this.frappe.getMeta(this.doctype)
     },
   },
   methods: {
     applyFilters() {
-      this.$store.dispatch('List/applyFilter', {
-        doctype: this.doctype,
-        filters: this.appliedFilters,
-      })
+      this.frappe.applyListFilters(this.doctype, this.appliedFilters)
       this.filtersDirty = false
     },
     addNewFilter() {

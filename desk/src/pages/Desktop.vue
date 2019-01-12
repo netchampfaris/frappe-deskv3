@@ -16,7 +16,6 @@ export default {
     Icon,
   },
   async created() {
-    this.$store.commit('CurrentPage/hidePageHeader')
     this.frappe.fetchUserIcons()
   },
   computed: {
