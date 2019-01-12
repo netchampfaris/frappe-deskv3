@@ -12,14 +12,14 @@
   </nav>
 </template>
 <script>
-import TheAwesomeBar from './TheAwesomeBar';
-import TheNavbarLogin from './TheNavbarLogin';
+import TheAwesomeBar from './TheAwesomeBar'
+import TheNavbarLogin from './TheNavbarLogin'
 
 export default {
   name: 'TheNavbar',
   components: {
     TheAwesomeBar,
-    TheNavbarLogin
-  }
+    TheNavbarLogin,
+  },
 }
 </script>

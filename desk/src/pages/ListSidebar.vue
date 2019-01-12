@@ -9,25 +9,25 @@
 </template>
 <script>
 export default {
-    name: 'ListSidebar',
-    props: ['doctype'],
-    data() {
-        return {
-            items: [
-                {
-                    label: 'List',
-                    route: '/List/' + this.doctype
-                },
-                {
-                    label: 'Report',
-                    route: '/Report/' + this.doctype
-                },
-                {
-                    label: 'Calendar',
-                    route: '/Calendar/' + this.doctype
-                }
-            ]
-        }
+  name: 'ListSidebar',
+  props: ['doctype'],
+  data() {
+    return {
+      items: [
+        {
+          label: 'List',
+          route: '/List/' + this.doctype,
+        },
+        {
+          label: 'Report',
+          route: '/Report/' + this.doctype,
+        },
+        {
+          label: 'Calendar',
+          route: '/Calendar/' + this.doctype,
+        },
+      ],
     }
+  },
 }
 </script>

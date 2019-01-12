@@ -6,18 +6,18 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    component: () => import('./pages/Desktop')
+    component: () => import('./pages/Desktop'),
   },
   {
     path: '/List/:doctype',
     component: () => import('./pages/List'),
-    props: true
+    props: true,
   },
   {
     path: '/Form/:doctype/:name',
     component: () => import('./pages/Form'),
-    props: true
+    props: true,
   },
 ]
 
-export default new VueRouter({ routes });
+export default new VueRouter({ routes })

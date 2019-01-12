@@ -21,25 +21,27 @@
 </template>
 <script>
 export default {
-    name: 'ListMainRow',
-    props: ['doc', 'doctype', 'fieldsToShow'],
-    computed: {
-        titleField() {
-            return this.fieldsToShow[0].fieldname;
-        },
-        otherFields() {
-            return this.fieldsToShow.slice(1).map(df => df.fieldname);
-        },
-        assignedTo() {
-            const assignees = JSON.parse(this.doc._assign);
-            return (assignees && assignees.length) ? assignees[assignees.length - 1] : null;
-        }
+  name: 'ListMainRow',
+  props: ['doc', 'doctype', 'fieldsToShow'],
+  computed: {
+    titleField() {
+      return this.fieldsToShow[0].fieldname
     },
-    filters: {
-        stripHTML(value) {
-            if (!value) return '';
-            return value.replace(/(<([^>]+)>)/ig, '');
-        }
-    }
+    otherFields() {
+      return this.fieldsToShow.slice(1).map(df => df.fieldname)
+    },
+    assignedTo() {
+      const assignees = JSON.parse(this.doc._assign)
+      return assignees && assignees.length
+        ? assignees[assignees.length - 1]
+        : null
+    },
+  },
+  filters: {
+    stripHTML(value) {
+      if (!value) return ''
+      return value.replace(/(<([^>]+)>)/gi, '')
+    },
+  },
 }
 </script>

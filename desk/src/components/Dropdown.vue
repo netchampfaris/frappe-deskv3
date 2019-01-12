@@ -15,12 +15,12 @@
 </template>
 <script>
 export default {
-    name: 'Dropdown',
-    props: ['items', 'label'],
-    data() {
-        return {
-            isOpen: false
-        }
+  name: 'Dropdown',
+  props: ['items', 'label'],
+  data() {
+    return {
+      isOpen: false,
     }
+  },
 }
 </script>

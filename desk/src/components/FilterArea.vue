@@ -71,14 +71,14 @@ export default {
   computed: {
     meta() {
       return this.$store.getters['Meta/getMeta'](this.doctype)
-    }
+    },
   },
   methods: {
     applyFilters() {
       this.$store.dispatch('List/applyFilter', {
         doctype: this.doctype,
-        filters: this.appliedFilters
-      });
+        filters: this.appliedFilters,
+      })
       this.filtersDirty = false
     },
     addNewFilter() {
@@ -86,7 +86,7 @@ export default {
         field: this.newFilter.selectedField,
         operator: this.newFilter.operator,
         value: this.newFilter.filterValue,
-      });
+      })
       this.filtersDirty = true
       this.resetNewFilter()
     },
@@ -108,11 +108,11 @@ export default {
     },
     updateValue(index, value) {
       this.appliedFilters[index].value = value
-      this.filtersDirty = true;
+      this.filtersDirty = true
     },
     updateOperator(index, operator) {
       this.appliedFilters[index].operator = operator
-      this.filtersDirty = true;
+      this.filtersDirty = true
     },
     resetFilter(index) {
       this.appliedFilters[index] = {
@@ -122,8 +122,8 @@ export default {
       }
     },
     getFilterId(filter) {
-      return filter.field.fieldname + filter.operator + filter.value;
-    }
+      return filter.field.fieldname + filter.operator + filter.value
+    },
   },
 }
 </script>

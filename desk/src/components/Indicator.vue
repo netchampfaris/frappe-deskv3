@@ -6,7 +6,7 @@
 </template>
 <script>
 export default {
-    name: 'Indicator',
-    props: ['color']
+  name: 'Indicator',
+  props: ['color'],
 }
 </script>

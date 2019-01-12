@@ -9,23 +9,23 @@
 </template>
 <script>
 export default {
-    name: 'TheAwesomeBar',
-    watch: {
-        isFocused(newValue) {
-            if (newValue) {
-                this.$el.focus()
-            }
-        }
+  name: 'TheAwesomeBar',
+  watch: {
+    isFocused(newValue) {
+      if (newValue) {
+        this.$el.focus()
+      }
     },
-    methods: {
-        deFocus() {
-            this.$store.commit('TheAwesomeBar/setFocus', { isFocused: false })
-        }
+  },
+  methods: {
+    deFocus() {
+      this.$store.commit('TheAwesomeBar/setFocus', { isFocused: false })
     },
-    computed: {
-        isFocused() {
-            return this.$store.state['TheAwesomeBar'].isFocused
-        }
-    }
+  },
+  computed: {
+    isFocused() {
+      return this.$store.state['TheAwesomeBar'].isFocused
+    },
+  },
 }
 </script>

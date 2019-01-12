@@ -10,25 +10,25 @@
 </template>
 <script>
 export default {
-    name: 'Popover',
-    props: ['align'],
-    data() {
-        return {
-            isOpen: false
-        }
-    },
-    computed: {
-        alignClass() {
-            return [this.align === 'right' ? 'pin-r' : 'pin-l']
-        }
-    },
-    methods: {
-        togglePopover() {
-            this.isOpen = !this.isOpen
-        },
-        closePopover() {
-            this.isOpen = false
-        }
+  name: 'Popover',
+  props: ['align'],
+  data() {
+    return {
+      isOpen: false,
     }
+  },
+  computed: {
+    alignClass() {
+      return [this.align === 'right' ? 'pin-r' : 'pin-l']
+    },
+  },
+  methods: {
+    togglePopover() {
+      this.isOpen = !this.isOpen
+    },
+    closePopover() {
+      this.isOpen = false
+    },
+  },
 }
 </script>

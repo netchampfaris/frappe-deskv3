@@ -22,16 +22,16 @@ export default {
   name: 'TheNavbarLogin',
   computed: {
     user() {
-      return this.$store.state.CurrentUser.user;
-    }
+      return this.$store.state.CurrentUser.user
+    },
   },
   created() {
-    this.$store.dispatch('CurrentUser/fetchUserInfo');
+    this.$store.dispatch('CurrentUser/fetchUserInfo')
   },
   methods: {
     async login(email = 'Administrator', password = 'qwe') {
-      this.$store.dispatch('CurrentUser/login', { email, password });
-    }
-  }
-};
+      this.$store.dispatch('CurrentUser/login', { email, password })
+    },
+  },
+}
 </script>

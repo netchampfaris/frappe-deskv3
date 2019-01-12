@@ -17,15 +17,15 @@
 </template>
 <script>
 export default {
-    name: 'ListMainRowHead',
-    props: ['doctype', 'fieldsToShow'],
-    computed: {
-        titleColumn() {
-            return this.fieldsToShow[0].label;
-        },
-        columns() {
-            return this.fieldsToShow.slice(1).map(df => df.label);
-        }
-    }
+  name: 'ListMainRowHead',
+  props: ['doctype', 'fieldsToShow'],
+  computed: {
+    titleColumn() {
+      return this.fieldsToShow[0].label
+    },
+    columns() {
+      return this.fieldsToShow.slice(1).map(df => df.label)
+    },
+  },
 }
 </script>

@@ -10,31 +10,28 @@
 <script>
 import './style.css'
 import TheNavbar from './components/TheNavbar'
-import ThePageHeader from './components/ThePageHeader'
 import { mapState } from 'vuex'
 
 export default {
   name: 'app',
   components: {
     TheNavbar,
-    ThePageHeader
   },
-  computed: mapState([
-    'loggedIn'
-  ]),
+  computed: mapState(['loggedIn']),
   created() {
-    document.addEventListener('keydown', (e) => {
+    document.addEventListener('keydown', e => {
       let ctrlKey = e.ctrlKey || e.metaKey
       if (ctrlKey && e.keyCode === 71) {
-        e.preventDefault();
+        e.preventDefault()
         this.$store.commit('TheAwesomeBar/setFocus', { isFocused: true })
       }
     })
-  }
+  },
 }
 </script>
 <style>
-html, body {
+html,
+body {
   font-size: 12px;
 }
 </style>

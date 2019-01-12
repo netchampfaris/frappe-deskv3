@@ -6,33 +6,33 @@
 </template>
 <script>
 export default {
-    name: 'UserAvatar',
-    props: ['user'],
-    data() {
-        return {
-            userImageUrl: null
-        }
-    },
-    created() {
-        this.fetchUserImage();
-    },
-    methods: {
-        async fetchUserImage() {
-            if (!this.user) return;
-
-            const data = await this.$call('frappe.client.get_value', {
-                doctype: 'User',
-                filters: this.user,
-                fieldname: 'user_image'
-            });
-
-            this.userImageUrl = data.user_image;
-        }
+  name: 'UserAvatar',
+  props: ['user'],
+  data() {
+    return {
+      userImageUrl: null,
     }
+  },
+  created() {
+    this.fetchUserImage()
+  },
+  methods: {
+    async fetchUserImage() {
+      if (!this.user) return
+
+      const data = await this.$call('frappe.client.get_value', {
+        doctype: 'User',
+        filters: this.user,
+        fieldname: 'user_image',
+      })
+
+      this.userImageUrl = data.user_image
+    },
+  },
 }
 </script>
 <style scoped>
 .dotted {
-    border-style: dashed;
+  border-style: dashed;
 }
 </style>

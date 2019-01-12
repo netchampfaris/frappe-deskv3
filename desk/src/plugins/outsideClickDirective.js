@@ -1,30 +1,30 @@
-import Vue from 'vue';
+import Vue from 'vue'
 
-let instances = [];
+let instances = []
 
 function onDocumentClick(e, el, fn) {
-  let target = e.target;
-  if ((el !== target) && (!el.contains(target))) {
-    fn(e);
+  let target = e.target
+  if (el !== target && !el.contains(target)) {
+    fn(e)
   }
 }
 
 Vue.directive('on-outside-click', {
   bind(el, binding) {
-    el.dataset.outsideClickIndex = instances.length;
+    el.dataset.outsideClickIndex = instances.length
 
-    const fn = binding.value;
-    const click = function (e) {
+    const fn = binding.value
+    const click = function(e) {
       onDocumentClick(e, el, fn)
-    };
+    }
 
-    document.addEventListener('click', click);
-    instances.push(click);
+    document.addEventListener('click', click)
+    instances.push(click)
   },
   unbind(el) {
-    const index = el.dataset.outsideClickIndex;
-    const handler = instances[index];
-    document.addEventListener('click', handler);
-    instances.splice(index, 1);
-  }
-});
+    const index = el.dataset.outsideClickIndex
+    const handler = instances[index]
+    document.addEventListener('click', handler)
+    instances.splice(index, 1)
+  },
+})

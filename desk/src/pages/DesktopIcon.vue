@@ -12,20 +12,20 @@ export default {
   props: ['icon'],
   computed: {
     iconName() {
-      const className = this.icon.icon;
+      const className = this.icon.icon
       if (!className || !className.startsWith('octicon ')) {
-        return null;
+        return null
       }
-      return className.slice('octicon octicon-'.length);
-    }
+      return className.slice('octicon octicon-'.length)
+    },
   },
   methods: {
     navigate() {
       if (this.icon.link) {
-        const parts = this.icon.link.split('/');
-        this.$router.push(parts.slice(0, 2).join('/'));
+        const parts = this.icon.link.split('/')
+        this.$router.push(parts.slice(0, 2).join('/'))
       }
-    }
-  }
+    },
+  },
 }
 </script>

@@ -11,23 +11,19 @@
 import { createNamespacedHelpers } from 'vuex'
 import Icon from './DesktopIcon'
 
-const { mapState, mapActions, mapGetters } = createNamespacedHelpers('Desktop')
+const { mapActions, mapGetters } = createNamespacedHelpers('Desktop')
 
 export default {
   name: 'Desktop',
   components: {
-    Icon
+    Icon,
   },
   async created() {
     this.$store.commit('CurrentPage/hidePageHeader')
-    this.fetchUserIcons();
+    this.fetchUserIcons()
   },
-  methods: mapActions([
-    'fetchUserIcons'
-  ]),
-  computed: mapGetters([
-    'visibleIcons'
-  ])
+  methods: mapActions(['fetchUserIcons']),
+  computed: mapGetters(['visibleIcons']),
 }
 </script>
 
