@@ -80,9 +80,6 @@ export default {
       }
     },
     valueField() {
-      if (this.operator.includes('=')) {
-        return this.selectedField
-      }
       if (['like', 'not like'].includes(this.operator)) {
         return {
           fieldtype: 'Data',

@@ -8,14 +8,16 @@
   >
     <slot></slot>
     <FeatherIcon class="ml-2" :name="iconRight" v-if="iconRight" :size="12"/>
+    <FeatherIcon :name="icon" v-if="icon" :size="12"/>
   </button>
 </template>
 <script>
 export default {
   name: 'Button',
-  props: ['type', 'rounded', 'iconRight', 'size'],
+  props: ['type', 'rounded', 'iconRight', 'size', 'icon'],
   computed: {
     typeClass() {
+      const onlyIcon = Boolean(this.icon)
       return {
         'bg-blue hover:bg-blue-dark text-white focus:shadow-outline':
           this.type === 'primary',
@@ -24,8 +26,10 @@ export default {
         rounded: !this.rounded,
         'rounded-l': this.rounded === 'left',
         'rounded-r': this.rounded === 'right',
-        'px-4 py-3': this.size !== 'small',
-        'px-3 py-2 text-sm': this.size === 'small',
+        'px-4 py-3': this.size !== 'small' && !onlyIcon,
+        'px-3 py-2': this.size === 'small' && !onlyIcon,
+        'text-sm': this.size === 'small',
+        'p-2': onlyIcon,
       }
     },
   },

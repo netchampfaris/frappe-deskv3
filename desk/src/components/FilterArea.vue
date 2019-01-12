@@ -6,7 +6,10 @@
         v-for="(filter, index) in appliedFilters"
         :key="getFilterId(filter)"
       >
-        <Button size="small">{{ filter.field.label }} {{ filter.operator }} {{ filter.value }}</Button>
+        <div class="flex">
+          <Button size="small" rounded="left">{{ filter.field.label }} {{ filter.operator }} {{ filter.value }}</Button>
+          <Button size="small" icon="x" rounded="right" @click="removeFilter(index)" />
+        </div>
         <div slot="popover-content" class="w-64 bg-white border shadow-md rounded-b">
           <FilterSelector
             :doctype="doctype"
@@ -89,6 +92,10 @@ export default {
       })
       this.filtersDirty = true
       this.resetNewFilter()
+    },
+    removeFilter(index) {
+      this.appliedFilters = this.appliedFilters.filter((f, i) => index !== i)
+      this.filtersDirty = true
     },
     resetNewFilter() {
       this.newFilter = {
