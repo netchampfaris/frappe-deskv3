@@ -23,9 +23,6 @@ export default {
     ListMainRow,
   },
   computed: {
-    meta() {
-      return this.frappe.getMeta(this.doctype)
-    },
     listData() {
       return this.frappe.getListData(this.doctype)
     },

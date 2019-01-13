@@ -25,26 +25,16 @@ export default {
     FormMain,
   },
   created() {
-    this.$store.dispatch('Meta/fetchMeta', { doctype: this.doctype })
-    this.$store.dispatch('Form/fetchDoc', {
-      doctype: this.doctype,
-      name: this.name,
-    })
+    this.frappe.fetchDoc(this.doctype, this.name)
   },
   methods: {
     saveDoc() {
-      this.$store.dispatch('Form/saveDoc', {
-        doctype: this.doctype,
-        name: this.name,
-      })
+      this.frappe.saveDoc(this.doctype, this.name)
     },
   },
   computed: {
-    meta() {
-      return this.$store.getters['Meta/getMeta'](this.doctype)
-    },
     doc() {
-      return this.$store.getters['Form/getDoc'](this.doctype, this.name)
+      return this.frappe.getDoc(this.doctype, this.name)
     },
     isDocDirty() {
       return this.doc && this.doc.__dirty

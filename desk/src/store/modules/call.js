@@ -16,6 +16,9 @@ async function call(method, data) {
 
   if (res.ok) {
     const data = await res.json()
+    if (data.docs) {
+      return data
+    }
     return data.message
   } else {
     const data = await res.json()

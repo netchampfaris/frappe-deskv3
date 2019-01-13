@@ -27,13 +27,7 @@ export default {
     ListMain,
     FilterArea,
   },
-  created() {
-    this.frappe.fetchMeta(this.doctype)
-  },
   computed: {
-    meta() {
-      return this.frappe.getMeta(this.doctype)
-    },
     pageHeaderSettings() {
       return {
         showPageHeader: true,

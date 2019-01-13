@@ -87,9 +87,6 @@ export default {
       }
       return this.selectedField
     },
-    meta() {
-      return this.frappe.getMeta(this.doctype)
-    },
   },
   methods: {
     reset() {

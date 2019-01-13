@@ -72,11 +72,6 @@ export default {
       },
     }
   },
-  computed: {
-    meta() {
-      return this.frappe.getMeta(this.doctype)
-    },
-  },
   methods: {
     applyFilters() {
       this.frappe.applyListFilters(this.doctype, this.appliedFilters)
