@@ -1,17 +1,18 @@
 <template>
-    <Popover align="right">
-        <Button iconRight="chevron-down">
-            <slot></slot>
-        </Button>
-        <ul slot="popover-content" class="list-reset cursor-pointer bg-white border w-64 shadow-md rounded-b">
-            <li
-                class="transition p-5 hover:bg-grey-lighter"
-                v-for="item of items" :key="item"
-            >
-                {{ item }}
-            </li>
-        </ul>
-    </Popover>
+  <Popover align="right">
+    <slot></slot>
+    <ul
+      slot="popover-content"
+      class="list-reset cursor-pointer bg-white border w-64 shadow-md rounded-b"
+    >
+      <li
+        class="transition p-5 hover:bg-grey-lighter"
+        v-for="item of dropdownItems"
+        :key="item.label"
+        @click="item.action"
+      >{{ item.label }}</li>
+    </ul>
+  </Popover>
 </template>
 <script>
 export default {
@@ -21,6 +22,19 @@ export default {
     return {
       isOpen: false,
     }
+  },
+  computed: {
+    dropdownItems() {
+      return (this.items || []).map(item => {
+        if (typeof item === 'string') {
+          return {
+            label: item,
+            action: console.log,
+          }
+        }
+        return item
+      })
+    },
   },
 }
 </script>

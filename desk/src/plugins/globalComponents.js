@@ -8,6 +8,7 @@ import 'vue-octicon/icons'
 import Button from '../components/Button'
 import UserAvatar from '../components/UserAvatar'
 import FormLayout from '../components/Form/FormLayout'
+import Control from '../components/Form/Control'
 import FeatherIcon from '../components/FeatherIcon'
 import Indicator from '../components/Indicator'
 import Dropdown from '../components/Dropdown'
@@ -18,6 +19,7 @@ Vue.component('octicon', Octicon)
 Vue.component('Button', Button)
 Vue.component('UserAvatar', UserAvatar)
 Vue.component('FormLayout', FormLayout)
+Vue.component('Control', Control)
 Vue.component('FeatherIcon', FeatherIcon)
 Vue.component('Indicator', Indicator)
 Vue.component('Dropdown', Dropdown)

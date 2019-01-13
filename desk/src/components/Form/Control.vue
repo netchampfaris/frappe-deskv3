@@ -22,7 +22,7 @@ import Date from './Date'
 // import Float from './Float';
 // import Int from './Int';
 import Link from './Link'
-// import Password from './Password';
+import Password from './Password'
 import Select from './Select'
 // import Table from './Table';
 import Text from './Text'
@@ -47,7 +47,7 @@ export default {
           // Float,
           // Int,
           Link,
-          // Password,
+          Password,
           Select,
           // Table,
           Text,

@@ -7,7 +7,9 @@
         <span class="font-bold text-muted" v-if="indicatorText">{{ indicatorText }}</span>
       </div>
       <div>
-        <Dropdown v-if="menuItems && menuItems.length" class="mr-1" :items="menuItems">Menu</Dropdown>
+        <Dropdown v-if="menuItems && menuItems.length" class="mr-1" :items="menuItems">
+          <Button iconRight="chevron-down">{{ __('Menu') }}</Button>
+        </Dropdown>
         <Button v-if="secondaryAction" class="mr-1">{{ secondaryActionLabel }}</Button>
         <Button v-if="primaryAction" type="primary" @click="primaryAction">{{ primaryActionLabel }}</Button>
       </div>
