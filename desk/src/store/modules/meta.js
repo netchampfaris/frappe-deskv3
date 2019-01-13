@@ -19,9 +19,16 @@ Vue.mixin({
 export default {
   methods: {
     async fetchMeta(doctype) {
-      const meta = this.getDoc('DocType', doctype)
+      let meta = this.getMeta(doctype)
       if (!meta) {
-        await this.fetchDoc('DocType', doctype)
+        const data = await this.call('frappe.desk.form.load.getdoctype', {
+          doctype,
+          with_parent: 1,
+        })
+        this.syncDocs(data.docs)
+        this.syncDocinfo('DocType', doctype, data.docinfo)
+        meta = this.getMeta(doctype)
+        return meta
       }
     },
     getMeta(doctype) {

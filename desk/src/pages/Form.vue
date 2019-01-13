@@ -3,11 +3,12 @@
     <ThePageHeader v-bind="pageHeaderSettings"/>
     <div class="container">
       <div class="flex">
-        <div class="w-1/6 border-r">
+        <div class="w-1/6">
           <FormSidebar/>
         </div>
-        <div class="w-5/6 border-r">
-          <FormMain :doc="doc"/>
+        <div class="w-5/6">
+          <FormMain class="border-l border-r" :doc="doc"/>
+          <FormTimeline :doctype="doctype" :name="name"/>
         </div>
       </div>
     </div>
@@ -16,6 +17,7 @@
 <script>
 import FormSidebar from './FormSidebar'
 import FormMain from './FormMain'
+import FormTimeline from './FormTimeline'
 
 export default {
   name: 'Form',
@@ -23,6 +25,7 @@ export default {
   components: {
     FormSidebar,
     FormMain,
+    FormTimeline,
   },
   created() {
     this.frappe.fetchDoc(this.doctype, this.name)

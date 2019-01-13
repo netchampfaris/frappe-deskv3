@@ -13,6 +13,7 @@
           }"
           @change="value => email = value"
           :autofocus="true"
+          class="mb-3"
         />
         <Control
           :docfield="{

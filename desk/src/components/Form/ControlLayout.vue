@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="mb-2" v-if="!onlyInput">
+    <div class="mb-2" v-if="!onlyInput && docfield.label">
       <label class="text-muted">{{ docfield.label }}</label>
     </div>
     <div>
@@ -8,7 +8,7 @@
         <!-- input -->
       </slot>
     </div>
-    <div class="mt-2" v-if="docfield.description || !onlyInput">
+    <div class="mt-2" v-if="docfield.description && !onlyInput">
       <p class="text-muted">{{ docfield.description }}</p>
     </div>
   </div>

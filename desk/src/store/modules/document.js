@@ -2,16 +2,19 @@ export default {
   data() {
     return {
       docs: {},
+      docinfo: {},
     }
   },
   methods: {
     async fetchDoc(doctype, name) {
-      const doc = await this.call('frappe.client.get', {
+      const data = await this.call('frappe.desk.form.load.getdoc', {
         doctype,
         name,
       })
-      this.setDoc(doctype, name, doc)
-      return doc
+
+      this.syncDocs(data.docs)
+      this.syncDocinfo(doctype, name, data.docinfo)
+      return this.getDoc(doctype, name)
     },
     async saveDoc(doctype, name) {
       let doc = this.getDoc(doctype, name)
@@ -25,10 +28,19 @@ export default {
         action: 'Save',
       })
 
-      for (let doc of data.docs) {
+      this.syncDocs(data.docs)
+    },
+    syncDocs(docs) {
+      for (let doc of docs) {
         console.log('Syncing doc:', doc.doctype, doc.name)
         this.setDoc(doc.doctype, doc.name, doc)
       }
+    },
+    syncDocinfo(doctype, name, docinfo) {
+      if (!this.docinfo[doctype]) {
+        this.$set(this.docinfo, doctype, {})
+      }
+      this.$set(this.docinfo[doctype], name, docinfo)
     },
     setDoc(doctype, name, doc) {
       if (!this.docs[doctype]) {
@@ -40,6 +52,11 @@ export default {
       if (!(doctype && name)) return null
       if (!this.docs[doctype]) return null
       return this.docs[doctype][name] || null
+    },
+    getDocinfo(doctype, name) {
+      if (!(doctype && name)) return null
+      if (!this.docinfo[doctype]) return null
+      return this.docinfo[doctype][name] || null
     },
     setValue(doctype, name, fieldname, value) {
       if (this.getDoc(doctype, name)) {
