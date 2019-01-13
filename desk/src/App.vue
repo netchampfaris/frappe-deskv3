@@ -26,7 +26,7 @@ export default {
       let ctrlKey = e.ctrlKey || e.metaKey
       if (ctrlKey && e.keyCode === 71) {
         e.preventDefault()
-        this.$store.commit('TheAwesomeBar/setFocus', { isFocused: true })
+        this.frappe.awesomebar.toggleFocus(true)
       }
     })
   },

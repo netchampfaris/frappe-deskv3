@@ -6,6 +6,7 @@ import desktop from './modules/desktop'
 import document from './modules/document'
 import meta from './modules/meta'
 import list from './modules/list'
+import awesomebar from './modules/awesomebar'
 
 const frappe = new Vue({
   mixins: [call, session, translate, desktop, document, meta, list],
@@ -13,6 +14,8 @@ const frappe = new Vue({
     return {}
   },
 })
+
+frappe.awesomebar = new Vue(awesomebar)
 
 Vue.prototype.frappe = frappe
 window.frappe = frappe
