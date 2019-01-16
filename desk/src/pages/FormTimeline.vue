@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="border rounded">
+    <div class="border rounded overflow-hidden">
       <div
         class="px-5 p-2 bg-grey-lightest flex justify-between items-center border-b border-light text-muted"
       >

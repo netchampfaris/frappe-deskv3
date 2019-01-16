@@ -11,7 +11,7 @@
 </template>
 <script>
 // import Base from './Base';
-// import Autocomplete from './Autocomplete';
+import Autocomplete from './Autocomplete'
 // import Check from './Check';
 // import Code from './Code';
 // import Currency from './Currency';
@@ -20,7 +20,7 @@ import Date from './Date'
 // import DynamicLink from './DynamicLink';
 // import File from './File';
 // import Float from './Float';
-// import Int from './Int';
+import Int from './Int'
 import Link from './Link'
 import Password from './Password'
 import Select from './Select'
@@ -36,7 +36,7 @@ export default {
       const fieldtype = this.docfield.fieldtype.replace(/ /g, '')
       return (
         {
-          // Autocomplete,
+          Autocomplete,
           // Check,
           // Code,
           // Currency,
@@ -45,7 +45,7 @@ export default {
           // DynamicLink,
           // File,
           // Float,
-          // Int,
+          Int,
           Link,
           Password,
           Select,

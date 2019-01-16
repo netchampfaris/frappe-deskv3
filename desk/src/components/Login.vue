@@ -12,6 +12,7 @@
             fieldtype: 'Data',
           }"
           @change="value => email = value"
+          :value="email"
           :autofocus="true"
           class="mb-3"
         />
@@ -20,6 +21,7 @@
             label: __('Password'),
             fieldtype: 'Password',
           }"
+          :value="password"
           @change="value => password = value"
         />
         <Button type="primary" class="w-full justify-center mt-3" @click="login">{{ __('Login') }}</Button>
