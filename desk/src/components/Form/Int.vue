@@ -1,21 +1,18 @@
-<template>
-  <ControlLayout :docfield="docfield" :onlyInput="onlyInput">
-    <input
-      class="form-control"
-      type="text"
-      :value="value"
-      @change="e => $emit('change', e.target.value)"
-    >
-  </ControlLayout>
-</template>
 <script>
-import ControlLayout from './ControlLayout'
+import controlMixin from './controlMixin'
 
 export default {
   name: 'ControlInt',
-  props: ['docfield', 'value', 'onlyInput', 'disabled'],
-  components: {
-    ControlLayout,
+  mixins: [controlMixin],
+  data() {
+    return {
+      class: 'text-right',
+    }
+  },
+  methods: {
+    handleFocus() {
+      this.getInput().select()
+    },
   },
 }
 </script>
