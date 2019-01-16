@@ -1,5 +1,5 @@
 <template>
-  <div class="page-header border-b bg-white py-6 sticky z-50" v-if="showPageHeader">
+  <div class="page-header border-b bg-white py-6 sticky z-10" v-if="showPageHeader">
     <div class="container flex justify-between">
       <div class="flex items-center">
         <h1 class="font-medium">{{ title }}</h1>
