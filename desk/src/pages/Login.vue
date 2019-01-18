@@ -24,7 +24,12 @@
           :value="password"
           @change="value => password = value"
         />
-        <Button type="primary" class="w-full justify-center mt-3" @click="login">{{ __('Login') }}</Button>
+        <Button
+          type="primary"
+          class="w-full justify-center mt-5"
+          :isLoading="isLoading"
+          @click="login"
+        >{{ __('Login') }}</Button>
       </div>
     </div>
   </div>
@@ -38,11 +43,13 @@ export default {
       password: '',
       indicatorColor: 'blue',
       loginText: this.__('Login'),
+      isLoading: false,
     }
   },
   methods: {
     async login() {
       if (!(this.email && this.password)) return
+      this.isLoading = true
       this.indicatorColor = 'orange'
       this.loginText = this.__('Verifying...')
       await this.frappe.login(this.email, this.password)
@@ -53,6 +60,7 @@ export default {
         this.indicatorColor = 'red'
         this.loginText = this.__('Invalid login credentials')
       }
+      this.isLoading = false
     },
   },
 }
