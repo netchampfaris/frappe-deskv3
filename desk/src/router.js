@@ -18,6 +18,11 @@ const routes = [
     component: () => import('./pages/Form'),
     props: true,
   },
+  {
+    path: '/playground',
+    component: () => import('./pages/Playground'),
+    props: true,
+  },
 ]
 
 export default new VueRouter({ routes })
