@@ -13,6 +13,7 @@ import FeatherIcon from '../components/FeatherIcon'
 import Indicator from '../components/Indicator'
 import Dropdown from '../components/Dropdown'
 import Popover from '../components/Popover'
+import LoadingSpinner from '../components/LoadingSpinner'
 import ThePageHeader from '../components/ThePageHeader'
 
 Vue.component('octicon', Octicon)
@@ -24,4 +25,5 @@ Vue.component('FeatherIcon', FeatherIcon)
 Vue.component('Indicator', Indicator)
 Vue.component('Dropdown', Dropdown)
 Vue.component('Popover', Popover)
+Vue.component('LoadingSpinner', LoadingSpinner)
 Vue.component('ThePageHeader', ThePageHeader)
