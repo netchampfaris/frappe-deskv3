@@ -12,7 +12,7 @@
 <script>
 // import Base from './Base';
 import Autocomplete from './Autocomplete'
-// import Check from './Check';
+import Check from './Check'
 // import Code from './Code';
 // import Currency from './Currency';
 import Data from './Data'
@@ -37,7 +37,7 @@ export default {
       return (
         {
           Autocomplete,
-          // Check,
+          Check,
           // Code,
           // Currency,
           Data,
