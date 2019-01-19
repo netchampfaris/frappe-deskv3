@@ -8,9 +8,20 @@ import meta from './modules/meta'
 import list from './modules/list'
 import format from './modules/format'
 import awesomebar from './modules/awesomebar'
+import route from './modules/route'
 
 const frappe = new Vue({
-  mixins: [call, session, translate, desktop, document, meta, list, format],
+  mixins: [
+    call,
+    session,
+    translate,
+    desktop,
+    document,
+    meta,
+    list,
+    format,
+    route,
+  ],
   data() {
     return {}
   },

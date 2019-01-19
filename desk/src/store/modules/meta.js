@@ -28,8 +28,8 @@ export default {
         this.syncDocs(data.docs)
         this.syncDocinfo('DocType', doctype, data.docinfo)
         meta = this.getMeta(doctype)
-        return meta
       }
+      return meta
     },
     getMeta(doctype) {
       return this.getDoc('DocType', doctype)

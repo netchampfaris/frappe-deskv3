@@ -6,6 +6,7 @@
     :onlyInput="onlyInput"
     :disabled="isDisabled"
     :autofocus="autofocus"
+    :inputClass="inputClass"
     @change="value => $emit('change', value)"
   />
 </template>
@@ -30,7 +31,7 @@ import TextEditor from './TextEditor'
 // import Time from './Time';
 
 export default {
-  props: ['docfield', 'value', 'onlyInput', 'doc', 'autofocus'],
+  props: ['docfield', 'value', 'onlyInput', 'doc', 'autofocus', 'inputClass'],
   computed: {
     component() {
       const fieldtype = this.docfield.fieldtype.replace(/ /g, '')

@@ -1,7 +1,6 @@
 <script>
 import controlMixin from './controlMixin'
 import Popover from '../Popover'
-import debounce from 'lodash/debounce'
 
 export default {
   name: 'ControlAutocomplete',
@@ -22,7 +21,7 @@ export default {
           {originalInput}
           <div slot="popover-content">
             <ul
-              class="bg-white list-reset rounded border shadow cursor-pointer"
+              class="bg-white list-reset rounded border shadow cursor-pointer overflow-auto max-h-dropdown"
               {...{ class: this.popoverOpen ? '' : 'hidden' }}
               ref="dropdown-menu"
               onMouseover={() => (this.highlightedItem = -1)}
@@ -40,7 +39,7 @@ export default {
         }
         return (
           <li
-            class="px-4 py-3 hover:bg-grey-lighter"
+            class="p-4 hover:bg-grey-lighter"
             {...attrs}
             key={option.value}
             ref={i}
@@ -82,7 +81,11 @@ export default {
     },
 
     selectOption(option) {
-      this.handleChange(option.value)
+      if (this.docfield.onOptionSelect) {
+        this.docfield.onOptionSelect(option)
+      } else {
+        this.handleChange(option.value)
+      }
       this.popoverOpen = false
       this.filterText = null
       this.highlightedItem = -1
@@ -103,35 +106,6 @@ export default {
       const scrollTo = this.$refs[i].offsetTop - 5
       this.$refs['dropdown-menu'].scrollTop = scrollTo
     },
-
-    getFilteredOptions() {
-      return this.getOptions().filter(option => {
-        return (
-          option.label.includes(this.value) || option.value.includes(this.value)
-        )
-      })
-    },
-    getOptions() {
-      return (this.docfield.options || []).map(option => {
-        if (typeof option === 'string') {
-          return {
-            label: option,
-            value: option,
-          }
-        }
-        if (!option.value) {
-          throw new Error(
-            `Field of type ${
-              this.docfield.fieldtype
-            } must have options with value`
-          )
-        }
-        if (option.label) {
-          option.label = option.value
-        }
-        return option
-      })
-    },
   },
   computed: {
     filteredOptions() {
@@ -144,6 +118,9 @@ export default {
       })
     },
     options() {
+      if (this.docfield.getOptions) {
+        return this.docfield.getOptions(this.filterText)
+      }
       return (this.docfield.options || []).map(option => {
         if (typeof option === 'string') {
           return {

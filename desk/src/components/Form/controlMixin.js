@@ -11,6 +11,7 @@ export default {
     onlyInput: Boolean,
     disabled: Boolean,
     autofocus: Boolean,
+    inputClass: [String, Array, Object],
   },
   data() {
     return {
@@ -31,10 +32,11 @@ export default {
       return (
         <Input
           type={this.type}
+          class={[this.class, this.inputClass]}
           value={this.format(this.value)}
-          class={this.class}
           disabled={this.disabled}
           autofocus={this.autofocus}
+          placeholder={this.docfield.placeholder}
           onValueChange={this.handleChange}
           onFocus={this.handleFocus}
           onKeydown={this.handleKeydown}
