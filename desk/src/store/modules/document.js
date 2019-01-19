@@ -3,6 +3,7 @@ export default {
     return {
       docs: {},
       docinfo: {},
+      localDocsCount: {},
     }
   },
   methods: {
@@ -29,6 +30,10 @@ export default {
       })
 
       this.syncDocs(data.docs)
+      // the name of the document might change after save
+      const updatedName = (data.docs.find(doc => doc.doctype === doctype) || {})
+        .name
+      return this.getDoc(doctype, updatedName || name)
     },
     syncDocs(docs) {
       for (let doc of docs) {
@@ -63,6 +68,28 @@ export default {
         this.docs[doctype][name][fieldname] = value
         this.$set(this.docs[doctype][name], '__dirty', true)
       }
+    },
+    newDoc(doctype) {
+      const doc = {
+        docstatus: 0,
+        doctype: doctype,
+        name: this.getNewName(doctype),
+        owner: this.frappe.session.user,
+        __islocal: 1,
+        __unsaved: 1,
+      }
+      return doc
+    },
+    getNewName(doctype) {
+      if (!this.localDocsCount[doctype]) {
+        this.localDocsCount[doctype] = 0
+      }
+      this.localDocsCount[doctype] += 1
+      return this.__(
+        'New {0} {1}',
+        this.__(doctype),
+        this.localDocsCount[doctype]
+      )
     },
   },
 }

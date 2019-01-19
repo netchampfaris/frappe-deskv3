@@ -28,11 +28,16 @@ export default {
     FormTimeline,
   },
   created() {
-    this.frappe.fetchDoc(this.doctype, this.name)
+    if (!this.doc) {
+      this.frappe.fetchDoc(this.doctype, this.name)
+    }
   },
   methods: {
-    saveDoc() {
-      this.frappe.saveDoc(this.doctype, this.name)
+    async saveDoc() {
+      const doc = await this.frappe.saveDoc(this.doctype, this.name)
+      if (doc.name !== this.name) {
+        this.$router.replace(`/Form/${this.doctype}/${doc.name}`)
+      }
     },
   },
   computed: {
@@ -66,7 +71,7 @@ export default {
     },
     indicatorText() {
       if (this.isDocDirty) {
-        return 'Not Saved'
+        return this.__('Not Saved')
       }
       return ''
     },

@@ -27,13 +27,20 @@ export default {
     ListMain,
     FilterArea,
   },
+  methods: {
+    newForm() {
+      const doc = this.frappe.newDoc(this.doctype)
+      this.frappe.setDoc(this.doctype, doc.name, doc)
+      this.frappe.setRoute('Form', this.doctype, doc.name)
+    },
+  },
   computed: {
     pageHeaderSettings() {
       return {
         showPageHeader: true,
         title: this.doctype,
         primaryActionLabel: 'New',
-        primaryAction: console.log,
+        primaryAction: this.newForm,
         secondaryActionLabel: 'Refresh',
         secondaryAction: console.log,
         menuItems: ['Test'],

@@ -110,11 +110,7 @@
         </Button>
       </div>
     </EditorMenuBar>
-    <EditorContent
-      class="editor-content mt-1"
-      :editor="editor"
-      @change="e => $emit('change', value)"
-    />
+    <EditorContent class="editor-content mt-1" :editor="editor"/>
   </ControlLayout>
 </template>
 <script>
@@ -173,6 +169,9 @@ export default {
         new Underline(),
         new History(),
       ],
+      onUpdate: ({ getHTML }) => {
+        this.$emit('change', getHTML())
+      },
     })
   },
   beforeDestroy() {
