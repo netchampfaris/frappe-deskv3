@@ -5,7 +5,7 @@ export default {
   props: {
     docfield: Object,
     value: {
-      type: [String, Number],
+      type: [String, Number, Array],
       required: true,
     },
     onlyInput: Boolean,
@@ -26,6 +26,9 @@ export default {
         {this.renderInput()}
       </ControlLayout>
     )
+  },
+  renderError(h, err) {
+    return h('pre', { style: { color: 'red' } }, err.stack)
   },
   methods: {
     renderInput() {

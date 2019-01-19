@@ -21,8 +21,10 @@ export default {
           {originalInput}
           <div slot="popover-content">
             <ul
-              class="bg-white list-reset rounded border shadow cursor-pointer overflow-auto max-h-dropdown"
-              {...{ class: this.popoverOpen ? '' : 'hidden' }}
+              class={[
+                'bg-white list-reset rounded border shadow cursor-pointer overflow-auto max-h-dropdown',
+                this.popoverOpen && this.filteredOptions.length ? '' : 'hidden',
+              ]}
               ref="dropdown-menu"
               onMouseover={() => (this.highlightedItem = -1)}
             >

@@ -25,7 +25,7 @@ import Int from './Int'
 import Link from './Link'
 import Password from './Password'
 import Select from './Select'
-// import Table from './Table';
+import Table from './Table'
 import Text from './Text'
 import TextEditor from './TextEditor'
 // import Time from './Time';
@@ -50,7 +50,7 @@ export default {
           Link,
           Password,
           Select,
-          // Table,
+          Table,
           Text,
           TextEditor,
           // Time

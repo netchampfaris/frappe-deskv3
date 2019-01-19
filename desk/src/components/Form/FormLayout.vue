@@ -1,6 +1,6 @@
 <template>
-  <form class="mb-8">
-    <section class="border-b p-8" v-for="section in layout" :key="section.config.fieldname">
+  <form>
+    <section class="border-b p-8" v-for="section in layout()" :key="section.config.fieldname">
       <div
         class="uppercase text-muted tracking-wide pl-2 mb-6"
         v-if="section.config.label"
@@ -33,7 +33,7 @@ export default {
   components: {
     Control,
   },
-  computed: {
+  methods: {
     layout() {
       let sections = []
       let currentSection = null
@@ -79,7 +79,18 @@ export default {
         resetCurrentSection()
       }
 
-      return sections.filter(section => section.columns.length)
+      return sections
+        .filter(section => section.columns.length)
+        .map((section, i) => {
+          if (!section.config) {
+            const id = 'Section ' + i
+            section.config = {
+              label: '',
+              fieldname: id,
+            }
+          }
+          return section
+        })
     },
   },
 }
