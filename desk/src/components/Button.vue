@@ -1,18 +1,18 @@
 <template>
   <button
-    class="focus:outline-none transition inline-flex items-center"
+    class="focus:outline-none transition"
     :class="typeClass"
     :disabled="isLoading"
     v-bind="$attrs"
     v-on="$listeners"
     type="button"
   >
-    <span v-if="renderSlot" class="inline-block" :class="padding">
+    <span v-if="renderSlot" class="inline-flex items-center" :class="padding">
       <slot></slot>
+      <FeatherIcon class="ml-2" :name="iconRight" v-if="iconRight" :size="12"/>
+      <FeatherIcon :name="icon" v-if="icon" :size="12"/>
     </span>
     <LoadingSpinner v-if="isLoading" :type="loadingType" class="py-2"/>
-    <FeatherIcon class="ml-2" :name="iconRight" v-if="iconRight" :size="12"/>
-    <FeatherIcon :name="icon" v-if="icon" :size="12"/>
   </button>
 </template>
 <script>
@@ -29,7 +29,7 @@ export default {
       type: String,
     },
     size: {
-      type: Number,
+      type: String,
     },
     icon: {
       type: String,
@@ -41,7 +41,6 @@ export default {
   },
   computed: {
     typeClass() {
-      const onlyIcon = Boolean(this.icon)
       let classes = []
       if (this.type === 'primary') {
         classes.push('text-white focus:shadow-outline')
@@ -67,12 +66,6 @@ export default {
       } else if (this.rounded === 'right') {
         classes.push('rounded-r')
       }
-
-      // if (onlyIcon) {
-      //   classes.push('p-2')
-      // } else {
-      //   classes.push(this.size === 'small' ? 'px-3 py-2' : 'px-4 py-3')
-      // }
 
       if (this.size === 'small') {
         classes.push('text-sm')
