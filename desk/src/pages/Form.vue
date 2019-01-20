@@ -48,20 +48,16 @@ export default {
       return this.doc && this.doc.__dirty
     },
     pageHeaderSettings() {
+      const indicator = this.frappe.getIndicator(this.doctype, this.name)
       return {
         showPageHeader: true,
-        title: this.formTitle,
-        indicatorColor: this.indicatorColor,
-        indicatorText: this.indicatorText,
+        title: this.frappe.getDocumentTitle(this.doctype, this.name),
+        indicatorColor: indicator.color,
+        indicatorText: indicator.text,
         menuItems: this.menuItems,
         primaryAction: this.saveDoc,
         primaryActionLabel: 'Save',
       }
-    },
-    formTitle() {
-      if (!(this.doc && this.meta)) return ''
-      const title_field = this.meta.title_field || 'name'
-      return this.doc[title_field]
     },
     indicatorColor() {
       if (this.isDocDirty) {
@@ -77,7 +73,10 @@ export default {
     },
     menuItems() {
       return [
-        'Print',
+        {
+          label: this.__('Print'),
+          action: () => this.frappe.setRoute('Print', this.doctype, this.name),
+        },
         'Email',
         'Links',
         'Duplicate',

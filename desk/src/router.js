@@ -19,6 +19,16 @@ const routes = [
     props: true,
   },
   {
+    path: '/Print/:doctype/:name',
+    component: () => import('./pages/Print'),
+    props: true,
+  },
+  {
+    path: '/PrintEditor/:doctype',
+    component: () => import('./pages/PrintEditor'),
+    props: true,
+  },
+  {
     path: '/playground',
     component: () => import('./pages/Playground'),
     props: true,

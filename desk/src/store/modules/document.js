@@ -91,5 +91,28 @@ export default {
         this.localDocsCount[doctype]
       )
     },
+    getDocumentTitle(doctype, name) {
+      const meta = this.getMeta(doctype)
+      const doc = this.getDoc(doctype, name)
+      if (!doc || !meta) return null
+
+      if (meta.title_field) {
+        return doc[meta.title_field]
+      }
+      return doc.name
+    },
+    getIndicator(doctype, name) {
+      const doc = this.getDoc(doctype, name)
+      if (doc && doc.__dirty) {
+        return {
+          text: this.__('Not Saved'),
+          color: 'orange',
+        }
+      }
+      return {
+        text: '',
+        color: null,
+      }
+    },
   },
 }
