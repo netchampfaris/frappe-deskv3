@@ -5,6 +5,7 @@
         <TheNavbar/>
       </header>
       <router-view></router-view>
+      <portal-target name="modals"></portal-target>
     </template>
     <Login v-if="showLogin"/>
   </div>

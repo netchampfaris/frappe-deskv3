@@ -1,6 +1,11 @@
 <template>
   <form>
-    <section class="border-b p-8" v-for="section in layout()" :key="section.config.fieldname">
+    <section
+      class="p-8"
+      :class="{'border-b': i !== layout().length - 1}"
+      v-for="(section, i) in layout()"
+      :key="section.config.fieldname"
+    >
       <div
         class="uppercase text-muted tracking-wide pl-2 mb-6"
         v-if="section.config.label"

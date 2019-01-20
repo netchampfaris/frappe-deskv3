@@ -12,6 +12,39 @@
         </div>
       </div>
     </div>
+    <Modal
+      v-if="isEmailModalShown"
+      @hide="isEmailModalShown = false"
+      :title="doctype + ': ' + frappe.getDocumentTitle(doctype, name)"
+      primaryActionLabel="Send"
+    >
+      <template slot="body">
+        <FormLayout
+          :fields="[
+            {
+              label: 'To',
+              fieldtype: 'Data',
+              fieldname: 'email'
+            },
+            {
+              fieldtype: 'Section Break',
+              fieldname: 'section-1'
+            },
+            {
+              label: 'Subject',
+              fieldtype: 'Data',
+              fieldname: 'subject'
+            },
+            {
+              label: 'Message',
+              fieldtype: 'Text Editor',
+              fieldname: 'message'
+            },
+          ]"
+          :doc="{}"
+        />
+      </template>
+    </Modal>
   </div>
 </template>
 <script>
@@ -26,6 +59,12 @@ export default {
     FormSidebar,
     FormMain,
     FormTimeline,
+    FormLayout: () => import('../components/Form/FormLayout'),
+  },
+  data() {
+    return {
+      isEmailModalShown: false,
+    }
   },
   created() {
     if (!this.doc) {
@@ -38,6 +77,9 @@ export default {
       if (doc.name !== this.name) {
         this.$router.replace(`/Form/${this.doctype}/${doc.name}`)
       }
+    },
+    showEmailModal() {
+      this.isEmailModalShown = true
     },
   },
   computed: {
@@ -77,7 +119,10 @@ export default {
           label: this.__('Print'),
           action: () => this.frappe.setRoute('Print', this.doctype, this.name),
         },
-        'Email',
+        {
+          label: this.__('Email'),
+          action: () => this.showEmailModal(),
+        },
         'Links',
         'Duplicate',
         'Reload',

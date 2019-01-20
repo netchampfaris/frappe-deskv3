@@ -15,6 +15,7 @@ import Dropdown from '../components/Dropdown'
 import Popover from '../components/Popover'
 import LoadingSpinner from '../components/LoadingSpinner'
 import ThePageHeader from '../components/ThePageHeader'
+import Modal from '../components/Modal'
 
 Vue.component('octicon', Octicon)
 Vue.component('Button', Button)
@@ -27,3 +28,4 @@ Vue.component('Dropdown', Dropdown)
 Vue.component('Popover', Popover)
 Vue.component('LoadingSpinner', LoadingSpinner)
 Vue.component('ThePageHeader', ThePageHeader)
+Vue.component('Modal', Modal)
