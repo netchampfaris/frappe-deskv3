@@ -1,6 +1,7 @@
 <template>
   <div v-if="meta">
-    <ListMainRowHead :doctype="doctype" :fieldsToShow="getFieldsToShow()"/>
+    <DataTable :columns="columns" :data="data"/>
+    <!-- <ListMainRowHead :doctype="doctype" :fieldsToShow="getFieldsToShow()"/>
     <ListMainRow
       v-for="doc in listData"
       :key="doc.name"
@@ -8,22 +9,38 @@
       :doctype="doctype"
       :fieldsToShow="getFieldsToShow()"
       @click.native="routeToForm(doc.name)"
-    />
+    />-->
   </div>
 </template>
 <script>
-import ListMainRowHead from './ListMainRowHead'
-import ListMainRow from './ListMainRow'
+// import ListMainRowHead from './ListMainRowHead'
+// import ListMainRow from './ListMainRow'
+import DataTable from '../components/DataTable'
 
 export default {
   name: 'ListMain',
   props: ['doctype'],
   components: {
-    ListMainRowHead,
-    ListMainRow,
+    DataTable,
+    // ListMainRowHead,
+    // ListMainRow,
   },
   computed: {
     listData() {
+      return this.frappe.getListData(this.doctype)
+    },
+    columns() {
+      return this.meta.fields
+        .filter(df => !df.fieldtype.includes('Break'))
+        .map(df => {
+          return {
+            id: df.fieldname,
+            title: df.label,
+            docfield: df,
+          }
+        })
+    },
+    data() {
       return this.frappe.getListData(this.doctype)
     },
   },
