@@ -7,6 +7,7 @@ export default {
     value: {
       type: [String, Number, Array],
       required: true,
+      default: '',
     },
     onlyInput: Boolean,
     disabled: Boolean,

@@ -67,6 +67,7 @@ export default {
       if (this.getDoc(doctype, name)) {
         this.docs[doctype][name][fieldname] = value
         this.$set(this.docs[doctype][name], '__dirty', true)
+        this.$emit('document:setValue', doctype, name, fieldname, value)
       }
     },
     newDoc(doctype) {

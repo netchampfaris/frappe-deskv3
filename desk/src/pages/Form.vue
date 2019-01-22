@@ -51,6 +51,9 @@
 import FormSidebar from './FormSidebar'
 import FormMain from './FormMain'
 import FormTimeline from './FormTimeline'
+import { getHandlers } from '../store/form_controller'
+import form from '../store/modules/form'
+import Vue from 'vue'
 
 export default {
   name: 'Form',
@@ -70,6 +73,23 @@ export default {
     if (!this.doc) {
       this.frappe.fetchDoc(this.doctype, this.name)
     }
+    this.frappe.$on('document:setValue', (doctype, name, fieldname) => {
+      const handlers = getHandlers(doctype, fieldname)
+      handlers.forEach(handler => {
+        handler.call(this, form)
+      })
+    })
+
+    this.form = new Vue({
+      mixins: [form],
+      propsData: {
+        doctype: this.doctype,
+        name: this.name,
+      },
+    })
+  },
+  beforeDestroy() {
+    this.form.$destroy()
   },
   methods: {
     async saveDoc() {
@@ -86,9 +106,6 @@ export default {
     doc() {
       return this.frappe.getDoc(this.doctype, this.name)
     },
-    isDocDirty() {
-      return this.doc && this.doc.__dirty
-    },
     pageHeaderSettings() {
       const indicator = this.frappe.getIndicator(this.doctype, this.name)
       return {
@@ -100,18 +117,6 @@ export default {
         primaryAction: this.saveDoc,
         primaryActionLabel: 'Save',
       }
-    },
-    indicatorColor() {
-      if (this.isDocDirty) {
-        return 'orange'
-      }
-      return ''
-    },
-    indicatorText() {
-      if (this.isDocDirty) {
-        return this.__('Not Saved')
-      }
-      return ''
     },
     menuItems() {
       return [

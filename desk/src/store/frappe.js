@@ -9,6 +9,7 @@ import list from './modules/list'
 import format from './modules/format'
 import awesomebar from './modules/awesomebar'
 import route from './modules/route'
+import { setupFormChangeHandler } from './modules/form'
 
 const frappe = new Vue({
   mixins: [
@@ -28,6 +29,7 @@ const frappe = new Vue({
 })
 
 frappe.awesomebar = new Vue(awesomebar)
+setupFormChangeHandler(frappe)
 
 Vue.prototype.frappe = frappe
 window.frappe = frappe
