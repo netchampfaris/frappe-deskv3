@@ -3,9 +3,9 @@ async function call(method, data) {
     data = {}
   }
 
-  data.cmd = method
+  // data.cmd = method
 
-  const res = await fetch('/', {
+  const res = await fetch(`/api/method/${method}`, {
     method: 'POST',
     headers: {
       Accept: 'application/json',
