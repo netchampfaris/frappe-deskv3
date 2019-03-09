@@ -30,7 +30,7 @@ export default {
           />
           <label for={this._uid}>{this.docfield.label}</label>
         </div>
-        {this.docfield.description && !this.onlyInput ? (
+        {this.docfield.description && !this.inputOnly ? (
           <div class="mt-2">
             <p class="text-muted">{this.docfield.description}</p>
           </div>

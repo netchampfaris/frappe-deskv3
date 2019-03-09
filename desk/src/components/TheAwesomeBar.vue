@@ -11,7 +11,7 @@
     }"
     :value="frappe.awesomebar.keyword"
     @change="value => frappe.awesomebar.keyword = value"
-    :onlyInput="true"
+    :inputOnly="true"
     @blur="blur"
   />
   <!-- <input

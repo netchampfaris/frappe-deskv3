@@ -27,13 +27,13 @@
           :docfield="operatorField"
           :value="operator"
           @change="value => $emit('selectOperator', value)"
-          :onlyInput="true"
+          :inputOnly="true"
         />
         <Control
           :docfield="valueField"
           :value="filterValue"
           @change="value => $emit('selectValue', value)"
-          :onlyInput="true"
+          :inputOnly="true"
         />
         <div class="flex justify-end">
           <Button class="mt-4 pin-r" size="small" @click="applyFilter">Add Filter</Button>

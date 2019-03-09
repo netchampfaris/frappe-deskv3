@@ -1,5 +1,5 @@
 <template>
-  <ControlLayout :docfield="docfield" :onlyInput="onlyInput">
+  <ControlLayout :docfield="docfield" :inputOnly="inputOnly">
     <div class="relative">
       <select
         class="block appearance-none form-control"
@@ -23,7 +23,7 @@ import ControlLayout from './ControlLayout'
 
 export default {
   name: 'ControlSelect',
-  props: ['docfield', 'value', 'onlyInput', 'disabled'],
+  props: ['docfield', 'value', 'inputOnly', 'disabled'],
   components: {
     ControlLayout,
   },

@@ -11,7 +11,7 @@
       <div class="row" v-for="(row, i) in data" :key="i" :style="gridTemplateColumns">
         <div :key="column.id" v-for="column in columns">
           <div class="cell w-64 editing" v-if="isEditingCell(column, i)">
-            <Control :docfield="column.docfield" :value="row[column.id]" :onlyInput="true"/>
+            <Control :docfield="column.docfield" :value="row[column.id]" :inputOnly="true"/>
           </div>
           <div
             v-else

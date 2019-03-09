@@ -3,7 +3,7 @@
     :is="component"
     :docfield="docfield"
     :value="value"
-    :onlyInput="onlyInput"
+    :inputOnly="inputOnly"
     :disabled="isDisabled"
     :autofocus="autofocus"
     :inputClass="inputClass"
@@ -31,7 +31,7 @@ import TextEditor from './TextEditor'
 // import Time from './Time';
 
 export default {
-  props: ['docfield', 'value', 'onlyInput', 'doc', 'autofocus', 'inputClass'],
+  props: ['docfield', 'value', 'inputOnly', 'doc', 'autofocus', 'inputClass'],
   computed: {
     component() {
       const fieldtype = this.docfield.fieldtype.replace(/ /g, '')

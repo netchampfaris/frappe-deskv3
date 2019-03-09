@@ -1,5 +1,5 @@
 <template>
-  <ControlLayout :docfield="docfield" :onlyInput="onlyInput">
+  <ControlLayout :docfield="docfield" :inputOnly="inputOnly">
     <textarea
       class="form-control h-48"
       :value="value"
@@ -12,7 +12,7 @@ import ControlLayout from './ControlLayout'
 
 export default {
   name: 'ControlText',
-  props: ['docfield', 'value', 'onlyInput', 'disabled'],
+  props: ['docfield', 'value', 'inputOnly', 'disabled'],
   components: {
     ControlLayout,
   },

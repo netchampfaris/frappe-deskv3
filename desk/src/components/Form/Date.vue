@@ -1,5 +1,5 @@
 <template>
-  <ControlLayout :docfield="docfield" :onlyInput="onlyInput">
+  <ControlLayout :docfield="docfield" :inputOnly="inputOnly">
     <DatePicker
       class="text-lg"
       mode="single"
@@ -22,7 +22,7 @@ setupCalendar({
 
 export default {
   name: 'ControlDate',
-  props: ['docfield', 'value', 'onlyInput', 'disabled'],
+  props: ['docfield', 'value', 'inputOnly', 'disabled'],
   computed: {
     dateInputProps() {
       return { class: 'form-control', placeholder: '' }

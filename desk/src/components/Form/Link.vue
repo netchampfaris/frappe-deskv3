@@ -1,5 +1,5 @@
 <template>
-  <ControlLayout :docfield="docfield" :onlyInput="onlyInput">
+  <ControlLayout :docfield="docfield" :inputOnly="inputOnly">
     <input
       class="form-control"
       type="text"
@@ -13,7 +13,7 @@ import ControlLayout from './ControlLayout'
 
 export default {
   name: 'ControlLink',
-  props: ['docfield', 'value', 'onlyInput', 'disabled'],
+  props: ['docfield', 'value', 'inputOnly', 'disabled'],
   components: {
     ControlLayout,
   },

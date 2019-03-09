@@ -1,5 +1,5 @@
 <template>
-  <ControlLayout :docfield="docfield" :onlyInput="onlyInput">
+  <ControlLayout :docfield="docfield" :inputOnly="inputOnly">
     <div class="rounded border">
       <!-- header row -->
       <div class="flex text-muted border-b bg-grey-lightest">

@@ -1,5 +1,5 @@
 <template>
-  <ControlLayout :docfield="docfield" :onlyInput="onlyInput">
+  <ControlLayout :docfield="docfield" :inputOnly="inputOnly">
     <EditorMenuBar :editor="editor">
       <div class="flex items-center" slot-scope="{ commands, isActive }">
         <Button
@@ -137,7 +137,7 @@ import {
 
 export default {
   name: 'ControlTextEditor',
-  props: ['docfield', 'value', 'onlyInput', 'disabled'],
+  props: ['docfield', 'value', 'inputOnly', 'disabled'],
   components: {
     ControlLayout,
     EditorContent,
