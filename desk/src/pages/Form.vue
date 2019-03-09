@@ -51,7 +51,7 @@
 import FormSidebar from './FormSidebar'
 import FormMain from './FormMain'
 import FormTimeline from './FormTimeline'
-import { getHandlers } from '../store/form_controller'
+import { getHandlers } from '../store/modules/form'
 import form from '../store/modules/form'
 import Vue from 'vue'
 
