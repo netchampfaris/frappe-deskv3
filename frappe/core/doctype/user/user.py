@@ -527,6 +527,22 @@ class User(Document):
 
 		return ip_list
 
+	def get_home_page(self):
+		if self.user_type == "Website User":
+			home_page_method = frappe.get_hooks('get_website_user_home_page')
+			if home_page_method:
+				home_page = frappe.get_attr(home_page_method[-1])(self.name)
+				return '/' + home_page.strip('/')
+			elif frappe.get_hooks('website_user_home_page'):
+				return '/' + frappe.get_hooks('website_user_home_page')[-1].strip('/')
+			else:
+				return '/me'
+		else:
+			if self.desk_beta:
+				return '/desk-beta'
+			else:
+				return '/desk'
+
 @frappe.whitelist()
 def get_timezones():
 	import pytz
