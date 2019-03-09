@@ -1,9 +1,5 @@
 import Vue from 'vue'
 
-// external components
-import Octicon from 'vue-octicon/components/Octicon.vue'
-import 'vue-octicon/icons'
-
 // app components
 import Button from '../components/Button'
 import UserAvatar from '../components/UserAvatar'
@@ -17,7 +13,6 @@ import LoadingSpinner from '../components/LoadingSpinner'
 import ThePageHeader from '../components/ThePageHeader'
 import Modal from '../components/Modal'
 
-Vue.component('octicon', Octicon)
 Vue.component('Button', Button)
 Vue.component('UserAvatar', UserAvatar)
 Vue.component('FormLayout', FormLayout)
