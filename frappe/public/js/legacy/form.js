@@ -213,7 +213,9 @@ _f.Frm.prototype.watch_model_updates = function() {
 	});
 
 	// on table fields
-	var table_fields = frappe.get_children("DocType", me.doctype, "fields", {fieldtype:"Table"});
+	var table_fields = frappe.get_children("DocType", me.doctype, "fields", {
+		fieldtype: ["in", frappe.model.table_fields]
+	});
 
 	// using $.each to preserve df via closure
 	$.each(table_fields, function(i, df) {
@@ -340,11 +342,12 @@ _f.Frm.prototype.refresh_header = function(is_a_different_doc) {
 	this.document_flow.refresh();
 	this.dashboard.refresh();
 
-	if(this.meta.is_submittable &&
-		this.perm[0] && this.perm[0].submit &&
-		!this.is_dirty() &&
-		!this.is_new() &&
-		this.doc.docstatus===0) {
+	if(this.meta.is_submittable
+		&& this.perm[0] && this.perm[0].submit
+		&& !this.is_dirty()
+		&& !this.is_new()
+		&& !frappe.model.has_workflow(this.doctype) // show only if no workflow
+		&& this.doc.docstatus===0) {
 		this.dashboard.add_comment(__('Submit this document to confirm'), 'orange', true);
 	}
 
@@ -500,13 +503,13 @@ _f.Frm.prototype.render_form = function(is_a_different_doc) {
 			// header must be refreshed before client methods
 			// because add_custom_button
 			() => this.refresh_header(is_a_different_doc),
-			// call trigger
-			() => this.script_manager.trigger("refresh"),
 			// trigger global trigger
 			// to use this
 			() => $(document).trigger('form-refresh', [this]),
 			// fields
 			() => this.refresh_fields(),
+			// call trigger
+			() => this.script_manager.trigger("refresh"),
 			// call onload post render for callbacks to be fired
 			() => {
 				if(this.cscript.is_onload) {

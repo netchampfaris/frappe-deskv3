@@ -36,8 +36,8 @@ def after_install():
 	# update admin password
 	update_password("Administrator", get_admin_password())
 
-	# setup wizard now in frappe
-	frappe.db.set_default('desktop:home_page', 'setup-wizard')
+	if not frappe.conf.skip_setup_wizard:
+		frappe.db.set_default('desktop:home_page', 'setup-wizard')
 
 	# clear test log
 	with open(frappe.get_site_path('.test_log'), 'w') as f:
@@ -104,20 +104,23 @@ def before_tests():
 	frappe.clear_cache()
 
 	# complete setup if missing
-	from frappe.desk.page.setup_wizard.setup_wizard import setup_complete
 	if not int(frappe.db.get_single_value('System Settings', 'setup_complete') or 0):
-		setup_complete({
-			"language"			:"English",
-			"email"				:"test@erpnext.com",
-			"full_name"			:"Test User",
-			"password"			:"test",
-			"country"			:"United States",
-			"timezone"			:"America/New_York",
-			"currency"			:"USD"
-		})
+		complete_setup_wizard()
 
 	frappe.db.commit()
 	frappe.clear_cache()
+
+def complete_setup_wizard():
+	from frappe.desk.page.setup_wizard.setup_wizard import setup_complete
+	setup_complete({
+		"language"			:"English",
+		"email"				:"test@erpnext.com",
+		"full_name"			:"Test User",
+		"password"			:"test",
+		"country"			:"United States",
+		"timezone"			:"America/New_York",
+		"currency"			:"USD"
+	})
 
 def import_country_and_currency():
 	from frappe.geo.country_info import get_all

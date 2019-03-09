@@ -6,7 +6,7 @@ from __future__ import unicode_literals
 # IMPORTANT: only import safe functions as this module will be included in jinja environment
 import frappe
 import operator
-import re, urllib, datetime, math, time
+import re, datetime, math, time
 import babel.dates
 from babel.core import UnknownLocaleError
 from dateutil import parser
@@ -253,6 +253,9 @@ def format_datetime(datetime_string, format_string=None):
 		formatted_datetime = datetime.strftime('%Y-%m-%d %H:%M:%S')
 	return formatted_datetime
 
+def get_weekdays():
+	return ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
+
 def global_date_format(date, format="long"):
 	"""returns localized date in the form of January 1, 2012"""
 	date = getdate(date)
@@ -323,7 +326,6 @@ def ceil(s):
 
 def cstr(s, encoding='utf-8'):
 	return frappe.as_unicode(s, encoding)
-
 def rounded(num, precision=0):
 	"""round method for round halfs to nearest even algorithm aka banker's rounding - compatible with python3"""
 	precision = cint(precision)
@@ -568,12 +570,9 @@ def in_words(integer, in_million=True):
 	return ret.replace('-', ' ')
 
 def is_html(text):
-	out = False
-	for key in ["<br>", "<p", "<img", "<div"]:
-		if key in text:
-			out = True
-			break
-	return out
+	if not isinstance(text, frappe.string_types):
+		return False
+	return re.search('<[^>]+>', text)
 
 def is_image(filepath):
 	from mimetypes import guess_type
@@ -729,7 +728,7 @@ def get_url(uri=None, full_address=False):
 
 	port = frappe.conf.http_port or frappe.conf.webserver_port
 
-	if frappe.conf.developer_mode and host_name and not url_contains_port(host_name) and port:
+	if not (frappe.conf.restart_supervisor_on_update or frappe.conf.restart_systemd_on_update) and host_name and not url_contains_port(host_name) and port:
 		host_name = host_name + ':' + str(port)
 
 	url = urljoin(host_name, uri) if uri else host_name
@@ -748,6 +747,27 @@ def get_link_to_form(doctype, name, label=None):
 
 	return """<a href="{0}">{1}</a>""".format(get_url_to_form(doctype, name), label)
 
+def get_link_to_report(name, label=None, report_type=None, doctype=None, filters=None):
+	if not label: label = name
+
+	if filters:
+		conditions = []
+		for k,v in iteritems(filters):
+			if isinstance(v, list):
+				for value in v:
+					conditions.append(str(k)+'='+'["'+str(value[0]+'"'+','+'"'+str(value[1])+'"]'))
+			else:
+				conditions.append(str(k)+"="+str(v))
+
+		filters = "&".join(conditions)
+
+		return """<a href='{0}'>{1}</a>""".format(get_url_to_report_with_filters(name, filters, report_type, doctype), label)
+	else:
+		return """<a href='{0}'>{1}</a>""".format(get_url_to_report(name, report_type, doctype), label)
+
+def get_absolute_url(doctype, name):
+	return "desk#Form/{0}/{1}".format(quoted(doctype), quoted(name))
+
 def get_url_to_form(doctype, name):
 	return get_url(uri = "desk#Form/{0}/{1}".format(quoted(doctype), quoted(name)))
 
@@ -759,6 +779,12 @@ def get_url_to_report(name, report_type = None, doctype = None):
 		return get_url(uri = "desk#Report/{0}/{1}".format(quoted(doctype), quoted(name)))
 	else:
 		return get_url(uri = "desk#query-report/{0}".format(quoted(name)))
+
+def get_url_to_report_with_filters(name, filters, report_type = None, doctype = None):
+	if report_type == "Report Builder":
+		return get_url(uri = "desk#Report/{0}?{1}".format(quoted(doctype), filters))
+	else:
+		return get_url(uri = "desk#query-report/{0}?{1}".format(quoted(name), filters))
 
 operator_map = {
 	# startswith
@@ -824,7 +850,8 @@ def get_filter(doctype, f):
 
 	if len(f) == 3:
 		f = (doctype, f[0], f[1], f[2])
-
+	elif len(f) > 4:
+		f = f[0:4]
 	elif len(f) != 4:
 		frappe.throw(frappe._("Filter must have 4 values (doctype, fieldname, operator, value): {0}").format(str(f)))
 
@@ -836,8 +863,8 @@ def get_filter(doctype, f):
 		# if operator is missing
 		f.operator = "="
 
-	valid_operators = ("=", "!=", ">", "<", ">=", "<=", "like", "not like", "in", "not in",
-		"between", "descendants of", "ancestors of", "not descendants of", "not ancestors of")
+	valid_operators = ("=", "!=", ">", "<", ">=", "<=", "like", "not like", "in", "not in", "is",
+		"between", "descendants of", "ancestors of", "not descendants of", "not ancestors of", "previous", "next")
 	if f.operator.lower() not in valid_operators:
 		frappe.throw(frappe._("Operator must be one of {0}").format(", ".join(valid_operators)))
 
@@ -951,7 +978,7 @@ def strip(val, chars=None):
 def to_markdown(html):
 	text = None
 	try:
-		text = html2text(html)
+		text = html2text(html or '')
 	except HTMLParser.HTMLParseError:
 		pass
 
@@ -971,7 +998,7 @@ def md_to_html(markdown_text):
 
 	html = None
 	try:
-		html = markdown(markdown_text, extras=extras)
+		html = markdown(markdown_text or '', extras=extras)
 	except MarkdownError:
 		pass
 

@@ -22,8 +22,9 @@ import frappe.website.render
 from frappe.utils import get_site_name
 from frappe.middlewares import StaticDataMiddleware
 from frappe.utils.error import make_error_snapshot
-from frappe.core.doctype.communication.comment import update_comments_in_parent_after_request
+from frappe.core.doctype.comment.comment import update_comments_in_parent_after_request
 from frappe import _
+import frappe.recorder
 
 local_manager = LocalManager([frappe.local])
 
@@ -41,7 +42,6 @@ class RequestContext(object):
 	def __exit__(self, type, value, traceback):
 		frappe.destroy()
 
-
 @Request.application
 def application(request):
 	response = None
@@ -50,6 +50,8 @@ def application(request):
 		rollback = True
 
 		init_request(request)
+
+		frappe.recorder.record()
 
 		if frappe.local.form_dict.cmd:
 			response = frappe.handler.handle()
@@ -91,6 +93,8 @@ def application(request):
 		if response and hasattr(frappe.local, 'cookie_manager'):
 			frappe.local.cookie_manager.flush_cookies(response=response)
 
+		frappe.recorder.dump()
+
 		frappe.destroy()
 
 	return response
@@ -116,8 +120,9 @@ def init_request(request):
 def make_form_dict(request):
 	import json
 
-	if 'application/json' in (request.content_type or '') and request.data:
-		args = json.loads(request.data)
+	request_data = request.get_data(as_text=True)
+	if 'application/json' in (request.content_type or '') and request_data:
+		args = json.loads(request_data)
 		frappe.local.form_dict = frappe._dict(args)
 	else:
 		args = request.form or request.args

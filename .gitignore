@@ -187,3 +187,6 @@ typings/
 .next
 
 frappe/www/deskv3
+# cypress
+cypress/screenshots
+cypress/videos

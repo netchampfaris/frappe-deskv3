@@ -116,7 +116,7 @@ kbd {
 	min-width: 200px;
 	padding: 0px;
 	font-size: @text-medium;
-	max-height: 400px;
+	max-height: 500px;
 	overflow: auto;
 	// only rounded bottoms
 	border-radius: 0px 0px 4px 4px;
@@ -138,6 +138,14 @@ a.badge-hover& {
 	&:focus .badge,
 	&:active .badge {
 		background-color: #d8dfe5;
+	}
+}
+
+.msgprint-dialog {
+	max-width: 400px;
+
+	.modal-content {
+		min-height: 140px;
 	}
 }
 
@@ -307,4 +315,8 @@ a.no-decoration& {
 
 .text-small {
 	font-size: @text-small;
+}
+
+.disable-click {
+	pointer-events: none;
 }

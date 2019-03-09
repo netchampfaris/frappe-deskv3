@@ -50,6 +50,10 @@ frappe.ui.form.ControlLink = frappe.ui.form.ControlData.extend({
 	get_options: function() {
 		return this.df.options;
 	},
+	get_reference_doctype() {
+		// this is used to get the context in which link field is loaded
+		return this.doctype || frappe.get_route()[0] === 'List' ? frappe.get_route()[1] : null;
+	},
 	setup_buttons: function() {
 		if(this.only_input && !this.with_link_btn) {
 			this.$input_area.find(".link-btn").remove();
@@ -143,17 +147,17 @@ frappe.ui.form.ControlLink = frappe.ui.form.ControlData.extend({
 				// immediately show from cache
 				me.awesomplete.list = me.$input.cache[doctype][term];
 			}
-
 			var args = {
 				'txt': term,
 				'doctype': doctype,
-				'ignore_user_permissions': me.df.ignore_user_permissions
+				'ignore_user_permissions': me.df.ignore_user_permissions,
+				'reference_doctype': me.get_reference_doctype()
 			};
 
 			me.set_custom_query(args);
 
 			frappe.call({
-				type: "GET",
+				type: "POST",
 				method:'frappe.desk.search.search_link',
 				no_spinner: true,
 				args: args,

@@ -44,19 +44,26 @@ frappe.route = function() {
 
 	frappe.route_history.push(route);
 
-	if(route[0] && route[1] && frappe.views[route[0] + "Factory"]) {
-		// has a view generator, generate!
-		if(!frappe.view_factory[route[0]]) {
-			frappe.view_factory[route[0]] = new frappe.views[route[0] + "Factory"]();
-		}
+	if(route[0]) {
+		const title_cased_route = frappe.utils.to_title_case(route[0]);
 
-		frappe.view_factory[route[0]].show();
-	} else {
-		// show page
-		const route_name = frappe.utils.xss_sanitise(route[0]);
-		if (frappe.views.pageview) {
-			frappe.views.pageview.show(route_name);
+		if(route[1] && frappe.views[title_cased_route + "Factory"]) {
+			// has a view generator, generate!
+			if(!frappe.view_factory[title_cased_route]) {
+				frappe.view_factory[title_cased_route] = new frappe.views[title_cased_route + "Factory"]();
+			}
+
+			frappe.view_factory[title_cased_route].show();
+		} else {
+			// show page
+			const route_name = frappe.utils.xss_sanitise(route[0]);
+			if (frappe.views.pageview) {
+				frappe.views.pageview.show(route_name);
+			}
 		}
+	} else {
+		// Show desk
+		frappe.views.pageview.show('');
 	}
 
 
@@ -77,8 +84,15 @@ frappe.get_route = function(route) {
 	// for app
 	route = frappe.get_raw_route_str(route).split('/');
 	route = $.map(route, frappe._decode_str);
-	var parts = route[route.length - 1].split("?");
-	route[route.length - 1] = parts[0];
+	var parts = null;
+	var doc_name = route[route.length - 1];
+	// if the last part contains ? then check if it is valid query string
+	if(doc_name.indexOf("?") < doc_name.indexOf("=")){
+		parts = doc_name.split("?");
+		route[route.length - 1] = parts[0];
+	} else {
+		parts = doc_name;
+	}
 	if (parts.length > 1) {
 		var query_params = frappe.utils.get_query_params(parts[1]);
 		frappe.route_options = $.extend(frappe.route_options || {}, query_params);

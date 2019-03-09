@@ -116,6 +116,7 @@ frappe.ui.form.QuickEntryForm = Class.extend({
 
 		this.dialog.onhide = () => frappe.quick_entry = null;
 		this.dialog.show();
+
 		this.dialog.refresh_dependency();
 		this.set_defaults();
 
