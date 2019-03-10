@@ -4,12 +4,14 @@
     tabindex="0"
   >
     <div class="flex items-center">
-      <FeatherIcon class="w-12 text-muted" :name="item.feather" :size="24" />
+      <FeatherIcon class="w-12 text-muted" :name="item.feather" :size="24"/>
       <h3 class="text-dark font-normal">{{ item.label }}</h3>
     </div>
     <Dropdown v-if="item.links" :items="item.links" class="text-sm">
-      <button class="flex focus:outline-none focus:border-blue">
-        <FeatherIcon name="chevron-down" class="self-center" />
+      <button
+        class="flex hover:bg-grey-lighter p-1 rounded-full focus:outline-none focus:border-blue"
+      >
+        <FeatherIcon name="chevron-down" class="self-center"/>
       </button>
     </Dropdown>
   </div>

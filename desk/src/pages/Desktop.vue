@@ -1,11 +1,12 @@
 <template>
-  <div class="container h-screen">
-    <DesktopSection
-      v-for="module in Object.keys(frappe.desktopModules)"
-      :key="module"
-      :moduleName="module"
-      :moduleData="frappe.desktopModules[module]"
-    />
+  <div class="container">
+    <div v-for="module in modulesCategories" :key="module">
+      <DesktopSection
+        v-if="frappe.desktopModules[module]"
+        :moduleName="module"
+        :moduleData="frappe.desktopModules[module]"
+      />
+    </div>
   </div>
 </template>
 <script>
@@ -18,12 +19,7 @@ export default {
   },
   data() {
     return {
-      modules: [
-        { label: 'Getting Started', icon: 'play' },
-        { label: 'Accounting', icon: 'book' },
-        { label: 'Buying', icon: 'package' },
-        { label: 'Selling', icon: 'shopping-cart' },
-      ],
+      modulesCategories: ['Modules', 'Domains', 'Places', 'Administration'],
     }
   },
   async created() {

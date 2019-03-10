@@ -1,13 +1,13 @@
 <template>
-  <div id="app" class="font-sans text-black">
+  <div id="app" class="h-screen font-sans text-black">
     <template v-if="loggedIn">
       <header class="sticky pin-t z-50">
-        <TheNavbar/>
+        <TheNavbar />
       </header>
       <router-view></router-view>
       <portal-target name="modals"></portal-target>
     </template>
-    <Login v-if="showLogin"/>
+    <Login v-if="showLogin" />
   </div>
 </template>
 
