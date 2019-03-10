@@ -21,61 +21,40 @@ export default {
     }
   },
   render() {
-    console.log(this.inputOnly, this.docfield.fieldname)
-    return ( <
-      ControlLayout docfield = {
-        this.docfield
-      }
-      inputOnly = {
-        this.inputOnly
-      } > {
-        this.renderInput()
-      } <
-      /ControlLayout>
+    return (
+      <ControlLayout docfield={this.docfield} inputOnly={this.inputOnly}>
+        {' '}
+        {this.renderInput()}{' '}
+      </ControlLayout>
     )
   },
   renderError(h, err) {
-    return h('pre', {
-      style: {
-        color: 'red'
-      }
-    }, err.stack)
+    return h(
+      'pre',
+      {
+        style: {
+          color: 'red',
+        },
+      },
+      err.stack
+    )
   },
   methods: {
     renderInput() {
-      return ( <
-        Input type = {
-          this.type
-        }
-        class = {
-          [this.class, this.inputClass]
-        }
-        value = {
-          this.format(this.value)
-        }
-        disabled = {
-          this.disabled
-        }
-        autofocus = {
-          this.autofocus
-        }
-        placeholder = {
-          this.docfield.placeholder
-        }
-        onValueChange = {
-          this.handleChange
-        }
-        onFocus = {
-          this.handleFocus
-        }
-        onKeydown = {
-          this.handleKeydown
-        }
-        onInput = {
-          this.handleInput
-        }
-        ref = "input" /
-        >
+      return (
+        <Input
+          type={this.type}
+          class={[this.class, this.inputClass]}
+          value={this.format(this.value)}
+          disabled={this.disabled}
+          autofocus={this.autofocus}
+          placeholder={this.docfield.placeholder}
+          onValueChange={this.handleChange}
+          onFocus={this.handleFocus}
+          onKeydown={this.handleKeydown}
+          onInput={this.handleInput}
+          ref="input"
+        />
       )
     },
     handleChange(value) {
