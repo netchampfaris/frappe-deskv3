@@ -1,20 +1,19 @@
+import partition from 'lodash/groupBy'
+
 export default {
   data() {
     return {
-      desktopIcons: [],
+      desktopModules: [],
     }
   },
   methods: {
-    async fetchUserIcons() {
-      if (this.desktopIcons.length > 0) return
-      const user = this.session.user
+    async fetchDesktopModules() {
+      if (this.desktopModules.length > 0) return
       const data = await this.call(
-        'frappe.desk.doctype.desktop_icon.desktop_icon.get_module_icons',
-        { user }
+        'frappe.config.get_modules_from_all_apps_for_user'
       )
       if (data) {
-        const userIcons = data.icons.filter(icon => !icon.hidden)
-        this.desktopIcons = userIcons
+        this.desktopModules = partition(data, module => module.category)
       }
     },
   },

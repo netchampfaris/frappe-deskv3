@@ -1,27 +1,33 @@
 <template>
-  <div class="desktop pt-8 bg-indigo-dark">
-    <div class="container">
-      <div class="w-4/5 mx-auto flex flex-wrap" v-if="desktopIcons.length">
-        <Icon class="m-10" v-for="icon in desktopIcons" :icon="icon" :key="icon.label"/>
-      </div>
-    </div>
+  <div class="container h-screen">
+    <DesktopSection
+      v-for="module in Object.keys(frappe.desktopModules)"
+      :key="module"
+      :moduleName="module"
+      :moduleData="frappe.desktopModules[module]"
+    />
   </div>
 </template>
 <script>
-import Icon from './DesktopIcon'
+import DesktopSection from './DesktopSection'
 
 export default {
   name: 'Desktop',
   components: {
-    Icon,
+    DesktopSection,
+  },
+  data() {
+    return {
+      modules: [
+        { label: 'Getting Started', icon: 'play' },
+        { label: 'Accounting', icon: 'book' },
+        { label: 'Buying', icon: 'package' },
+        { label: 'Selling', icon: 'shopping-cart' },
+      ],
+    }
   },
   async created() {
-    this.frappe.fetchUserIcons()
-  },
-  computed: {
-    desktopIcons() {
-      return this.frappe.desktopIcons
-    },
+    this.frappe.fetchDesktopModules()
   },
 }
 </script>

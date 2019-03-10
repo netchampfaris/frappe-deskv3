@@ -12,6 +12,7 @@ def get_data():
 			"color": "#FFF5A7",
 			"reverse": 1,
 			"icon": "octicon octicon-calendar",
+			"feather": "calendar",
 			"type": "module",
 			"description": "Todos, notes, calendar and newsletter."
 		},
@@ -22,6 +23,7 @@ def get_data():
 			"color": "#bdc3c7",
 			"reverse": 1,
 			"icon": "octicon octicon-settings",
+			"feather": "settings",
 			"type": "module",
 			"description": "Data import, printing, email and workflows."
 		},
@@ -32,6 +34,7 @@ def get_data():
 			"color": "#bdc3c7",
 			"reverse": 1,
 			"icon": "octicon octicon-settings",
+			"feather": "lock",
 			"type": "module",
 			"description": "Setup roles and permissions for users on documents."
 		},
@@ -42,6 +45,7 @@ def get_data():
 			"color": "#bdc3c7",
 			"reverse": 1,
 			"icon": "octicon octicon-settings",
+			"feather": "sliders",
 			"type": "module",
 			"description": "Customize forms, custom fields, scripts and translations."
 		},
@@ -51,6 +55,7 @@ def get_data():
 			"label": _("Integrations"),
 			"color": "#16a085",
 			"icon": "octicon octicon-globe",
+			"feather": "layers",
 			"type": "module",
 			"description": "DropBox, Woocomerce, AWS, Shopify and GoCardless."
 		},
@@ -60,6 +65,7 @@ def get_data():
 			"label": _("Contacts"),
 			"type": 'module',
 			"icon": "octicon octicon-book",
+			"feather": "book",
 			"color": '#ffaedb',
 			"description": "People Contacts and Address Book."
 		},
@@ -70,6 +76,7 @@ def get_data():
 			"label": "Developer",
 			"color": "#589494",
 			"icon": "octicon octicon-circuit-board",
+			"feather": "box",
 			"type": "module",
 			"system_manager": 1,
 			"condition": getattr(frappe.local.conf, 'developer_mode', 0),
@@ -84,6 +91,7 @@ def get_data():
 			"_label": _("Website"),
 			"color": "#16a085",
 			"icon": "octicon octicon-globe",
+			"feather": "globe",
 			"type": "module",
 			"description": "Webpages, webforms, blogs and website theme."
 		},
@@ -92,6 +100,7 @@ def get_data():
 			"category": "Places",
 			"label": _('Social'),
 			"icon": "octicon octicon-heart",
+			"feather": "users",
 			"type": 'link',
 			"link": '#social/home',
 			"color": '#FF4136',
