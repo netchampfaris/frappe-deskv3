@@ -9,6 +9,7 @@ import list from './modules/list'
 import format from './modules/format'
 import awesomebar from './modules/awesomebar'
 import route from './modules/route'
+import notification from './modules/notification'
 import { setupFormChangeHandler } from './modules/form'
 
 const frappe = new Vue({
@@ -22,6 +23,7 @@ const frappe = new Vue({
     list,
     format,
     route,
+    notification,
   ],
   data() {
     return {}
