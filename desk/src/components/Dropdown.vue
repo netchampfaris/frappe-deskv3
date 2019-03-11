@@ -1,5 +1,5 @@
 <template>
-  <Popover align="right">
+  <Popover :align="align">
     <slot></slot>
     <ul
       slot="popover-content"
@@ -17,7 +17,20 @@
 <script>
 export default {
   name: 'Dropdown',
-  props: ['items', 'label'],
+  props: {
+    items: {
+      type: Array,
+      default: () => [],
+    },
+    label: {
+      type: String,
+      default: 'Dropdown',
+    },
+    align: {
+      type: String,
+      default: 'right',
+    },
+  },
   data() {
     return {
       isOpen: false,
@@ -32,8 +45,16 @@ export default {
             action: console.log,
           }
         }
+        if (!item.action && item.route) {
+          item.action = this.setRoute.bind(this, item.route)
+        }
         return item
       })
+    },
+  },
+  methods: {
+    setRoute(route) {
+      this.$router.push(route)
     },
   },
 }
