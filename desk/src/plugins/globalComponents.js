@@ -7,6 +7,7 @@ import FormLayout from '../components/Form/FormLayout'
 import Control from '../components/Form/Control'
 import FeatherIcon from '../components/FeatherIcon'
 import Indicator from '../components/Indicator'
+import StatusIndicator from '../components/StatusIndicator'
 import Dropdown from '../components/Dropdown'
 import Popover from '../components/Popover'
 import LoadingSpinner from '../components/LoadingSpinner'
@@ -19,6 +20,7 @@ Vue.component('FormLayout', FormLayout)
 Vue.component('Control', Control)
 Vue.component('FeatherIcon', FeatherIcon)
 Vue.component('Indicator', Indicator)
+Vue.component('StatusIndicator', StatusIndicator)
 Vue.component('Dropdown', Dropdown)
 Vue.component('Popover', Popover)
 Vue.component('LoadingSpinner', LoadingSpinner)
