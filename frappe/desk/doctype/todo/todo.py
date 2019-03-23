@@ -13,6 +13,14 @@ sender_field = "sender"
 exclude_from_linked_with = True
 
 class ToDo(Document):
+	def form_validate(self):
+		if self.priority == 'Low':
+			self.color = 'yellow'
+		elif self.priority == 'Medium':
+			self.color = 'orange'
+		elif self.priority == 'High':
+			self.color = 'red'
+
 	def validate(self):
 		self._assignment = None
 		if self.is_new():

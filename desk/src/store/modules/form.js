@@ -21,7 +21,10 @@ function addHandler(doctype, fieldname, handler) {
 }
 
 function getHandlers(doctype, fieldname) {
-  return handlers[doctype][fieldname]
+  if (handlers[doctype]) {
+    return handlers[doctype][fieldname]
+  }
+  return []
 }
 
 function setupFormChangeHandler(frappe) {

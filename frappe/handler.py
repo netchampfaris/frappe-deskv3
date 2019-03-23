@@ -82,6 +82,16 @@ def version():
 def runserverobj(method, docs=None, dt=None, dn=None, arg=None, args=None):
 	frappe.desk.form.run_method.runserverobj(method, docs=docs, dt=dt, dn=dn, arg=arg, args=args)
 
+@frappe.whitelist()
+def run_controller_method(method, doc, args=None):
+	doc = frappe.parse_json(doc)
+	args = frappe.parse_json(args) or {}
+
+	_doc = frappe.get_doc(doc.doctype, doc.name)
+	_doc.update(doc)
+	_doc.run_method(method, **args)
+	return _doc
+
 @frappe.whitelist(allow_guest=True)
 def logout():
 	frappe.local.login_manager.logout()
