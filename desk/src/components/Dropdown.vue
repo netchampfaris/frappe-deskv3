@@ -10,7 +10,9 @@
         v-for="item of dropdownItems"
         :key="item.label"
         @click="item.action"
-      >{{ item.label }}</li>
+      >
+        {{ item.label }}
+      </li>
     </ul>
   </Popover>
 </template>
@@ -47,6 +49,9 @@ export default {
         }
         if (!item.action && item.route) {
           item.action = this.setRoute.bind(this, item.route)
+        }
+        if (!item.action) {
+          item.action = () => {}
         }
         return item
       })
