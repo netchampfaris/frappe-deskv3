@@ -10,10 +10,13 @@
           v-for="option in selectOptions"
           :value="option.value"
           :selected="value === option.value"
-        >{{ option.label }}</option>
+          >{{ option.label }}</option
+        >
       </select>
-      <div class="pointer-events-none absolute pin-y pin-r flex items-center px-4 text-muted">
-        <octicon name="chevron-down"/>
+      <div
+        class="pointer-events-none absolute pin-y pin-r flex items-center px-4 text-muted"
+      >
+        <FeatherIcon name="chevron-down" />
       </div>
     </div>
   </ControlLayout>
