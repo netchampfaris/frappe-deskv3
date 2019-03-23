@@ -10,7 +10,7 @@
       <FeatherIcon class="w-12 text-muted" :name="item.feather" :size="24" />
       <h3 class="text-dark text-xl font-medium">{{ item.label }}</h3>
     </a>
-    <Dropdown v-if="item.links" :items="item.links" class="text-sm">
+    <Dropdown v-if="item.links" :items="moduleLinks" class="text-sm">
       <button
         class="flex hover:bg-grey-lighter focus:bg-grey-lighter p-1 rounded-full focus:outline-none focus:border-blue"
       >
@@ -28,6 +28,19 @@ export default {
       return this.item.type === 'module'
         ? '#modules/' + this.item.label
         : this.item.link
+    },
+    moduleLinks() {
+      return this.item.links.map(i => {
+        let route = ''
+
+        if (i.type === 'doctype') {
+          route = `/List/${i.name}`
+        }
+        return {
+          label: i.label,
+          route,
+        }
+      })
     },
   },
 }

@@ -15,7 +15,7 @@
 <script>
 import DesktopSectionCard from './DesktopSectionCard'
 export default {
-  name: 'Desktop Section',
+  name: 'DesktopSection',
   props: ['moduleName', 'moduleData'],
   components: {
     DesktopSectionCard,
