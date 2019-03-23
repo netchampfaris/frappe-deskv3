@@ -1,11 +1,13 @@
 <template>
-    <nav class="nav flex-column f1">
-        <div class="my-4" v-for="item in items" :key="item.label">
-            <router-link :to="item.route" class="text-grey-darker hover:text-grey-darkest no-underline ">
-                {{ item.label }}
-            </router-link>
-        </div>
-    </nav>
+  <nav class="nav flex-column f1 py-4">
+    <div class="my-4" v-for="item in items" :key="item.label">
+      <router-link
+        :to="item.route"
+        class="text-grey-darker hover:text-grey-darkest no-underline"
+        >{{ item.label }}</router-link
+      >
+    </div>
+  </nav>
 </template>
 <script>
 export default {

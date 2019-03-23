@@ -1,14 +1,14 @@
 <template>
   <div class="list" v-if="meta">
-    <ThePageHeader v-bind="pageHeaderSettings"/>
+    <ThePageHeader v-bind="pageHeaderSettings" />
     <div class="container">
       <div class="flex">
         <div class="w-1/6 border-r">
-          <ListSidebar :doctype="doctype"/>
+          <ListSidebar :doctype="doctype" />
         </div>
         <div class="w-5/6 border-r">
-          <FilterArea :doctype="doctype"/>
-          <ListMain class="border-t" :doctype="doctype"/>
+          <FilterArea :doctype="doctype" />
+          <ListMain class="border-t" :doctype="doctype" />
         </div>
       </div>
     </div>

@@ -2,14 +2,16 @@
   <form>
     <section
       class="p-8"
-      :class="{'border-b': i !== layout().length - 1}"
+      :class="{ 'border-b': i !== layout().length - 1 }"
       v-for="(section, i) in layout()"
       :key="section.config.fieldname"
     >
       <div
         class="uppercase text-muted tracking-wide pl-2 mb-6"
         v-if="section.config.label"
-      >{{ section.config.label }}</div>
+      >
+        {{ section.config.label }}
+      </div>
       <div class="flex -mx-2">
         <div
           class="flex-1"
@@ -17,7 +19,7 @@
           :key="section.config.fieldname + i"
         >
           <Control
-            class="mb-4 px-4"
+            class="mb-6 px-4"
             v-for="field in column"
             :key="field.fieldname"
             :docfield="field"
