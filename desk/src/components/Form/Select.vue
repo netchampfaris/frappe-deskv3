@@ -32,7 +32,7 @@ export default {
   },
   computed: {
     selectOptions() {
-      let options = this.docfield.options
+      let options = this.docfield.options || ''
       if (typeof options === 'string') {
         options = options.split('\n').filter(Boolean)
       }
