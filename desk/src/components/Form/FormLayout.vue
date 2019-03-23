@@ -1,9 +1,8 @@
 <template>
   <form>
     <section
-      class="p-8"
-      :class="{ 'border-b': i !== layout().length - 1 }"
-      v-for="(section, i) in layout()"
+      class="p-8 border-b"
+      v-for="section in layout()"
       :key="section.config.fieldname"
     >
       <div
