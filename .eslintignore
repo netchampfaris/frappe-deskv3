@@ -7,3 +7,4 @@ frappe/public/js/frappe/class.js
 frappe/templates/includes/*
 frappe/tests/testcafe/*
 frappe/www/website_script.js
+frappe/public/js/*
