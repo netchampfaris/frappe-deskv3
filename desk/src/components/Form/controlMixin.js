@@ -23,8 +23,7 @@ export default {
   render() {
     return (
       <ControlLayout docfield={this.docfield} inputOnly={this.inputOnly}>
-        {' '}
-        {this.renderInput()}{' '}
+        {this.renderInput()}
       </ControlLayout>
     )
   },
