@@ -1,7 +1,7 @@
 <template>
   <div v-if="meta">
     <!-- <DataTable :columns="columns" :data="data"/> -->
-    <ListMainRowHead :doctype="doctype" :fieldsToShow="getFieldsToShow()"/>
+    <ListMainRowHead :doctype="doctype" :fieldsToShow="getFieldsToShow()" />
     <ListMainRow
       v-for="doc in listData"
       :key="doc.name"
@@ -27,7 +27,7 @@ export default {
   },
   computed: {
     listData() {
-      return this.frappe.getListData(this.doctype)
+      return this.fr.list.getData(this.doctype)
     },
     columns() {
       return this.meta.fields
@@ -41,12 +41,12 @@ export default {
         })
     },
     data() {
-      return this.frappe.getListData(this.doctype)
+      return this.fr.list.getData(this.doctype)
     },
   },
   created() {
-    this.frappe.setListSettings(this.doctype)
-    this.frappe.fetchListData(this.doctype)
+    this.fr.list.setSettings(this.doctype)
+    this.fr.list.fetchData(this.doctype)
   },
   methods: {
     routeToForm(name) {

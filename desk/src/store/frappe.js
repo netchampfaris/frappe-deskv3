@@ -31,8 +31,12 @@ const frappe = new Vue({
 })
 
 frappe.awesomebar = new Vue(awesomebar)
+frappe.list = list
 setupFormChangeHandler(frappe)
 
 Vue.prototype.frappe = frappe
+Vue.prototype.fr = frappe
 window.frappe = frappe
+window.fr = frappe
+
 export default frappe

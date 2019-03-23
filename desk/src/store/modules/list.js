@@ -1,4 +1,6 @@
-export default {
+import Vue from 'vue'
+
+export default new Vue({
   data() {
     return {
       listSettings: {
@@ -17,7 +19,7 @@ export default {
     }
   },
   methods: {
-    setListSettings(doctype) {
+    setSettings(doctype) {
       this.$set(this.listSettings, doctype, {
         filters: [],
         orderBy: 'modified desc',
@@ -28,10 +30,13 @@ export default {
         data: [],
       })
     },
-    setListData(doctype, data) {
+    getSettings(doctype) {
+      return this.listSettings[doctype]
+    },
+    setData(doctype, data) {
       this.listData[doctype].data = data
     },
-    getListData(doctype) {
+    getData(doctype) {
       return this.listData[doctype].data
     },
     applyListFilters(doctype, filters) {
@@ -45,13 +50,13 @@ export default {
         }
         return [field.fieldname, operator, value]
       })
-      this.fetchListData(doctype)
+      this.fetchData(doctype)
     },
-    async fetchListData(doctype) {
+    async fetchData(doctype) {
       const listSettings = this.listSettings[doctype]
-      const meta = this.getMeta(doctype)
+      const meta = this.fr.getMeta(doctype)
       const fields = getFieldsToFetch(meta)
-      const data = await this.call('frappe.desk.reportview.get', {
+      const data = await this.fr.call('frappe.desk.reportview.get', {
         doctype,
         fields,
         filters: listSettings.filters,
@@ -62,13 +67,13 @@ export default {
       })
 
       if (data.values && data.values.length > 0) {
-        this.setListData(doctype, convertToKeyValue(data.keys, data.values))
+        this.setData(doctype, convertToKeyValue(data.keys, data.values))
       } else {
-        this.setListData(doctype, [])
+        this.setData(doctype, [])
       }
     },
   },
-}
+})
 
 function getFieldsToFetch(meta) {
   let fields = ['name', '_comments', '_assign', '_seen']
