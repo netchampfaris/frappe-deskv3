@@ -3,6 +3,7 @@
     <template v-if="loggedIn">
       <header class="sticky pin-t z-50">
         <TheNavbar />
+        <portal-target name="page-header"></portal-target>
       </header>
       <router-view></router-view>
       <portal-target name="modals"></portal-target>
