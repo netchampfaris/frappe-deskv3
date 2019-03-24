@@ -25,14 +25,14 @@ export default {
   },
   computed: {
     loggedIn() {
-      return this.frappe.session.user
+      return this.fr.session.user
     },
     showLogin() {
-      return !this.frappe.session.user && !this.frappe.session.fetchingUserInfo
+      return !this.fr.session.user && !this.fr.session.fetchingUserInfo
     },
   },
   created() {
-    this.frappe.fetchUserInfo()
+    this.fr.session.fetchUserInfo()
 
     document.addEventListener('keydown', e => {
       let ctrlKey = e.ctrlKey || e.metaKey

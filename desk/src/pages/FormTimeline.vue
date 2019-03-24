@@ -39,7 +39,7 @@ export default {
       // })
       const doc = this.frappe.getDoc(this.doctype, this.name)
       const fullname =
-        this.frappe.session.user === doc.owner ? this.__('You') : doc.owner
+        this.fr.session.user === doc.owner ? this.__('You') : doc.owner
 
       const who = `<span class="font-bold text-dark">${fullname}</span>`
       const when = this.frappe.formatWhen(doc.creation)

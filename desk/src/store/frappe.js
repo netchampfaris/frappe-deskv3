@@ -14,7 +14,6 @@ import { setupFormChangeHandler } from './modules/form'
 
 const frappe = new Vue({
   mixins: [
-    session,
     translate,
     desktop,
     document,
@@ -33,6 +32,7 @@ const frappe = new Vue({
 frappe.awesomebar = awesomebar
 frappe.list = list
 frappe.request = request
+frappe.session = session
 
 // convenience method shortcuts
 frappe.call = frappe.request.call

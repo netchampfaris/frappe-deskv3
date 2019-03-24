@@ -1,11 +1,11 @@
-export default {
+import Vue from 'vue'
+
+export default new Vue({
   data() {
     return {
-      session: {
-        user: null,
-        userInfo: null,
-        fetchingUserInfo: false,
-      },
+      user: null,
+      userInfo: null,
+      fetchingUserInfo: false,
     }
   },
   methods: {
@@ -15,17 +15,17 @@ export default {
     },
     async logout() {
       await this.fr.call('logout')
-      this.session.user = null
-      this.session.userInfo = null
+      this.user = null
+      this.userInfo = null
     },
     async fetchUserInfo() {
       this.fetchingUserInfo = true
       const userInfo = await this.fr.call('frappe.utils.user.get_user_info')
       this.fetchingUserInfo = false
       if (userInfo) {
-        this.session.user = userInfo.name
-        this.session.userInfo = userInfo
+        this.user = userInfo.name
+        this.userInfo = userInfo
       }
     },
   },
-}
+})

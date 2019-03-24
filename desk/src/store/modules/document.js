@@ -92,7 +92,7 @@ export default {
         docstatus: 0,
         doctype: doctype,
         name: this.getNewName(doctype),
-        owner: this.frappe.session.user,
+        owner: this.fr.session.user,
         __islocal: 1,
         __unsaved: 1,
       }

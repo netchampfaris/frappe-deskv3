@@ -52,8 +52,8 @@ export default {
       this.isLoading = true
       this.indicatorColor = 'orange'
       this.loginText = this.__('Verifying...')
-      await this.frappe.login(this.email, this.password)
-      if (this.frappe.session.user) {
+      await this.fr.session.login(this.email, this.password)
+      if (this.fr.session.user) {
         this.indicatorColor = 'green'
         this.loginText = this.__('Success')
       } else {

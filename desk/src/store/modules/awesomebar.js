@@ -37,7 +37,7 @@ export default new Vue({
     getCreatables(keyword, oldKeyword) {
       if (oldKeyword.startsWith('new')) return []
 
-      const userInfo = this.frappe.session.userInfo
+      const userInfo = this.fr.session.userInfo
       return userInfo.can_create.map(doctype => {
         return {
           label: this.__('New {0}', doctype),
@@ -49,7 +49,7 @@ export default new Vue({
     },
 
     getRoutables() {
-      const userInfo = this.frappe.session.userInfo
+      const userInfo = this.fr.session.userInfo
       return userInfo.can_read.map(doctype => {
         return {
           label: this.__(doctype),
