@@ -15,7 +15,7 @@
     <Modal
       v-if="isEmailModalShown"
       @hide="isEmailModalShown = false"
-      :title="doctype + ': ' + frappe.getDocumentTitle(doctype, name)"
+      :title="doctype + ': ' + fr.model.getDocumentTitle(doctype, name)"
       primaryActionLabel="Send"
     >
       <template slot="body">
@@ -71,7 +71,7 @@ export default {
   },
   created() {
     if (!this.doc) {
-      this.frappe.fetchDoc(this.doctype, this.name)
+      this.fr.model.fetchDoc(this.doctype, this.name)
     }
     this.frappe.$on('document:setValue', (doctype, name, fieldname) => {
       const handlers = getHandlers(doctype, fieldname)
@@ -93,7 +93,7 @@ export default {
   },
   methods: {
     async saveDoc() {
-      const doc = await this.frappe.saveDoc(this.doctype, this.name)
+      const doc = await this.fr.model.saveDoc(this.doctype, this.name)
       if (doc.name !== this.name) {
         this.$router.replace(`/Form/${this.doctype}/${doc.name}`)
       }
@@ -104,13 +104,13 @@ export default {
   },
   computed: {
     doc() {
-      return this.frappe.getDoc(this.doctype, this.name)
+      return this.frappe.fr.model.getDoc(this.doctype, this.name)
     },
     pageHeaderSettings() {
-      const indicator = this.frappe.getIndicator(this.doctype, this.name)
+      const indicator = this.fr.model.getIndicator(this.doctype, this.name)
       return {
         showPageHeader: true,
-        title: this.frappe.getDocumentTitle(this.doctype, this.name),
+        title: this.fr.model.getDocumentTitle(this.doctype, this.name),
         indicatorColor: indicator.color,
         indicatorText: indicator.text,
         menuItems: this.menuItems,

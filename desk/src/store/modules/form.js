@@ -7,7 +7,7 @@ export default {
   },
   computed: {
     doc() {
-      return this.frappe.getDoc(this.doctype, this.name)
+      return this.fr.model.getDoc(this.doctype, this.name)
     },
   },
 }

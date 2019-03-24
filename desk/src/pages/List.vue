@@ -29,8 +29,8 @@ export default {
   },
   methods: {
     newForm() {
-      const doc = this.frappe.newDoc(this.doctype)
-      this.frappe.setDoc(this.doctype, doc.name, doc)
+      const doc = this.fr.model.newDoc(this.doctype)
+      this.fr.model.setDoc(this.doctype, doc.name, doc)
       this.fr.router.setRoute('Form', this.doctype, doc.name)
     },
   },

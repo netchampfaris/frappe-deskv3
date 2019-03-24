@@ -3,7 +3,7 @@ import request from './modules/request'
 import session from './modules/session'
 import translate from './modules/translate'
 import desktop from './modules/desktop'
-import document from './modules/document'
+import model from './modules/model'
 import meta from './modules/meta'
 import list from './modules/list'
 import format from './modules/format'
@@ -13,7 +13,7 @@ import notification from './modules/notification'
 import { setupFormChangeHandler } from './modules/form'
 
 const frappe = new Vue({
-  mixins: [document, meta],
+  mixins: [meta],
   data() {
     return {}
   },
@@ -24,6 +24,7 @@ frappe.awesomebar = awesomebar
 frappe.desktop = desktop
 frappe.format = format
 frappe.list = list
+frappe.model = model
 frappe.notification = notification
 frappe.request = request
 frappe.router = router

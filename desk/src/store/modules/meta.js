@@ -25,14 +25,14 @@ export default {
           doctype,
           with_parent: 1,
         })
-        this.syncDocs(data.docs)
-        this.syncDocinfo('DocType', doctype, data.docinfo)
+        this.fr.model.syncDocs(data.docs)
+        this.fr.model.syncDocinfo('DocType', doctype, data.docinfo)
         meta = this.getMeta(doctype)
       }
       return meta
     },
     getMeta(doctype) {
-      return this.getDoc('DocType', doctype)
+      return this.fr.model.getDoc('DocType', doctype)
     },
   },
 }

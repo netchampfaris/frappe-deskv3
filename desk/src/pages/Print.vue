@@ -15,18 +15,18 @@ export default {
   props: ['doctype', 'name'],
   created() {
     if (!this.doc) {
-      this.frappe.fetchDoc(this.doctype, this.name)
+      this.fr.model.fetchDoc(this.doctype, this.name)
     }
   },
   computed: {
     doc() {
-      return this.frappe.getDoc(this.doctype, this.name)
+      return this.frappe.fr.model.getDoc(this.doctype, this.name)
     },
     pageHeaderSettings() {
-      const indicator = this.frappe.getIndicator(this.doctype, this.name)
+      const indicator = this.fr.model.getIndicator(this.doctype, this.name)
       return {
         showPageHeader: true,
-        title: this.frappe.getDocumentTitle(this.doctype, this.name),
+        title: this.fr.model.getDocumentTitle(this.doctype, this.name),
         indicatorColor: indicator.color,
         indicatorText: indicator.text,
         menuItems: [],

@@ -14,7 +14,7 @@ export default {
   },
   methods: {
     setValue(field, value) {
-      this.frappe.setValue(
+      this.fr.model.setValue(
         this.doc.doctype,
         this.doc.name,
         field.fieldname,

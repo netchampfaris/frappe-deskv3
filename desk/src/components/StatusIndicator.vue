@@ -10,12 +10,12 @@ export default {
   props: ['doctype', 'name'],
   async created() {
     if (!this.doc) {
-      this.doc = await this.frappe.fetchDoc(this.doctype, this.name)
+      this.doc = await this.fr.model.fetchDoc(this.doctype, this.name)
     }
   },
   computed: {
     status() {
-      const doc = this.frappe.getDoc(this.doctype, this.name)
+      const doc = this.frappe.fr.model.getDoc(this.doctype, this.name)
       if (!doc) {
         return ''
       }
@@ -25,7 +25,7 @@ export default {
       return doc.status
     },
     color() {
-      const doc = this.frappe.getDoc(this.doctype, this.name)
+      const doc = this.frappe.fr.model.getDoc(this.doctype, this.name)
       if (!doc) {
         return 'grey'
       }

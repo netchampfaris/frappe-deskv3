@@ -41,7 +41,7 @@ export default {
       //     // label:
       //   }
       // })
-      const doc = this.frappe.getDoc(this.doctype, this.name)
+      const doc = this.frappe.fr.model.getDoc(this.doctype, this.name)
       const fullname =
         this.fr.session.user === doc.owner ? this.__('You') : doc.owner
 
