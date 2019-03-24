@@ -11,15 +11,19 @@
         class="px-5 py-4"
         :docfield="{
           fieldtype: 'Text',
-          description: __('Ctrl + Enter to add comment')
+          description: __('Ctrl + Enter to add comment'),
         }"
       />
     </div>
     <div class="relative pb-32">
       <div class="absolute border-l timeline-tick pin-l pin-t h-full"></div>
-      <div class="pl-12 py-6 flex items-center" v-for="item in timelineItems" :key="item.label">
+      <div
+        class="pl-12 py-6 flex items-center"
+        v-for="item in timelineItems"
+        :key="item.label"
+      >
         <div class="w-3 h-3 bg-grey-light rounded-circle mr-8"></div>
-        <FeatherIcon :name="item.icon" :size="14" class="mr-2 text-muted"/>
+        <FeatherIcon :name="item.icon" :size="14" class="mr-2 text-muted" />
         <div class="text-muted" v-html="item.label"></div>
       </div>
     </div>
@@ -42,7 +46,7 @@ export default {
         this.fr.session.user === doc.owner ? this.__('You') : doc.owner
 
       const who = `<span class="font-bold text-dark">${fullname}</span>`
-      const when = this.frappe.formatWhen(doc.creation)
+      const when = this.fr.format.when(doc.creation)
 
       return [
         {
