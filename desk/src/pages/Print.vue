@@ -1,6 +1,6 @@
 <template>
   <div class="print" v-if="doc && meta">
-    <ThePageHeader v-bind="pageHeaderSettings"/>
+    <ThePageHeader v-bind="pageHeaderSettings" />
     <div class="container">
       <div class="flex">
         <div class="w-1/6"></div>
@@ -31,7 +31,7 @@ export default {
         indicatorText: indicator.text,
         menuItems: [],
         primaryAction: () =>
-          this.frappe.setRoute('Form', this.doctype, this.name),
+          this.fr.router.setRoute('Form', this.doctype, this.name),
         primaryActionLabel: this.__('Edit'),
       }
     },

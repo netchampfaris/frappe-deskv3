@@ -8,12 +8,12 @@ import meta from './modules/meta'
 import list from './modules/list'
 import format from './modules/format'
 import awesomebar from './modules/awesomebar'
-import route from './modules/route'
+import router from './modules/router'
 import notification from './modules/notification'
 import { setupFormChangeHandler } from './modules/form'
 
 const frappe = new Vue({
-  mixins: [document, meta, route, notification],
+  mixins: [document, meta, notification],
   data() {
     return {}
   },
@@ -27,6 +27,7 @@ frappe.list = list
 frappe.request = request
 frappe.session = session
 frappe.translate = translate
+frappe.router = router
 
 // convenience method shortcuts
 frappe.call = frappe.request.call

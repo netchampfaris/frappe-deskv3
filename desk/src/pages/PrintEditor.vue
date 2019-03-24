@@ -1,6 +1,6 @@
 <template>
   <div class="print">
-    <ThePageHeader v-bind="pageHeaderSettings"/>
+    <ThePageHeader v-bind="pageHeaderSettings" />
     <div class="container">
       <div class="flex">
         <div class="w-1/6">
@@ -11,7 +11,7 @@
               :key="component.name"
             >
               <PrintEditorBlock>
-                <component :is="component"/>
+                <component :is="component" />
               </PrintEditorBlock>
             </div>
           </div>
@@ -58,7 +58,7 @@ export default {
         showPageHeader: true,
         title: this.__('Edit Format'),
         menuItems: [],
-        primaryAction: () => this.frappe.setRoute('List', this.doctype),
+        primaryAction: () => this.fr.router.setRoute('List', this.doctype),
         primaryActionLabel: this.__('Save'),
       }
     },

@@ -1,14 +1,14 @@
 <template>
   <div class="form" v-if="doc && meta">
-    <ThePageHeader v-bind="pageHeaderSettings"/>
+    <ThePageHeader v-bind="pageHeaderSettings" />
     <div class="container">
       <div class="flex">
         <div class="w-1/6">
-          <FormSidebar/>
+          <FormSidebar />
         </div>
         <div class="w-5/6">
-          <FormMain class="border-l border-r" :doc="doc"/>
-          <FormTimeline :doctype="doctype" :name="name"/>
+          <FormMain class="border-l border-r" :doc="doc" />
+          <FormTimeline :doctype="doctype" :name="name" />
         </div>
       </div>
     </div>
@@ -24,21 +24,21 @@
             {
               label: 'To',
               fieldtype: 'Data',
-              fieldname: 'email'
+              fieldname: 'email',
             },
             {
               fieldtype: 'Section Break',
-              fieldname: 'section-1'
+              fieldname: 'section-1',
             },
             {
               label: 'Subject',
               fieldtype: 'Data',
-              fieldname: 'subject'
+              fieldname: 'subject',
             },
             {
               label: 'Message',
               fieldtype: 'Text Editor',
-              fieldname: 'message'
+              fieldname: 'message',
             },
           ]"
           :doc="{}"
@@ -122,7 +122,8 @@ export default {
       return [
         {
           label: this.__('Print'),
-          action: () => this.frappe.setRoute('Print', this.doctype, this.name),
+          action: () =>
+            this.fr.router.setRoute('Print', this.doctype, this.name),
         },
         {
           label: this.__('Email'),

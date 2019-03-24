@@ -31,7 +31,7 @@ export default {
     newForm() {
       const doc = this.frappe.newDoc(this.doctype)
       this.frappe.setDoc(this.doctype, doc.name, doc)
-      this.frappe.setRoute('Form', this.doctype, doc.name)
+      this.fr.router.setRoute('Form', this.doctype, doc.name)
     },
   },
   computed: {

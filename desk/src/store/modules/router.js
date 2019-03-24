@@ -1,6 +1,7 @@
+import Vue from 'vue'
 import router from '../../router'
 
-export default {
+export default new Vue({
   data() {
     return {
       currentRoute: [],
@@ -21,4 +22,4 @@ export default {
       return this.currentRoute
     },
   },
-}
+})

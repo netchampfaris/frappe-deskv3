@@ -48,18 +48,13 @@ export default {
           }
         }
         if (!item.action && item.route) {
-          item.action = this.setRoute.bind(this, item.route)
+          item.action = () => this.fr.router.setRoute(item.route)
         }
         if (!item.action) {
           item.action = () => {}
         }
         return item
       })
-    },
-  },
-  methods: {
-    setRoute(route) {
-      this.$router.push(route)
     },
   },
 }

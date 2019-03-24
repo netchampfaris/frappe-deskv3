@@ -66,9 +66,9 @@ export default new Vue({
       } else if (item.type === 'route') {
         this.frappe.fetchMeta(item.doctype).then(meta => {
           if (meta.issingle) {
-            this.frappe.setRoute('Form', item.doctype, item.doctype)
+            this.fr.router.setRoute('Form', item.doctype, item.doctype)
           } else {
-            this.frappe.setRoute('List', item.doctype)
+            this.fr.router.setRoute('List', item.doctype)
           }
         })
         console.log('Routing to', item.route)
