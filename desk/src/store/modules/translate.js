@@ -1,6 +1,6 @@
 import Vue from 'vue'
 
-export default {
+export default new Vue({
   data() {
     return {
       translations: {},
@@ -24,4 +24,4 @@ export default {
       return translated
     },
   },
-}
+})
