@@ -70,27 +70,17 @@ export default new Vue({
       return this.docinfo[doctype][name] || null
     },
     setValue(doctype, name, fieldname, value) {
-      if (this.getDoc(doctype, name)) {
-        this.docs[doctype][name][fieldname] = value
-        this.$set(this.docs[doctype][name], '__dirty', true)
+      const doc = this.getDoc(doctype, name)
+      if (doc) {
+        doc.setValue(fieldname, value)
+        doc.dirty()
         this.$emit('document:setValue', doctype, name, fieldname, value)
-        this.runFormValidate(doctype, name)
       }
-    },
-    async runFormValidate(doctype, name) {
-      const doc = await this.fr.call('run_controller_method', {
-        method: 'form_validate',
-        doctype,
-        name,
-        doc: this.getDoc(doctype, name),
-      })
-      this.setDoc(doctype, name, doc)
-      this.setDirty(doctype, name)
     },
     setDirty(doctype, name) {
       const doc = this.getDoc(doctype, name)
       if (doc) {
-        doc.__dirty = true
+        doc.dirty()
       }
     },
     newDoc(doctype) {
@@ -127,7 +117,7 @@ export default new Vue({
     },
     getIndicator(doctype, name) {
       const doc = this.getDoc(doctype, name)
-      if (doc && doc.__dirty) {
+      if (doc && doc.isDirty) {
         return {
           text: this.__('Not Saved'),
           color: 'orange',
@@ -137,6 +127,24 @@ export default new Vue({
         text: '',
         color: null,
       }
+    },
+    getStandardFields() {
+      return [
+        'name',
+        'owner',
+        'creation',
+        'modified',
+        'modified_by',
+        '_user_tags',
+        '_comments',
+        '_assign',
+        '_liked_by',
+        'docstatus',
+        'parent',
+        'parenttype',
+        'parentfield',
+        'idx',
+      ]
     },
   },
 })

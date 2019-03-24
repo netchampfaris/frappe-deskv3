@@ -104,7 +104,7 @@ export default {
   },
   computed: {
     doc() {
-      return this.frappe.fr.model.getDoc(this.doctype, this.name)
+      return this.fr.model.getDoc(this.doctype, this.name)
     },
     pageHeaderSettings() {
       const indicator = this.fr.model.getIndicator(this.doctype, this.name)
