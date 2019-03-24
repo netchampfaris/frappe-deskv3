@@ -7,29 +7,22 @@
 <script>
 export default {
   name: 'StatusIndicator',
-  props: ['doctype', 'name'],
-  async created() {
-    if (!this.doc) {
-      this.doc = await this.fr.model.fetchDoc(this.doctype, this.name)
-    }
-  },
+  props: ['doc'],
   computed: {
     status() {
-      const doc = this.frappe.fr.model.getDoc(this.doctype, this.name)
-      if (!doc) {
+      if (!this.doc) {
         return ''
       }
-      if (doc && doc.__dirty) {
+      if (this.doc && this.doc.isDirty) {
         return this.__('Not Saved')
       }
-      return doc.status
+      return this.doc.status
     },
     color() {
-      const doc = this.frappe.fr.model.getDoc(this.doctype, this.name)
-      if (!doc) {
+      if (!this.doc) {
         return 'grey'
       }
-      if (doc && doc.__dirty) {
+      if (this.doc && this.doc.isDirty) {
         return 'orange'
       }
 
@@ -38,7 +31,7 @@ export default {
         Closed: 'green',
         Pending: 'orange',
       }
-      return colorMap[doc.status]
+      return colorMap[this.doc.status]
     },
   },
 }

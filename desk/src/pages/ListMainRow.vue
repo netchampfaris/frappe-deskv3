@@ -10,11 +10,7 @@
           v-for="fieldname in otherFields"
           :key="fieldname"
         >
-          <StatusIndicator
-            v-if="fieldname === 'status'"
-            :doctype="doctype"
-            :name="doc.name"
-          />
+          <StatusIndicator v-if="fieldname === 'status'" :doc="doc" />
           <span v-else>{{ doc[fieldname] | stripHTML }}</span>
         </div>
       </div>
