@@ -1,11 +1,11 @@
-export default {
+import Vue from 'vue'
+
+export default new Vue({
   data() {
     return {
-      notifications: {
-        notifications: {},
-        total: 0,
-        excluded: ['targets', 'new_messages'],
-      },
+      notifications: {},
+      total: 0,
+      excluded: ['targets', 'new_messages'],
     }
   },
   methods: {
@@ -13,7 +13,7 @@ export default {
       const notifications = await this.fr.call(
         'frappe.desk.notifications.get_notifications'
       )
-      this.notifications.notifications = notifications
+      this.notifications = notifications
       await this.updateNotificationTotal()
     },
     async updateNotificationTotal() {
@@ -21,15 +21,13 @@ export default {
       const add = (a, b) => a + b
       let keys = keys
         ? keys
-        : Object.keys(this.notifications.notifications)
+        : Object.keys(this.notifications)
             .sort()
-            .filter(e => !this.notifications.excluded.includes(e))
+            .filter(e => !this.excluded.includes(e))
       keys.forEach(key => {
-        total =
-          total +
-          Object.values(this.notifications.notifications[key]).reduce(add, 0)
+        total = total + Object.values(this.notifications[key]).reduce(add, 0)
       })
-      this.notifications.total = total
+      this.total = total
     },
   },
-}
+})

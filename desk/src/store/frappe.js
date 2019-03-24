@@ -13,7 +13,7 @@ import notification from './modules/notification'
 import { setupFormChangeHandler } from './modules/form'
 
 const frappe = new Vue({
-  mixins: [document, meta, notification],
+  mixins: [document, meta],
   data() {
     return {}
   },
@@ -24,10 +24,11 @@ frappe.awesomebar = awesomebar
 frappe.desktop = desktop
 frappe.format = format
 frappe.list = list
+frappe.notification = notification
 frappe.request = request
+frappe.router = router
 frappe.session = session
 frappe.translate = translate
-frappe.router = router
 
 // convenience method shortcuts
 frappe.call = frappe.request.call

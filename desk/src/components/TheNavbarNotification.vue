@@ -3,7 +3,7 @@
     <div class="my-2 hover:bg-grey-lighter cursor-pointer">
       <div class="p-2 text-center bg-red-light hover:bg-red rounded">
         <span class="px-1 text-lg font-bold text-white">
-          {{ frappe.notifications.total }}
+          {{ fr.notification.total }}
         </span>
       </div>
     </div>
@@ -13,16 +13,11 @@
 export default {
   name: 'TheNavbarNotification',
   mounted() {
-    this.getNotifications()
-  },
-  methods: {
-    async getNotifications() {
-      await this.frappe.getNotifications()
-    },
+    this.fr.notification.getNotifications()
   },
   computed: {
     notificationItems() {
-      return Object.keys(this.frappe.notifications.notifications)
+      return Object.keys(this.fr.notification.notifications)
     },
   },
 }
