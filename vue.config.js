@@ -22,6 +22,8 @@ module.exports = {
   runtimeCompiler: true,
   configureWebpack(config) {
     config.entry.app = ['./desk/src/main.js']
+    config.resolve.alias['frappe$'] = path.resolve('./desk/src/store/frappe.js')
+    config.resolve.alias['frappe'] = path.resolve('./desk/src/store/modules/')
   },
   devServer: {
     allowedHosts: sites,
