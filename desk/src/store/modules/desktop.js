@@ -9,7 +9,7 @@ export default {
   methods: {
     async fetchDesktopModules() {
       if (this.desktopModules.length > 0) return
-      const data = await this.call(
+      const data = await this.fr.call(
         'frappe.config.get_modules_from_all_apps_for_user'
       )
       if (data) {

@@ -1,6 +1,7 @@
+import Vue from 'vue'
 import debounce from 'lodash/debounce'
 
-export default {
+export default new Vue({
   data() {
     return {
       isFocused: false,
@@ -83,4 +84,4 @@ export default {
       }
     },
   },
-}
+})

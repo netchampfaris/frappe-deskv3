@@ -21,7 +21,7 @@ export default {
     async fetchMeta(doctype) {
       let meta = this.getMeta(doctype)
       if (!meta) {
-        const data = await this.call('frappe.desk.form.load.getdoctype', {
+        const data = await this.fr.call('frappe.desk.form.load.getdoctype', {
           doctype,
           with_parent: 1,
         })

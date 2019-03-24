@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import call from './modules/call'
+import request from './modules/request'
 import session from './modules/session'
 import translate from './modules/translate'
 import desktop from './modules/desktop'
@@ -14,7 +14,6 @@ import { setupFormChangeHandler } from './modules/form'
 
 const frappe = new Vue({
   mixins: [
-    call,
     session,
     translate,
     desktop,
@@ -30,8 +29,14 @@ const frappe = new Vue({
   },
 })
 
-frappe.awesomebar = new Vue(awesomebar)
+// append modules to frappe object
+frappe.awesomebar = awesomebar
 frappe.list = list
+frappe.request = request
+
+// convenience method shortcuts
+frappe.call = frappe.request.call
+
 setupFormChangeHandler(frappe)
 
 Vue.prototype.frappe = frappe

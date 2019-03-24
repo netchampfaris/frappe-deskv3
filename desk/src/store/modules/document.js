@@ -8,7 +8,7 @@ export default {
   },
   methods: {
     async fetchDoc(doctype, name) {
-      const data = await this.call('frappe.desk.form.load.getdoc', {
+      const data = await this.fr.call('frappe.desk.form.load.getdoc', {
         doctype,
         name,
       })
@@ -24,7 +24,7 @@ export default {
         return
       }
 
-      let data = await this.call('frappe.desk.form.save.savedocs', {
+      let data = await this.fr.call('frappe.desk.form.save.savedocs', {
         doc: JSON.stringify(doc),
         action: 'Save',
       })
@@ -72,7 +72,7 @@ export default {
       }
     },
     async runFormValidate(doctype, name) {
-      const doc = await this.call('run_controller_method', {
+      const doc = await this.fr.call('run_controller_method', {
         method: 'form_validate',
         doctype,
         name,

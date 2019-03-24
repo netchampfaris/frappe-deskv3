@@ -1,9 +1,9 @@
+import Vue from 'vue'
+
 async function call(method, data) {
   if (!data) {
     data = {}
   }
-
-  // data.cmd = method
 
   const res = await fetch(`/api/method/${method}`, {
     method: 'POST',
@@ -29,8 +29,8 @@ async function call(method, data) {
   }
 }
 
-export default {
+export default new Vue({
   methods: {
     call,
   },
-}
+})

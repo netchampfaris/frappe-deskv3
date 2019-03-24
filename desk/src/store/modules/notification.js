@@ -10,7 +10,7 @@ export default {
   },
   methods: {
     async getNotifications() {
-      const notifications = await this.call(
+      const notifications = await this.fr.call(
         'frappe.desk.notifications.get_notifications'
       )
       this.notifications.notifications = notifications
@@ -19,11 +19,11 @@ export default {
     async updateNotificationTotal() {
       let total = 0
       const add = (a, b) => a + b
-      let keys = keys ?
-        keys :
-        Object.keys(this.notifications.notifications)
-        .sort()
-        .filter(e => !this.notifications.excluded.includes(e))
+      let keys = keys
+        ? keys
+        : Object.keys(this.notifications.notifications)
+            .sort()
+            .filter(e => !this.notifications.excluded.includes(e))
       keys.forEach(key => {
         total =
           total +
