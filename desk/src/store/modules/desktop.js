@@ -1,6 +1,7 @@
+import Vue from 'vue'
 import partition from 'lodash/groupBy'
 
-export default {
+export default new Vue({
   data() {
     return {
       desktopModules: [],
@@ -17,4 +18,4 @@ export default {
       }
     },
   },
-}
+})

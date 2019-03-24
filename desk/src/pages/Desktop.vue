@@ -2,9 +2,9 @@
   <div class="container">
     <div v-for="module in modulesCategories" :key="module">
       <DesktopSection
-        v-if="frappe.desktopModules[module]"
+        v-if="fr.desktop.desktopModules[module]"
         :moduleName="module"
-        :moduleData="frappe.desktopModules[module]"
+        :moduleData="fr.desktop.desktopModules[module]"
       />
     </div>
   </div>
@@ -23,7 +23,7 @@ export default {
     }
   },
   async created() {
-    this.frappe.fetchDesktopModules()
+    this.fr.desktop.fetchDesktopModules()
   },
 }
 </script>
