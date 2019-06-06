@@ -1,6 +1,5 @@
 <template>
   <div v-if="meta">
-    <!-- <DataTable :columns="columns" :data="data"/> -->
     <ListMainRowHead :doctype="doctype" :fieldsToShow="getFieldsToShow()" />
     <ListMainRow
       v-for="doc in listData"
@@ -15,13 +14,11 @@
 <script>
 import ListMainRowHead from './ListMainRowHead'
 import ListMainRow from './ListMainRow'
-// import DataTable from '../components/DataTable'
 
 export default {
   name: 'ListMain',
   props: ['doctype'],
   components: {
-    // DataTable,
     ListMainRowHead,
     ListMainRow,
   },

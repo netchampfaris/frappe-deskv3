@@ -32,7 +32,7 @@ export default new Vue({
       }
 
       return suggestions
-    }, 300),
+    }, 100),
 
     getCreatables(keyword, oldKeyword) {
       if (oldKeyword.startsWith('new')) return []

@@ -14,6 +14,11 @@ const routes = [
     props: true,
   },
   {
+    path: '/Report/:doctype',
+    component: () => import('./pages/Report'),
+    props: true,
+  },
+  {
     path: '/Form/:doctype/:name',
     component: () => import('./pages/Form'),
     props: true,

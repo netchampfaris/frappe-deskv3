@@ -15,3 +15,7 @@
 .max-h-dropdown {
   max-height: config('height.64');
 }
+
+.cursor-col-resize {
+  cursor: col-resize;
+}

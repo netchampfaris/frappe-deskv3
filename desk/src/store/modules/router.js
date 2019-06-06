@@ -2,11 +2,6 @@ import Vue from 'vue'
 import router from '../../router'
 
 export default new Vue({
-  data() {
-    return {
-      currentRoute: [],
-    }
-  },
   methods: {
     setRoute(...route) {
       route = route.join('/')
@@ -15,11 +10,14 @@ export default new Vue({
         route = '/' + route
       }
       router.push(route)
-
-      this.currentRoute = route.split('/')
     },
     getRoute() {
-      return this.currentRoute
+      return this.currentRouteStr
+    },
+  },
+  computed: {
+    currentRouteStr() {
+      return router.currentRoute.fullPath
     },
   },
 })
