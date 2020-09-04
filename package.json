@@ -37,7 +37,7 @@
     "portal-vue": "^1.5.1",
     "quill": "2.0.0-dev.2",
     "redis": "^2.8.0",
-    "showdown": "^1.8.6",
+    "showdown": "^1.9.1",
     "socket.io": "^2.0.4",
     "superagent": "^3.8.2",
     "tiptap": "^1.4.0",
