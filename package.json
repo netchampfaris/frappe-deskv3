@@ -38,7 +38,7 @@
     "quill": "2.0.0-dev.2",
     "redis": "^2.8.0",
     "showdown": "^1.8.6",
-    "socket.io": "^2.0.4",
+    "socket.io": "^2.4.0",
     "superagent": "^3.8.2",
     "tiptap": "^1.4.0",
     "tiptap-extensions": "^1.4.0",
