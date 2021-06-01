@@ -55,7 +55,7 @@ google-auth-oauthlib
 faker
 stripe
 coverage
-urllib3==1.23
+urllib3==1.26.5
 GitPython==2.1.11
 psycopg2==2.7.5
 psycopg2-binary==2.7.5
