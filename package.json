@@ -32,7 +32,7 @@
     "highlight.js": "^9.12.0",
     "jsbarcode": "^3.9.0",
     "lodash": "^4.17.11",
-    "moment": "^2.20.1",
+    "moment": "^2.29.2",
     "moment-timezone": "^0.5.21",
     "portal-vue": "^1.5.1",
     "quill": "2.0.0-dev.2",
